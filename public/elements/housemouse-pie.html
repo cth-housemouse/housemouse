@@ -1,0 +1,50 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="housemouse-pie">
+  	
+    <style>
+
+    </style>
+
+  	<template>
+  		<p>hi</p>
+  	</template>
+
+
+  	<script>
+
+		Polymer('housemouse-pie', { 
+			local: [ 	{
+				country: "total", hits: 0, percentage: 100, htype: {
+					flat: {hits: 0, percentage: 0},
+					house: {hits: 0, percentage: 0},
+					boer: {hits: 0, percentage: 0} }
+						},
+						{
+				country: "netherlands", hits: 0, percentage: 100, htype: {
+					flat: {hits: 0, percentage: 0},
+					house: {hits: 0, percentage: 0},
+					boer: {hits: 0, percentage: 0} } 
+						},
+						{
+				country: "italy", hits: 0, percentage: 100, htype: {
+					flat: {hits: 0, percentage: 0},
+					house: {hits: 0, percentage: 0},
+					boer: {hits: 0, percentage: 0} }
+						},
+						{
+				country: "sweden", hits: 0, percentage: 100, htype: {
+					flat: {hits: 0, percentage: 0},
+					house: {hits: 0, percentage: 0},
+					boer: {hits: 0, percentage: 0} }
+						}						
+  			], ready: function() {
+  				console.log(this.local);
+  				}
+
+  		});
+
+  		
+
+  	</script>
+</polymer-element>
