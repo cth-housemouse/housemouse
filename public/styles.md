@@ -13,4 +13,4 @@ Red:		#E34D2F
 @font-face {
   font-family: NittyBold;
   src: url('../fonts/NB.woff') format('woff');
-}                                                                                                |  7
+}
