@@ -3,11 +3,30 @@
 		<script src="bower_components/platform/platform.js"></script>
 		<link rel="import" href="elements/kaart.html">
 
-
 	</head>
 	
-	<body>
-	<kaart-element></kaart-element>
+	<style type="text/css">
+		body {
+			background: -webkit-gradient(linear, left top, right top, color-stop(72%,#333333), color-stop(82%,#c0c0c0), color-stop(100%,#c0c0c0)); /* Chrome,Safari4+ */
 
+
+		}
+		h1 {
+			@font-face
+				font-family: NittyNormal; 
+				src: url('../fonts/NN.woff') format('woff');
+				text-align: center;
+				color: #c0c0c0;
+			} 
+
+		}
+	</style>
+	
+	<body>
+
+	<h1>What does 'house' mean to Europe?</h1>
+	
+		<kaart-element></kaart-element>
+	
 	</body>
 </html>
