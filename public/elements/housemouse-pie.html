@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="pie-chart.html">
 
 <polymer-element name="housemouse-pie">
   	
@@ -8,50 +9,49 @@
 
   	<template>
   		<p>I'M THE PIE ELEMENT</p>
+  		<pie-chart houseval="{{ count.house }}" flatval="{{ count.flat }}" farmval="{{ count.farm }}"></pie-chart>
+		<p> {{ count.flat }} </p>
+
   	</template>
 
 
     
   	<script>
-		Polymer('housemouse-pie', { 
-			local: [ 	{
-				country: "total", hits: 0, percentage: 0, htype: {
-					flat: {hits: 0, percentage: 0},
-					house: {hits: 0, percentage: 0},
-					boer: {hits: 0, percentage: 0} }
-						},
-						{
-				country: "netherlands", hits: 0, percentage: 0, htype: {
-					flat: {hits: 0, percentage: 0},
-					house: {hits: 0, percentage: 0},
-					boer: {hits: 0, percentage: 0} } 
-						},
-						{
-				country: "italy", hits: 0, percentage: 0, htype: {
-					flat: {hits: 0, percentage: 0},
-					house: {hits: 0, percentage: 0},
-					boer: {hits: 0, percentage: 0} }
-						},
-						{
-				country: "sweden", hits: 0, percentage: 0, htype: {
-					flat: {hits: 0, percentage: 0},
-					house: {hits: 0, percentage: 0},
-					boer: {hits: 0, percentage: 0} }
-						}						
-  			],
+		Polymer('housemouse-pie', {
 
+			count: {flat: 0, house: 0, farm: 0},
+			
+  			ready: function(){
+  					this.loadcount(); 
+  				},
 
-  			 ready: function() {
-  				console.log(voters);
+  			loadcount: function(){
+				
+  				var arrayLength = voters.permanent.length;
 
-  				/* case (permanent.choice)
-  					switch */
+  				for (var i = 0; i < arrayLength; i++) {
+  					switch (voters.permanent[i].choice) {
+  						case "flat":
+  							this.count.flat++
+  							break;
+  						case "house":
+  							this.count.house++
+  							break;
+  						case "farm":
+  							this.count.farm++
+  							break;	}
 
   				}
 
+  				console.log(this.count);
+
+  				
+
+				}
 
   		});
 	
+
 
   	</script>
 </polymer-element>
