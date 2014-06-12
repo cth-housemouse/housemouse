@@ -7,44 +7,51 @@
     </style>
 
   	<template>
-  		<p>hi</p>
+  		<p>I'M THE PIE ELEMENT</p>
   	</template>
 
 
+    
   	<script>
-
 		Polymer('housemouse-pie', { 
 			local: [ 	{
-				country: "total", hits: 0, percentage: 100, htype: {
+				country: "total", hits: 0, percentage: 0, htype: {
 					flat: {hits: 0, percentage: 0},
 					house: {hits: 0, percentage: 0},
 					boer: {hits: 0, percentage: 0} }
 						},
 						{
-				country: "netherlands", hits: 0, percentage: 100, htype: {
+				country: "netherlands", hits: 0, percentage: 0, htype: {
 					flat: {hits: 0, percentage: 0},
 					house: {hits: 0, percentage: 0},
 					boer: {hits: 0, percentage: 0} } 
 						},
 						{
-				country: "italy", hits: 0, percentage: 100, htype: {
+				country: "italy", hits: 0, percentage: 0, htype: {
 					flat: {hits: 0, percentage: 0},
 					house: {hits: 0, percentage: 0},
 					boer: {hits: 0, percentage: 0} }
 						},
 						{
-				country: "sweden", hits: 0, percentage: 100, htype: {
+				country: "sweden", hits: 0, percentage: 0, htype: {
 					flat: {hits: 0, percentage: 0},
 					house: {hits: 0, percentage: 0},
 					boer: {hits: 0, percentage: 0} }
 						}						
-  			], ready: function() {
-  				console.log(this.local);
+  			],
+
+
+  			 ready: function() {
+  				console.log(voters);
+
+  				/* case (permanent.choice)
+  					switch */
+
   				}
 
-  		});
 
-  		
+  		});
+	
 
   	</script>
 </polymer-element>
