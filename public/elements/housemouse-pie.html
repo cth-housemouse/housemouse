@@ -9,8 +9,9 @@
 
   	<template>
   		<p>I'M THE PIE ELEMENT</p>
-  		<pie-chart houseval="{{ count.house }}" flatval="{{ count.flat }}" farmval="{{ count.farm }}"></pie-chart>
-		<p> {{ count.flat }} </p>
+      <pie-chart houseval="5" flatval="10" farmval="9"></pie-chart>
+      <pie-chart houseval="{{count.house}}" flatval="{{count.flat}}" farmval="{{count.farm}}"></pie-chart>
+      <p> {{ count.flat }} {{ count.house }} {{ count.farm }} </p>
 
   	</template>
 
@@ -40,6 +41,12 @@
   						case "farm":
   							this.count.farm++
   							break;	}
+
+          console.log(this.count)
+
+          //if ()
+
+
 
   				}
 
