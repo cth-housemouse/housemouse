@@ -5,13 +5,14 @@
      	<script type="text/javascript" src="js/jquery.mockjson.js"></script>
      	<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.1.3"></script>
      	<script src="app.js"></script>	
-		<link rel="import" href="elements/housemouse-pie.html">
+
+		<link rel="import" href="elements/pie-chart.html">
 
 
 	</head>
 	<body>
 		
-		<housemouse-pie></housemouse-pie>
+		<pie-chart></pie-chart>
 
 		<script type="text/javascript">
 
@@ -35,6 +36,26 @@
 
             var voters = $.mockJSON.generateFromTemplate(votersFixture);	
             console.log(voters)
+
+            var count = {flat: 0, house: 0, farm: 0};
+
+            var arrayLength = voters.permanent.length;	
+  			
+  			for (var i = 0; i < arrayLength; i++) {
+  				switch (voters.permanent[i].choice) {
+  					case "flat":
+  						this.count.flat++
+  						break;
+  					case "house":
+  						this.count.house++
+  						break;
+  					case "farm":
+  						this.count.farm++
+  						break;	};
+  					};
+
+
+
 		</script>
 
 

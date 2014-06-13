@@ -29,9 +29,9 @@
             r = (w / 2),                        //radius
             color = d3.scale.ordinal().range(['rgb(216,179,101)','rgb(245,245,245)','rgb(90,180,172)']);
 
-        var data = [{"label":"house", "value": svg.attr("hs")}, 
-                    {"label":"flat", "value": svg.attr("flt")}, 
-                    {"label":"farm", "value": svg.attr("frm")}];
+        var data = [{"label":"house", "value": count.house}, 
+                    {"label":"flat", "value": count.flat}, 
+                    {"label":"farm", "value": count.farm}];
         
         var vis = svg                       //we already have an svg element
             .data([data])                   //associate our data with the document
