@@ -1,0 +1,26 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer-ajax/polymer-ajax.html">
+<link rel="import" href="kaart-itself.html">
+
+<polymer-element name="kaart-element" noscript>
+	<template>
+		<style>
+			#kaart {
+			  background: #333333; /* Old browsers */
+			  background: -moz-linear-gradient(left,  #333333 72%, #c0c0c0 74%, #c0c0c0 100%); /* FF3.6+ */
+			  background: -webkit-gradient(linear, left top, right top, color-stop(72%,#333333), color-stop(74%,#c0c0c0), color-stop(100%,#c0c0c0)); /* Chrome,Safari4+ */
+			  background: -webkit-linear-gradient(left,  #333333 72%,#c0c0c0 74%,#c0c0c0 100%); /* Chrome10+,Safari5.1+ */
+			  background: -o-linear-gradient(left,  #333333 72%,#c0c0c0 74%,#c0c0c0 100%); /* Opera 11.10+ */
+			  background: -ms-linear-gradient(left,  #333333 72%,#c0c0c0 74%,#c0c0c0 100%); /* IE10+ */
+			  background: linear-gradient(to right,  #333333 72%,#c0c0c0 74%,#c0c0c0 100%); /* W3C */
+			  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#c0c0c0',GradientType=1 ); /* IE6-9 */
+			}
+		</style>
+	
+  	<div id="kaart">
+		<kaart-itself><kaart-itself>
+	</div>
+		</template>
+	</template>
+
+</polymer-element>

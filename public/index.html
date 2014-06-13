@@ -7,14 +7,17 @@
      	<script src="app.js"></script>	
 
 		<link rel="import" href="elements/pie-chart.html">
-
+		<link rel="import" href="elements/kaart.html">
 
 	</head>
 	<body>
 		
 		<pie-chart></pie-chart>
+		<kaart-element></kaart-element>
 
 		<script type="text/javascript">
+
+			//JSON mockup code
 
 			$.mockJSON.data.EU_COUNTRY = [
 		    'al', 'ad', 'at', 'by', 'be','ba','bg','hr','cy','cz','dk','ee','fo','fi','fr','de','gi','gr','hu','is','ie','it','lv','li','lt','lu','mk','mt','md','mc','nl','no','pl','pt','ro','ru','sm','rs','sk','si','es','se','ch','ua','gb','va', 'im','me'
@@ -34,14 +37,15 @@
 	   		 	]
 	  		};
 
+	  		// taartcode
+
             var voters = $.mockJSON.generateFromTemplate(votersFixture);	
-            console.log(voters)
 
             var count = {flat: 0, house: 0, farm: 0};
 
-            var arrayLength = voters.permanent.length;	
+            var arrayPermanentLength = voters.permanent.length;	
   			
-  			for (var i = 0; i < arrayLength; i++) {
+  			for (var i = 0; i < arrayPermanentLength; i++) {
   				switch (voters.permanent[i].choice) {
   					case "flat":
   						this.count.flat++
@@ -55,6 +59,39 @@
   					};
 
 
+  			// Kaartcode
+
+  			var countryCount = [
+			{country: "nl", htype: "flat", flat: 0, house: 0, farm: 0},
+			{country: "de", htype: "huis", flat: 0, house: 0, farm: 0}
+			];
+
+			var arrayPermanentLength = voters.permanent.length;	
+	    	var arrayCountryCountLength = countryCount.length;
+	  		
+
+	  		/* for (var s = 0; s < arrayPermanentLength; s++){
+
+
+		  		for (var i = 0;  < arrayPermanentLength; i++) {
+		  			switch (voters.permanent[i].choice) {
+		  				case "flat":
+	 						this.countryCount[0].flat++
+		 					break;
+		  				case "house":
+		  					this.countryCount[0].house++
+		  					break;
+		  				case "farm":
+		  					this.countryCount[0].farm++
+		  					break;	};
+		  			};
+		  	}
+
+			*/
+
+	  		console.log(voters);
+	  		console.log(countryCount);
+	  		console.log(count);
 
 		</script>
 
