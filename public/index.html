@@ -4,13 +4,14 @@
 		<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
      	<script type="text/javascript" src="js/jquery.mockjson.js"></script>
      	<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.1.3"></script>
+     	<script src="app.js"></script>	
 		<link rel="import" href="elements/housemouse-pie.html">
 
 
 	</head>
 	<body>
+		
 		<housemouse-pie></housemouse-pie>
-
 
 		<script type="text/javascript">
 
@@ -33,7 +34,7 @@
 	  		};
 
             var voters = $.mockJSON.generateFromTemplate(votersFixture);	
-
+            console.log(voters)
 		</script>
 
 

@@ -16,6 +16,12 @@
     </template>
     
     <script>
+        Polymer('pie-chart', {
+        ready: function() {
+            makePie(this.$.pie);
+          }
+        });
+
       function makePie(form) {
         var svg = d3.select(form);
         var w = 500,                            //width
@@ -61,10 +67,6 @@
                 .text(function(d, i) { return data[i].label; });        //get the label from our original data array
         };
 
-      Polymer('pie-chart', {
-        ready: function() {
-            makePie(this.$.pie);
-          }
-        });
+
   </script>
 </polymer-element>
