@@ -2,12 +2,13 @@
 // JSON mockup code
 //
 
-/* The mockJSON generator creates a JSON from a fixture. Yet the things 
+/* 
+The mockJSON generator creates a JSON from a fixture. Yet the things 
 we wanted to loop through weren't in there, namely the country's of Europe, 
 and the flat, house and farm. In the first two statements I add these lists. 
 */
 
-//Fill in the country's that are needed!
+// Fill in the country's that are needed!
 
 $.mockJSON.data.EU_COUNTRY = [
 'al', 'ad', 'at', 'by', 'be','ba','bg','hr','cy','cz','dk','ee','fo','fi','fr','de','gi','gr','hu','is','ie','it','lv','li','lt','lu','mk','mt','md','mc','nl','no','pl','pt','ro','ru','sm','rs','sk','si','es','se','ch','ua','gb','va', 'im','me'
@@ -17,7 +18,8 @@ $.mockJSON.data.HTYPE = [
 'flat', 'house', 'farm'
 ];
 
-/* This is the fixure itself. It takes some weeeird syntax, 
+/* 
+This is the fixure itself. It takes some weeeird syntax, 
 but it works. It says: In permanent I want 1000-10000 array items 
 wich contain a userid of 20-40 numbers, a country of 
 the list above, and a htype of the other list above.
@@ -38,56 +40,19 @@ var votersFixture = {
 var voters = $.mockJSON.generateFromTemplate(votersFixture);	
 
 //
-// TAARTCODE
-//
-
-// Here im simply defining variables and taking the length of the voters array.
-	
-var count = {flat: 0, house: 0, farm: 0};
-var arrayPermanentLength = voters.permanent.length;	
-	
-// The 'for' statement creates a loop: a codeblock which will run 
-// a limited ammount of times. Infinite loops make your 
-// computer go boom. It takes three parameters, between the (). 
-// The first defines the variable which will be used to determine the amount 
-// of times it runs. The second parameter sets the condition on which 
-// the loop will be broken, in this case the total ammount of votes. The last 
-// statement adds one to the variable at the end of each loop so that 
-// the variable will reach that point.
-
-// Within the for loop it's not that complicated. 
-// If, for example, the choice in one of the votes is 'flat' 
-// then it adds one to count.flat. 
-
-for (var u = 0; u < arrayPermanentLength; u++) {
-	if (voters.permanent[u].choice == "flat") {
-			count.flat++; 
-	};
-	if (voters.permanent[u].choice == "house") {
-			count.house++; 
-	};
-	if (voters.permanent[u].choice == "farm") {
-			count.farm++; 
-	};
-};
-
-// Here I'm setting the attributes of bigpie to the right value's.
-
-document.getElementById("bigpie").setAttribute("houseval", count.house);
-document.getElementById("bigpie").setAttribute("flatval", count.flat);
-document.getElementById("bigpie").setAttribute("farmval", count.farm);
-
-//
-// Kaartcode
+// The calculation for the Pie and the Chart. 
 //
 
 // This first var creates the array for all the country's. 
 
-// Still need to be filled with all the country's. 
-// Remember to make the mockJSON list above correspond with these country's, 
-// else there won't be votes for that country!
+/* 
+Still need to be filled with the right country's. 
+Remember to make the mockJSON list above correspond with these country's, 
+else there won't be votes for that country! 
+*/
 
 var countryCount = [
+	{country: "total", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "nl", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "de", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "fr", htype: "", flat: 0, house: 0, farm: 0},
@@ -106,18 +71,44 @@ var arrayPermanentLength = voters.permanent.length;
 var arrayCountryCountLength = countryCount.length;
 				
 /* 
+The 'for' statement creates a loop: a codeblock which will run 
+a limited amount of times. Infinite loops make your 
+computer go boom. It takes three parameters, between the (). 
+The first statement defines the variable which will be used to determine the amount 
+of times it runs. The second parameter sets the condition up which 
+the loop will be broken, in this case the total amount of votes. The last 
+statement adds one to the variable at the end of each loop so that 
+the variable will reach the condition.
 
-This loop is a bit more complicated to understand. 
-But actually it does the same thing as the simpler loop above.
+Within the for loop it's not that complicated. 
+If, for example, the choice in one of the votes is 'flat' 
+then it adds one to countryCount[s].choice. 
 
 The first loop runs trough the votes array like above. The second 
 loop runs trough the country's in the same manner. When the country's match, 
-it checks the choice add one to that country count. 
-
-	*/
+it checks the choice add one to that country count. It skips the first object
+in the array because that's the total (s = 1)
+*/
 
 for (var i = 0; i < arrayPermanentLength; i++) {
-	for (var s = 0; s < arrayCountryCountLength; s++)
+
+	// Calculating the total
+
+	if (voters.permanent[i].choice == "flat") {
+			countryCount[0].flat++; 
+	};
+	if (voters.permanent[i].choice == "house") {
+			countryCount[0].house++; 
+	};
+	if (voters.permanent[i].choice == "farm") {
+			countryCount[0].farm++; 
+	};
+
+
+	for (var s = 1; s < arrayCountryCountLength; s++)
+
+		// Calculating the total per country
+
 		if (voters.permanent[i].country == countryCount[s].country) {
 			if (voters.permanent[i].choice == "flat") {
 				countryCount[s].flat++;
@@ -145,9 +136,15 @@ for (var s = 0; s < arrayCountryCountLength; s++) {
 	};
 };
 
+// Here I'm setting the attributes of bigpie piechart to the right value's.
+
+document.getElementById("bigpie").setAttribute("houseval", countryCount[0].house);
+document.getElementById("bigpie").setAttribute("flatval", countryCount[0].flat);
+document.getElementById("bigpie").setAttribute("farmval", countryCount[0].farm);
+
 
 // And here is the usual logging stuff. 
 
 console.log(voters);
 console.log(countryCount);
-console.log(count);
+console.log(countryCount[0]);
