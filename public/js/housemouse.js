@@ -11,7 +11,7 @@ and the flat, house and farm. In the first two statements I add these lists.
 // Fill in the country's that are needed!
 
 $.mockJSON.data.EU_COUNTRY = [
-	'gl', 'is', 'pt', 'es', 'be', 'it', 'by', 'pl', 'fi', 'de', 'se', 'no', 'ua', 'ge', 'am', 'ie', 'ch', 'at', 'cz', 'sk', 'hu', 'lt', 'lv', 'md', 'ro', 'bg', 'al', 'ee', 'ad', 'sm', 'mc', 'lu', 'fr', 'li', 'nl', 'ba', 'si', 'mk', 'hr', 'ru', 'gb', 'va', 'mt', 'dk', 'cy'
+	'gl', 'is', 'pt', 'es', 'be', 'it', 'by', 'pl', 'gr', 'fi', 'de', 'se', 'no', 'ua', 'ie', 'ch', 'at', 'cz', 'sk', 'hu', 'lt', 'lv', 'md', 'ro', 'bg', 'al', 'ee', 'ad', 'sm', 'mc', 'lu', 'fr', 'li', 'nl', 'ba', 'si', 'mk', 'hr', 'ru', 'gb', 'va', 'mt', 'dk', 'cy', 'rs', 'me', 'Kosovo'
 ];
 
 $.mockJSON.data.HTYPE = [
@@ -67,8 +67,6 @@ var countryCount = [
 	{country: "se", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "no", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "ua", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "ge", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "am", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "ie", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "ch", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "at", htype: "", flat: 0, house: 0, farm: 0},
@@ -98,7 +96,10 @@ var countryCount = [
 	{country: "va", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "mt", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "dk", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "cy", htype: "", flat: 0, house: 0, farm: 0}
+	{country: "cy", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "rs", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "me", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "Kosovo", htype: "", flat: 0, house: 0, farm: 0}
 ];
 
 // Here I'm checking the length of the arrays voters.permanent and countryCount. 
@@ -170,6 +171,12 @@ for (var s = 0; s < arrayCountryCountLength; s++) {
 	if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
 		countryCount[s].htype = "farm";
 	};
+	if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
+		countryCount[s].htype = "undecided";
+	}
+	if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
+		countryCount[s].htype = "nodata";
+	}
 };
 
 // Here I'm setting the attributes of bigpie piechart to the right value's.
@@ -184,6 +191,8 @@ console.log(voters);
 console.log(countryCount);
 console.log(countryCount[0]);
 
-// Coloring the map
+// Coloring tests
 
-$("#test2").addclass("houseactive");
+//document.getElementById("test2").className = "houseactive";
+
+// document.querySelector("#test2").className = "houseactive";

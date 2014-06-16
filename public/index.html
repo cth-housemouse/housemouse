@@ -12,22 +12,21 @@
 		<link rel="import" href="elements/kaart.html">
 	<style type="text/css">
 	
-	      .houseactive {background: blue;} 
+		.main {
+			width:600px;
+			margin:auto;
+		}
 
-	      .tweedetest {
-	      	height: 200px;
-	      	width: 200px;
-	      }
 
 	</style>	
 
 	</head>
 
 	<body>
-		<div id='test2' class="tweedetest"> </div>
-		<pie-chart id="bigpie"></pie-chart>
-		<kaart-element></kaart-element>
-
+		<div class="main">
+			<pie-chart id="bigpie"></pie-chart>
+			<kaart-element></kaart-element>
+		</div>
      	<!-- The script that runs outside elements -->
      	<script type="text/javascript" src="js/housemouse.js"></script>
 	</body>
