@@ -33,15 +33,15 @@ var votersFixture = {
 	 	]
 	};
 
-	// Here the actual mockJSON is created.
+// Here the actual mockJSON is created.
 
 var voters = $.mockJSON.generateFromTemplate(votersFixture);	
 
 //
-	// TAARTCODE
-	//
+// TAARTCODE
+//
 
-	// Here im simply defining variables and taking the length of the voters array.
+// Here im simply defining variables and taking the length of the voters array.
 	
 var count = {flat: 0, house: 0, farm: 0};
 var arrayPermanentLength = voters.permanent.length;	
@@ -88,16 +88,16 @@ document.getElementById("bigpie").setAttribute("farmval", count.farm);
 // else there won't be votes for that country!
 
 var countryCount = [
-	{country: "nl", htype: "flat", flat: 0, house: 0, farm: 0},
-	{country: "de", htype: "huis", flat: 0, house: 0, farm: 0},
-	{country: "fr", htype: "farm", flat: 0, house: 0, farm: 0},
-	{country: "gb", htype: "farm", flat: 0, house: 0, farm: 0},
-	{country: "pt", htype: "farm", flat: 0, house: 0, farm: 0},
-	{country: "dk", htype: "farm", flat: 0, house: 0, farm: 0},
-	{country: "sk", htype: "farm", flat: 0, house: 0, farm: 0},
-	{country: "ro", htype: "farm", flat: 0, house: 0, farm: 0},
-	{country: "no", htype: "farm", flat: 0, house: 0, farm: 0},
-	{country: "is", htype: "farm", flat: 0, house: 0, farm: 0},
+	{country: "nl", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "de", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "fr", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "gb", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "pt", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "dk", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "sk", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ro", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "no", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "is", htype: "", flat: 0, house: 0, farm: 0},
 ];
 
 // Here I'm checking the length of the arrays voters.permanent and countryCount. 
@@ -130,6 +130,21 @@ for (var i = 0; i < arrayPermanentLength; i++) {
 			};
 		};
 };
+
+// Checking which country htype wins for the map
+
+for (var s = 0; s < arrayCountryCountLength; s++) {
+	if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
+		countryCount[s].htype = "flat";
+	};
+	if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+		countryCount[s].htype = "house";
+	};
+	if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+		countryCount[s].htype = "farm";
+	};
+};
+
 
 // And here is the usual logging stuff. 
 
