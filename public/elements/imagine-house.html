@@ -1,0 +1,53 @@
+<polymer-element name="imagine-house" attributes="url total numClicks">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        padding: 50px;
+      }
+      :host(:hover) {
+        background: url("http://subtlepatterns.com/patterns/brickwall.png");
+        border-radius: 20px;
+        height: 300px;
+      }
+      img {
+        margin: 20px;
+        width: 200px;
+        padding: 2px;
+        border-radius: 10px;
+      }
+      img:hover {
+        background: #9ecae1;
+      }
+
+      h1 {
+        text-align: center;
+      }
+    </style>
+    <span><img on-click="{{ increaseCount }}" src="{{url}}"></span>
+    <h1>{{ percentage }} %</h1>
+  </template>
+
+  <script>
+    Polymer('imagine-house', {
+      count: 0,
+      percentage: 0,
+      totalChanged: function(){
+        if(this.count == 0){
+          this.percentage = 0;
+        } else {
+          this.percentage = parseInt((this.count / this.total) * 100);
+        }
+      },
+      increaseCount: function(){
+        this.count = this.count + 1;
+        this.total = this.total + 1;
+      },
+      imageList: [
+        {imageUrl: 'http://www.ervas.nl/sites/ervas/files/resize/gevelrenovatie/flat%20tekening-300x203.jpg'},
+        {imageUrl: 'http://imgs.steps.dragoart.com/how-to-draw-a-house-for-kids-step-8_1_000000058125_5.jpg'},
+        {imageUrl: 'http://www.gescosoftwareengineering.nl/Diversen/Kleurplaten/Soorten/Boerderij/boerderij053.jpg'}
+    ]
+    });
+  </script>
+</polymer-element>
