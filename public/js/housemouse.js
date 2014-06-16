@@ -11,7 +11,7 @@ and the flat, house and farm. In the first two statements I add these lists.
 // Fill in the country's that are needed!
 
 $.mockJSON.data.EU_COUNTRY = [
-'al', 'ad', 'at', 'by', 'be','ba','bg','hr','cy','cz','dk','ee','fo','fi','fr','de','gi','gr','hu','is','ie','it','lv','li','lt','lu','mk','mt','md','mc','nl','no','pl','pt','ro','ru','sm','rs','sk','si','es','se','ch','ua','gb','va', 'im','me'
+	'gl', 'is', 'pt', 'es', 'be', 'it', 'by', 'pl', 'fi', 'de', 'se', 'no', 'ua', 'ge', 'am', 'ie', 'ch', 'at', 'cz', 'sk', 'hu', 'lt', 'lv', 'md', 'ro', 'bg', 'al', 'ee', 'ad', 'sm', 'mc', 'lu', 'fr', 'li', 'nl', 'ba', 'si', 'mk', 'hr', 'ru', 'gb', 'va', 'mt', 'dk', 'cy'
 ];
 
 $.mockJSON.data.HTYPE = [
@@ -53,16 +53,52 @@ else there won't be votes for that country!
 
 var countryCount = [
 	{country: "total", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "nl", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "de", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "fr", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "gb", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "pt", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "dk", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "sk", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "ro", htype: "", flat: 0, house: 0, farm: 0},
-	{country: "no", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "gl", htype: "", flat: 0, house: 0, farm: 0},
 	{country: "is", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "pt", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "es", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "be", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "it", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "by", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "pl", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "gr", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "fi", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "de", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "se", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "no", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ua", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ge", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "am", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ie", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ch", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "at", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "cz", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "sk", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "hu", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "lt", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "lv", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "md", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ro", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "bg", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "al", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ee", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ad", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "sm", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "mc", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "lu", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "fr", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "li", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "nl", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ba", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "si", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "mk", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "hr", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "ru", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "gb", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "va", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "mt", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "dk", htype: "", flat: 0, house: 0, farm: 0},
+	{country: "cy", htype: "", flat: 0, house: 0, farm: 0}
 ];
 
 // Here I'm checking the length of the arrays voters.permanent and countryCount. 
@@ -142,9 +178,12 @@ document.getElementById("bigpie").setAttribute("houseval", countryCount[0].house
 document.getElementById("bigpie").setAttribute("flatval", countryCount[0].flat);
 document.getElementById("bigpie").setAttribute("farmval", countryCount[0].farm);
 
-
 // And here is the usual logging stuff. 
 
 console.log(voters);
 console.log(countryCount);
 console.log(countryCount[0]);
+
+// Coloring the map
+
+$("#test2").addclass("houseactive");
