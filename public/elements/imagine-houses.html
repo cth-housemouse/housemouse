@@ -2,7 +2,7 @@
 <link rel="import" href="imagine-house.html">
 <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
 
-<polymer-element name="imagine-houses" attributes="vote houseType">
+<polymer-element name="imagine-houses" attributes="houseType">
   <template>
     <style>
       @font-face { font-family: NittyNormal; src: url('../fonts/NN.woff') format('woff'); }
@@ -37,16 +37,13 @@
   <script>
     Polymer('imagine-houses', {
       total: 0,
-      vote: {},
       imageList: [
         {imageUrl: 'https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/512/apartment.png', type: "flat"},
         {imageUrl: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/home-512.png', type: "house"},
         {imageUrl: 'http://www.flaticon.com/png/256/23393.png', type: "farm"}
       ], 
       houseTypeChanged: function (){
-        this.vote = {
-          houseType: this.houseType
-        }
+        console.log(this.houseType);
       }
     });
   </script>

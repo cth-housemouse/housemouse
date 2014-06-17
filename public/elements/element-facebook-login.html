@@ -3,29 +3,33 @@
 <script src="../bower_components/firebase-simple-login/firebase-simple-login.js"></script>
 
 
-<polymer-element name="element-facebook-login" attributes="vote">
+<polymer-element name="element-facebook-login" attributes="houseType vote">
 
 <template>
 	<div> 
     <button name="facebook-login" on-click="{{login}}">Login here!</button>
+    {{ vote.userId }}
 	</div>
   
 </template>
 
 <script>
   Polymer('element-facebook-login', {
-     	login:function () {
+     	login: function() {
         var self = this;
+        var vote = {};
         var firebaseRef = new Firebase("https://crackling-fire-9322.firebaseio.com");
         var auth = new FirebaseSimpleLogin(firebaseRef, function(error, user) {
           if (error) {
             alert(error);
           } else if (user) {
-            self.vote.userId =  user.id;
-            self.vote.country = user.thirdPartyUserData.locale.split("_")[1];
+            vote.houseType = self.houseType; 
+            vote.userId = user.id;
+            vote.country = user.thirdPartyUserData.locale.split("_")[1];
+            console.log(vote);
           }})
         auth.login('facebook');
       }
-    });
+  });
 </script>);
 </polymer-element>
