@@ -21,15 +21,11 @@
           if (error) {
             alert(error);
           } else if (user) {
-            console.log(self.vote)
-            self.vote = {      
-              userId: user.id,
-              country: user.thirdPartyUserData.locale.split("_")[1]
-            }
-            console.log(self.vote)};
-          }
-        });
+            self.vote.userId =  user.id;
+            self.vote.country = user.thirdPartyUserData.locale.split("_")[1];
+          }})
         auth.login('facebook');
-           	}});
-</script>
+      }
+    });
+</script>);
 </polymer-element>
