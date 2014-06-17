@@ -6,56 +6,98 @@
 
 <script type="text/javascript">
 
-    function makePie(form) {
-        var svg = d3.select(form);
-        var w = 500,                            //width
-            h = w,                              //height
-            r = (w / 2),                        //radius
-            color = d3.scale.ordinal().range(['rgb(216,179,101)','rgb(245,245,245)','rgb(90,180,172)']);
-
-        var data = [{"label":"house", "value": svg.attr("hs")}, 
-                    {"label":"flat", "value": svg.attr("flt")}, 
-                    {"label":"farm", "value": svg.attr("frm")}];
-        
-        var vis = svg                       //we already have an svg element
-            .data([data])                   //associate our data with the document
-                .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
-                .attr("height", h)
-            .append("svg:g")                //make a group to hold our pie chart
-                .attr("transform", "translate(" + r + "," + r + ")");    //move the center of the pie chart from 0, 0 to radius, radius
-     
-        var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
-            .outerRadius(r);
-     
-        var pie = d3.layout.pie()           //this will create arc data for us given a list of values
-            .value(function(d) { return d.value; });    //we must tell it out to access the value of each element in our data array
-
-        var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
-            .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
-            .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array
-                .append("svg:g")                //create a group to hold each slice (we will have a <path> and a <text> element associated with each slice)
-                    .attr("class", "slice");    //allow us to style things in the slices (like text)
-     
-            arcs.append("svg:path")
-                    .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
-                    .attr("d", arc);                                    //this creates the actual SVG path using the associated data (pie) with the arc drawing function
-     
-            arcs.append("svg:text")                                     //add a label to each slice
-                    .attr("transform", function(d) {                    //set the label's origin to the center of the arc
-                    //we have to make sure to set these before calling arc.centroid
-                    d.innerRadius = 0;
-                    d.outerRadius = r;
-                    return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
-                })
-                .attr("text-anchor", "middle")                          //center the text on it's origin
-                .text(function(d, i) { return data[i].label; });        //get the label from our original data array
-        };
-
-
     Polymer('pie-chart', {
         ready: function() {
+            var votes = JSON.parse(localStorage.votes);
+
+            var countryCount = [ {country: "total", htype: "", flat: 0, house: 0, farm: 0} ];
+            var votesTotal = votes.permanent.length;
+            var countryTotal = countryCount.length;
+
+            for (var i = 0; i < votesTotal; i++) {
+
+            // Calculating the total
+
+                if (votes.permanent[i].choice == "flat") {
+                        countryCount[0].flat++; 
+                };
+                if (votes.permanent[i].choice == "house") {
+                        countryCount[0].house++; 
+                };
+                if (votes.permanent[i].choice == "farm") {
+                        countryCount[0].farm++; 
+                };
+            };
+
+            /*
+            for (var s = 0; s < countryTotal; s++) {
+                if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
+                    countryCount[s].htype = "flat";
+                };
+                if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+                    countryCount[s].htype = "house";
+                };
+                if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+                    countryCount[s].htype = "farm";
+                };
+                if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
+                    countryCount[s].htype = "undecided";
+                }
+                if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
+                    countryCount[s].htype = "nodata";
+                }
+            };
+            */
+
+            function makePie(form) {
+                var svg = d3.select(form);
+                var w = 500,                            //width
+                    h = w,                              //height
+                    r = (w / 2),                        //radius
+                    color = d3.scale.ordinal().range(['rgb(216,179,101)','rgb(245,245,245)','rgb(90,180,172)']);
+
+                var data = [{"label":"house", "value": countryCount[0].house}, 
+                            {"label":"flat", "value": countryCount[0].flat}, 
+                            {"label":"farm", "value": countryCount[0].farm}];
+                
+                var vis = svg                       //we already have an svg element
+                    .data([data])                   //associate our data with the document
+                        .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
+                        .attr("height", h)
+                    .append("svg:g")                //make a group to hold our pie chart
+                        .attr("transform", "translate(" + r + "," + r + ")");    //move the center of the pie chart from 0, 0 to radius, radius
+             
+                var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
+                    .outerRadius(r);
+             
+                var pie = d3.layout.pie()           //this will create arc data for us given a list of values
+                    .value(function(d) { return d.value; });    //we must tell it out to access the value of each element in our data array
+
+                var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
+                    .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
+                    .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array
+                        .append("svg:g")                //create a group to hold each slice (we will have a <path> and a <text> element associated with each slice)
+                            .attr("class", "slice");    //allow us to style things in the slices (like text)
+             
+                    arcs.append("svg:path")
+                            .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
+                            .attr("d", arc);                                    //this creates the actual SVG path using the associated data (pie) with the arc drawing function
+             
+                    arcs.append("svg:text")                                     //add a label to each slice
+                            .attr("transform", function(d) {                    //set the label's origin to the center of the arc
+                            //we have to make sure to set these before calling arc.centroid
+                            d.innerRadius = 0;
+                            d.outerRadius = r;
+                            return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+                        })
+                        .attr("text-anchor", "middle")                          //center the text on it's origin
+                        .text(function(d, i) { return data[i].label; });        //get the label from our original data array
+            };
+
             makePie(this.$.pie);
+
           }
+
         });
 
 </script>

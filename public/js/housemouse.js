@@ -1,3 +1,9 @@
+window.findme = "you've found me";
+
+
+
+
+
 //
 // JSON mockup code
 //
@@ -37,7 +43,19 @@ var votersFixture = {
 
 // Here the actual mockJSON is created.
 
-var voters = $.mockJSON.generateFromTemplate(votersFixture);	
+var tempVotes = $.mockJSON.generateFromTemplate(votersFixture);
+
+// Here the mockJSON is strinified and stored in localStorage.votes
+
+var TempVotesStringified = JSON.stringify(tempVotes);
+
+localStorage.votes = TempVotesStringified;
+
+// Here were just testing the thing. 
+
+// var tempVotesParsed = JSON.parse(localStorage.votes);
+
+// console.log(tempVotesParsed);
 
 //
 // The calculation for the Pie and the Chart. 
@@ -50,6 +68,8 @@ Still need to be filled with the right country's.
 Remember to make the mockJSON list above correspond with these country's, 
 else there won't be votes for that country! 
 */
+
+/*
 
 var countryCount = [
 	{country: "total", htype: "", flat: 0, house: 0, farm: 0},
@@ -102,11 +122,17 @@ var countryCount = [
 	{country: "Kosovo", htype: "", flat: 0, house: 0, farm: 0}
 ];
 
+*/
+
 // Here I'm checking the length of the arrays voters.permanent and countryCount. 
+
+/*
 
 var arrayPermanentLength = voters.permanent.length;	
 var arrayCountryCountLength = countryCount.length;
-				
+		
+*/
+
 /* 
 The 'for' statement creates a loop: a codeblock which will run 
 a limited amount of times. Infinite loops make your 
@@ -126,6 +152,7 @@ loop runs trough the country's in the same manner. When the country's match,
 it checks the choice add one to that country count. It skips the first object
 in the array because that's the total (s = 1)
 */
+/*
 
 for (var i = 0; i < arrayPermanentLength; i++) {
 
@@ -142,7 +169,7 @@ for (var i = 0; i < arrayPermanentLength; i++) {
 	};
 
 
-	for (var s = 1; s < arrayCountryCountLength; s++)
+	for (var s = 1; s < arrayCountryCountLength; s++) 
 
 		// Calculating the total per country
 
@@ -159,7 +186,11 @@ for (var i = 0; i < arrayPermanentLength; i++) {
 		};
 };
 
+*/
+
 // Checking which country htype wins for the map
+
+/*
 
 for (var s = 0; s < arrayCountryCountLength; s++) {
 	if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
@@ -179,17 +210,25 @@ for (var s = 0; s < arrayCountryCountLength; s++) {
 	}
 };
 
+*/
+
 // Here I'm setting the attributes of bigpie piechart to the right value's.
+
+/*
 
 document.getElementById("bigpie").setAttribute("houseval", countryCount[0].house);
 document.getElementById("bigpie").setAttribute("flatval", countryCount[0].flat);
 document.getElementById("bigpie").setAttribute("farmval", countryCount[0].farm);
 
+*/
+
 // And here is the usual logging stuff. 
 
+/*
 console.log(voters);
 console.log(countryCount);
 console.log(countryCount[0]);
+*/
 
 // Coloring tests
 

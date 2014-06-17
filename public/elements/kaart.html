@@ -5,13 +5,108 @@
   <script>
       Polymer('kaart-element', {
           ready: function() {
+            var votes = JSON.parse(localStorage.votes);
+            console.log("ik ben de kaart", votes);
+
+            var countryCount = [
+              {country: "total", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "gl", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "is", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "pt", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "es", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "be", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "it", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "by", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "pl", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "gr", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "fi", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "de", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "se", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "no", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "ua", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "ie", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "ch", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "at", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "cz", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "sk", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "hu", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "lt", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "lv", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "md", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "ro", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "bg", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "al", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "ee", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "ad", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "sm", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "mc", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "lu", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "fr", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "li", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "nl", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "ba", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "si", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "mk", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "hr", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "ru", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "gb", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "va", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "mt", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "dk", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "cy", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "rs", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "me", htype: "", flat: 0, house: 0, farm: 0},
+              {country: "Kosovo", htype: "", flat: 0, house: 0, farm: 0}
+            ];
+
+            var votesTotal = votes.permanent.length;
+            var countryTotal = countryCount.length;
+
+            for (var i = 0; i < votesTotal; i++) {
+
+              for (var s = 1; s < countryTotal; s++) {
+
+                if (votes.permanent[i].country == countryCount[s].country) {
+                  if (votes.permanent[i].choice == "flat") {
+                    countryCount[s].flat++;
+                  };
+                  if (votes.permanent[i].choice == "house") {
+                    countryCount[s].house++;
+                  };
+                  if (votes.permanent[i].choice == "farm") {
+                    countryCount[s].farm++;
+
+                  };
+                };
+              };
+            };
+
             
-           for (var s = 1; s < arrayCountryCountLength; s++) {
+            for (var s = 0; s < countryTotal; s++) {
+                if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
+                    countryCount[s].htype = "flat";
+                };
+                if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+                    countryCount[s].htype = "house";
+                };
+                if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+                    countryCount[s].htype = "farm";
+                };
+                if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
+                    countryCount[s].htype = "undecided";
+                }
+                if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
+                    countryCount[s].htype = "nodata";
+                }
+            };
+
+           for (var s = 1; s < countryTotal; s++) {
               if (countryCount[s].htype === ""){
                console.log(countryCount[s].htype);
               } else {
              this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].htype); }
             };
+
           }
       });
   </script>
