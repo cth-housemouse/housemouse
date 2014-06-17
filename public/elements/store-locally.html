@@ -1,0 +1,45 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="element-facebook.login.html">
+<link rel="import" href="imagine-houses-final.html">
+<link rel="import" href="imagine-house-final.html">
+
+<polymer-element name="store-locally" attributes="user">
+
+	<template>
+	<!--sync to the attributes-->
+	<imagine-houses houseType="{{vote.houseType}}"></imagine-houses>
+	<element-facebook-login user="{{vote}}"></element-facebook-login>
+
+    {{vote.id}}
+    {{vote.houseType}}
+    {{vote.country}}
+	</template>
+
+	<script>
+		Polymer('store-locally',{
+			vote: {
+				id: '',
+				houseType: '',
+				country: ''
+			}
+			voteChanged:function() {
+				if (vote.id.length > 0 && vote.houseType.length > 0) {
+					localStorage.setItem(vote.id,vote)
+				}
+			
+			}
+			
+    // save: function(key, name){
+    //       window.localStorage.setItem(key, name);
+    //     }
+	// userChanged: function(){
+	// 	this.getInput.userId = this.user.id;
+	// 	this.getInput.userHtype = this.user.htype;
+	// 	this.getInput.userCountry = this.user.country;
+ //        this.save(this.user.id, this.user);
+ //        console.log(window.localStorage.getItem(this.user.id));
+ //      }
+		});
+	</script>
+
+</polymer-element>
