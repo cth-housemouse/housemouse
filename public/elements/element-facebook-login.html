@@ -23,7 +23,7 @@
             vote.houseType = self.houseType; 
             vote.userId = user.id;
             vote.country = user.thirdPartyUserData.locale.split("_")[1];
-            console.log(vote);
+            self.vote = vote;
           }})
         auth.login('facebook');
       }

@@ -6,12 +6,12 @@
 
 	<template>
     <imagine-houses houseType="{{houseType}}"></imagine-houses>
-    <element-facebook-login houseType="{{houseType}}"></element-facebook-login>
+    <element-facebook-login vote="{{vote}}" houseType="{{houseType}}"></element-facebook-login>
 	</template>
 
 	<script>
 		Polymer('store-locally', {
-			houseTypeChanged: function() {
+			voteChanged: function() {
 				console.log(this.vote);
 			}
 		});
