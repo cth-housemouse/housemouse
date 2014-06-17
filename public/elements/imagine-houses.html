@@ -6,28 +6,15 @@
   <template>
     <style>
 
-     /* @font-face { font-family: NittyNormal; src: url('../fonts/NN.woff') format('woff'); }
-      @font-face { font-family: NittyBold; src: url('../fonts/NB.woff') format('woff'); }
-      :host {
-        margin: 50px;
-      }*/
-      header {
-        text-align: center;
-      }
-
       .housescontainer {
-        height:600px;
-        width:1200px;
+        width:1050px;
         float: none;
+        background: ;
       }
 
     </style>
 
     <div class="housescontainer">
-      <header>
-        <h1>What does 'house' mean to you?</h1>
-      </header>
-
       <template repeat="{{ image in imageList }}">
         <imagine-house url="{{image.imageUrl}}" type="{{image.type}}" total="{{ total }}"></imagine-house>
       </template>
