@@ -1,0 +1,51 @@
+<polymer-element name="imagine-house" attributes="image houseType">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        padding: 50px;
+      }
+      :host(:hover) {
+        background: url("http://subtlepatterns.com/patterns/brickwall.png");
+        border-radius: 20px;
+        height: 300px;
+      }
+      img {
+        margin: 20px;
+        width: 200px;
+        padding: 2px;
+        border-radius: 10px;
+      }
+      img:hover {
+        background: #9ecae1;
+      }
+
+      h1 {
+        text-align: center;
+      }
+    </style>
+    <span><img on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+    <!-- <h1>{{ percentage }} %</h1> -->
+  </template>
+
+  <script>
+    Polymer('imagine-house', {
+      count: 0,
+      // percentage: 0,
+      houseType: "",
+      // Might be compromised i mean redundant
+      // totalChanged: function(){
+      //   if(this.count == 0){
+      //     this.percentage = 0;
+      //   } else {
+      //     this.percentage = parseInt((this.count / this.total) * 100);
+      // console.log(this);
+      //   }
+      // },
+      //  Because it "zets" the type
+      setType: function(){
+        this.houseType = this.image.type;
+      },
+    });
+  </script>
+</polymer-element>
