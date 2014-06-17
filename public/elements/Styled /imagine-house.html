@@ -1,0 +1,41 @@
+<polymer-element name="imagine-house" attributes="url total type numClicks">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        padding: 50px;
+      }
+
+      img {
+        margin: 20px;
+        width: 180px;
+        padding: 12px;
+        border-radius: 10px;
+      }
+      img:hover {
+        background: #E5CF39;
+      }
+
+    </style>
+
+    <span>
+      <img on-click="{{ zType }}" alt="{{ type }}" src="{{url}}">
+    </span>
+    
+    <template if="{{ htype == type }}">
+      <store-locally htype="{{ type }}"></store-locally>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer('imagine-house', {
+      count: 0,
+      htype: "",
+      zType: function(){
+        htype = this.type;
+        console.log(htype);
+      },
+    });
+  </script>
+</polymer-element>
