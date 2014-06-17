@@ -1,4 +1,4 @@
-<polymer-element name="imagine-house" attributes="url total type numClicks">
+<polymer-element name="imagine-house" attributes="image houseType">
   <template>
     <style>
       :host {
@@ -24,10 +24,7 @@
         text-align: center;
       }
     </style>
-    <span><img on-click="{{ zType }}" alt="{{ type }}" src="{{url}}"></span>
-    <template if="{{ htype == type }}">
-      <store-locally htype="{{ type }}"></store-locally>
-    </template>
+    <span><img on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
     <!-- <h1>{{ percentage }} %</h1> -->
   </template>
 
@@ -35,7 +32,7 @@
     Polymer('imagine-house', {
       count: 0,
       // percentage: 0,
-      htype: "",
+      houseType: "",
       // Might be compromised i mean redundant
       // totalChanged: function(){
       //   if(this.count == 0){
@@ -46,9 +43,8 @@
       //   }
       // },
       //  Because it "zets" the type
-      zType: function(){
-        htype = this.type;
-        console.log(htype);
+      setType: function(){
+        this.houseType = this.image.type;
       },
     });
   </script>
