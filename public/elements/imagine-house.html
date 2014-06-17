@@ -1,4 +1,4 @@
-<polymer-element name="imagine-house" attributes="url total numClicks">
+<polymer-element name="imagine-house" attributes="url total type numClicks">
   <template>
     <style>
       :host {
@@ -24,31 +24,32 @@
         text-align: center;
       }
     </style>
-    <span><img on-click="{{ increaseCount }}" src="{{url}}"></span>
-    <h1>{{ percentage }} %</h1>
+    <span><img on-click="{{ zType }}" alt="{{ type }}" src="{{url}}"></span>
+    <template if="{{ htype == type }}">
+      <store-locally htype="{{ type }}"></store-locally>
+    </template>
+    <!-- <h1>{{ percentage }} %</h1> -->
   </template>
 
   <script>
     Polymer('imagine-house', {
       count: 0,
-      percentage: 0,
-      totalChanged: function(){
-        if(this.count == 0){
-          this.percentage = 0;
-        } else {
-          this.percentage = parseInt((this.count / this.total) * 100);
-      console.log(this);
-        }
+      // percentage: 0,
+      htype: "",
+      // Might be compromised i mean redundant
+      // totalChanged: function(){
+      //   if(this.count == 0){
+      //     this.percentage = 0;
+      //   } else {
+      //     this.percentage = parseInt((this.count / this.total) * 100);
+      // console.log(this);
+      //   }
+      // },
+      //  Because it "zets" the type
+      zType: function(){
+        htype = this.type;
+        console.log(htype);
       },
-      increaseCount: function(){
-        this.count = this.count + 1;
-        this.total = this.total + 1;
-      },
-      imageList: [
-        {imageUrl: 'http://www.ervas.nl/sites/ervas/files/resize/gevelrenovatie/flat%20tekening-300x203.jpg'},
-        {imageUrl: 'http://imgs.steps.dragoart.com/how-to-draw-a-house-for-kids-step-8_1_000000058125_5.jpg'},
-        {imageUrl: 'http://www.gescosoftwareengineering.nl/Diversen/Kleurplaten/Soorten/Boerderij/boerderij053.jpg'}
-    ]
     });
   </script>
 </polymer-element>
