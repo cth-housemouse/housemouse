@@ -30,7 +30,7 @@
         <h1>What does 'house' mean to you?</h1>
       </header>
      <template repeat="{{ image in imageList }}">
-       <imagine-house url="{{image.imageUrl}}" total="{{ total }}"></imagine-house>
+       <imagine-house url="{{image.imageUrl}}" type="{{image.type}}" total="{{ total }}"></imagine-house>
     </template>
   </template>
   
@@ -38,10 +38,10 @@
     Polymer('imagine-houses', {
       total: 0,
       imageList: [
-        {imageUrl: 'https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/512/apartment.png'},
-        {imageUrl: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/home-512.png'},
-        {imageUrl: 'http://www.flaticon.com/png/256/23393.png'}
-    ]
+        {imageUrl: 'https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/512/apartment.png', type: "flat"},
+        {imageUrl: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/home-512.png', type: "house"},
+        {imageUrl: 'http://www.flaticon.com/png/256/23393.png', type: "farm"}
+      ]
     });
   </script>
 </polymer-element>
