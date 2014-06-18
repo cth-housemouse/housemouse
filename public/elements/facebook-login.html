@@ -2,12 +2,10 @@
 <script src="../bower_components/firebase/firebase.js"></script>
 <script src="../bower_components/firebase-simple-login/firebase-simple-login.js"></script>
 
-<polymer-element name="element-facebook-login" attributes="houseType vote">
+<polymer-element name="facebook-login" attributes="houseType vote">
 
   <template>
-
     <style>
-
 
     .loginButton {
       display: block;
@@ -28,17 +26,22 @@
       cursor: pointer;
     }
 
+    .text {
+      text-align: center;
+    }
 
     </style>
+  	
+    <img src="../afbeeldingen/fblogin.png" class="loginButton" name="facebook-login" on-click="{{login}}"></img>
 
-  	<div> 
-      <img src="fblogin.png" class="loginButton" name="facebook-login" on-click="{{login}}"></img>
-  	</div>
+    <template if="{{ vote }}">
+        <p class="text">Succesfull</p>
+    </template>
 
   </template>
 
   <script>
-    Polymer('element-facebook-login', {
+    Polymer('facebook-login', {
        	login: function() {
           var self = this;
           var vote = {};

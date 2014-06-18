@@ -1,4 +1,4 @@
-<polymer-element name="imagine-house" attributes="image houseType">
+<polymer-element name="house-element" attributes="image houseType">
   <template>
     <style>
       :host {
@@ -22,20 +22,9 @@
   </template>
 
   <script>
-    Polymer('imagine-house', {
+    Polymer('house-element', {
       count: 0,
-      // percentage: 0,
       houseType: "",
-      // Might be compromised i mean redundant
-      // totalChanged: function(){
-      //   if(this.count == 0){
-      //     this.percentage = 0;
-      //   } else {
-      //     this.percentage = parseInt((this.count / this.total) * 100);
-      // console.log(this);
-      //   }
-      // },
-      //  Because it "zets" the type
       setType: function(){
         this.houseType = this.image.type;
       },

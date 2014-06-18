@@ -1,8 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="imagine-house.html">
+<link rel="import" href="house-element.html">
 <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
 
-<polymer-element name="imagine-houses" attributes="houseType">
+<polymer-element name="combine-houses" attributes="houseType">
   <template>
     <style>
       .housescontainer {
@@ -13,13 +13,13 @@
     </style>
 
     <template repeat="{{ image in imageList }}">
-      <imagine-house image="{{image}}" houseType="{{houseType}}"></imagine-house>
+      <house-element image="{{image}}" houseType="{{houseType}}"></house-element>
     </template>
 
   </template>
   
   <script>
-    Polymer('imagine-houses', {
+    Polymer('combine-houses', {
       total: 0,
       imageList: [
         {imageUrl: 'https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/512/apartment.png', type: "flat"},

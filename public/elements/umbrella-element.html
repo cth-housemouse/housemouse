@@ -1,11 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="element-facebook-login.html">
-<link rel="import" href="imagine-houses.html">
+<link rel="import" href="facebook-login.html">
+<link rel="import" href="combine-houses.html">
 <link rel="import" href="pie-chart.html">
 <link rel="import" href="kaart.html">
 
 
-<polymer-element name="store-locally" attributes="user">
+<polymer-element name="umbrella-element" attributes="user">
 	<template>
 		<style type="text/css">
 
@@ -96,7 +96,7 @@
 	  	</div>	
 		<div class="housesarea">
 			<div class="centerer">
-				<imagine-houses houseType="{{houseType}}"></imagine-houses>
+				<combine-houses houseType="{{houseType}}"></combine-houses>
 			</div>
 		</div>
 		<div class="piearea">
@@ -112,7 +112,7 @@
 		</div>
 		<div class="loginarea">
 			<div class="centerer">
-				<element-facebook-login vote="{{vote}}" houseType="{{houseType}}"></element-facebook-login>
+				<facebook-login vote="{{vote}}" houseType="{{houseType}}"></facebook-login>
 			</div>	
 		</div>
 		<div class="chartarea">
@@ -130,7 +130,7 @@
 	</template>
 
 	<script>
-		Polymer('store-locally', {
+		Polymer('umbrella-element', {
 			voteChanged: function() {
 				console.log(this.vote);
 			}
