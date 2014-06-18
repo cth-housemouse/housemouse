@@ -8,18 +8,31 @@
 
     <style>
 
+
     .loginButton {
       display: block;
+      width: 400px;
+      height: 100px;
       font-family: NittyBold;
-      height: 50px;
-      width: 100px;
-      background-color:#E5CF39;
+      margin: 0 auto;
+      padding-top:50px;
+      cursor: crosshair;
     }
+    .loginButton:hover {
+      display: block;
+      width: 410px;
+      height: 102px;
+      font-family: NittyBold;
+      margin: 0 auto;
+      padding-top:50px;
+      cursor: crosshair;
+    }
+
 
     </style>
 
   	<div> 
-      <button class="loginButton" name="facebook-login" on-click="{{login}}">Login here!</button>
+      <img src="fblogin.png" class="loginButton" name="facebook-login" on-click="{{login}}"></img>
   	</div>
 
   </template>
