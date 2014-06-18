@@ -9,7 +9,7 @@
 	<template>
 		<style type="text/css">
 
-			header {
+			.header {
 				height:160px;
 				background:#E5CF39;
 				text-align: center;
@@ -38,13 +38,14 @@
 			.piearea {
 				width:100%;
 				background-color: #DEDEDE;
-				padding:100px 80px;
+				padding:100px 0px; /*80px needed */
 				height:400px;
 			}
 
 			.pietext {
-				width:40%;
-				height:40px;
+				position:relative;
+				left:7%;
+				width:43%;
 				float:left;
 				margin-right:10%;
 				font-family: NittyNormal;
@@ -52,7 +53,8 @@
 			}
 
 			.bigpie {
-				float: left;
+				position:relative;
+				left: 7%;
 				width:50%;
 
 			}
@@ -66,8 +68,13 @@
 
 			.chartarea {
 				width: 100%;
-				padding-left: 80px;
+				/*padding-left: 80px;*/
 				background: #DEDEDE;
+			}
+
+			.chart {
+				position:relative;
+				left:8%;
 			}
 
 			.footerarea {
@@ -82,11 +89,11 @@
 
 		</style>	
 
-		<header>
+		<div class="header">
 	    	<div class="centerer">
 	    		<h1>What does 'house' mean to you?</h1>
 	    	</div>
-	  	</header>	
+	  	</div>	
 		<div class="housesarea">
 			<div class="centerer">
 				<imagine-houses houseType="{{houseType}}"></imagine-houses>
@@ -110,7 +117,7 @@
 		</div>
 		<div class="chartarea">
 			<div class="centerer">	
-				<kaart-element></kaart-element>
+				<kaart-element class="chart"></kaart-element>
 			</div>
 		</div>
 
