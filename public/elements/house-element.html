@@ -12,13 +12,27 @@
         padding: 12px;
         border-radius: 10px;
       }
+
       img:hover {
         background: #E5CF39;
       }
+
+      .flat {
+        background: #E5CF39;
+      }
+
+      .house {
+        background: #E34D2F;
+      }
+
+      .farm {
+        background: #75C7B3;
+      }
+
     </style>
     
-    <span><img on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
-    <!-- <h1>{{ percentage }} %</h1> -->
+    <span><img id= {{ houseType }} on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+
   </template>
 
   <script>
