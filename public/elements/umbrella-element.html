@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+
 <link rel="import" href="facebook-login.html">
 <link rel="import" href="combine-houses.html">
 <link rel="import" href="pie-chart.html">
@@ -9,7 +10,7 @@
 	<template>
 		<style type="text/css">
 
-			.header {
+			header {
 				height:160px;
 				background:#E5CF39;
 				text-align: center;
@@ -89,43 +90,47 @@
 
 		</style>	
 
-		<div class="header">
+		<header>
 	    	<div class="centerer">
 	    		<h1>What does 'house' mean to you?</h1>
 	    	</div>
-	  	</div>	
-		<div class="housesarea">
+	  	</header>
+
+		<section class="housesarea">
 			<div class="centerer">
 				<combine-houses houseType="{{houseType}}"></combine-houses>
 			</div>
-		</div>
-		<div class="piearea">
+		</section>
+
+		<section class="piearea">
 			<div class="centerer">	
-				<div class="pietext">
+				<article class="pietext">
 					<h3>The Pie</h3>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida erat. Cras tincidunt, mauris sit amet sollicitudin auctor, nisl orci vestibulum felis, sit amet sodales erat arcu ac mauris. Phasellus nec lacus eu enim ultricies tincidunt a at tortor. Nulla facilisi. Aliquam blandit dignissim tellus, at gravida est malesuada et. Nullam ac urna nisl. Pellentesque at posuere ligula. Sed augue elit.
 					</p>
-				</div>		
+				</article>		
 				<pie-chart class="bigpie"></pie-chart>
 			</div>	
-		</div>
-		<div class="loginarea">
+		</section>
+
+		<section class="loginarea">
 			<div class="centerer">
 				<facebook-login vote="{{vote}}" houseType="{{houseType}}"></facebook-login>
 			</div>	
-		</div>
-		<div class="chartarea">
+		</section>
+
+		<section class="chartarea">
 			<div class="centerer">	
 				<kaart-element class="chart"></kaart-element>
 			</div>
-		</div>
+		</section>
 
-		<div class="footerarea">	
+		<section class="footerarea">	
 			<div class="centerer">	
 				<p class="footer"> disclaimer: we did good!!</p>	
 			<div>
-		</div>
+		</section>
 
 	</template>
 
