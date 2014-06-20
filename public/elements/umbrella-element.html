@@ -1,0 +1,166 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="facebook-login.html">
+<link rel="import" href="combine-houses.html">
+<link rel="import" href="pie-chart.html">
+<link rel="import" href="kaart.html">
+<link rel="import" href="search-element.html">
+
+<polymer-element name="umbrella-element" attributes="user">
+	<template>
+		<style type="text/css">
+
+			header {
+				height:160px;
+				background:#E5CF39;
+				text-align: center;
+				padding-top: 40px;
+				font-family: NittyBold;
+				font-size: x-large;
+				letter-spacing: -3px;
+			}
+
+			h1 {
+				background: black;
+				color: #E5CF39;
+			}
+
+			.centerer {
+				width:1050px;
+				margin: 0 auto;
+			}
+
+			.housesarea {
+				width:100%;
+				height: 400px;
+				background:#F5F5F5;
+			}
+
+			.piearea {
+				width:100%;
+				background-color: #DEDEDE;
+				padding:100px 0px;
+				height:400px;
+			}
+
+			.pietext {
+				position:relative;
+				left:7%;
+				width:43%;
+				float:left;
+				margin-right:10%;
+				font-family: NittyNormal;
+				font-size: large;
+
+			}
+
+			.bigpie {
+				position:relative;
+				left: 7%;
+				width:50%;
+
+			}
+
+			.loginarea {
+				width: 100%;
+				height: 200px;
+				background: #F5F5F5;
+
+			}
+
+			.chartarea {
+				width: 100%;
+				/*padding-left: 80px;*/
+				background: #DEDEDE;
+			}
+
+			.chart {
+				position:relative;
+				left:8%;
+			}
+
+			.searcharea {
+				width: 100%;
+				background: #F5F5F5;
+
+			}
+
+			.search {
+				margin: 50px;
+				text-align:center;
+			}
+
+			.footerarea {
+				width: 100%;
+				background-color: #F5F5F5;
+				padding: 10 0;
+				font-size: medium;
+				font-family: NittyNormal;
+				text-align: center;
+
+			}
+
+			a {
+				color: black;
+			}
+
+		</style>	
+
+		<header>
+	    	<div class="centerer">
+	    		<h1>What does 'house' mean to you?</h1>
+	    	</div>
+	  	</header>
+
+		<section class="housesarea">
+			<div class="centerer">
+				<combine-houses houseType="{{houseType}}"></combine-houses>
+			</div>
+		</section>
+
+		<section class="piearea">
+			<div class="centerer">	
+				<article class="pietext">
+					<h3>The Pie</h3>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida erat. Cras tincidunt, mauris sit amet sollicitudin auctor, nisl orci vestibulum felis, sit amet sodales erat arcu ac mauris. Phasellus nec lacus eu enim ultricies tincidunt a at tortor. Nulla facilisi. Aliquam blandit dignissim tellus, at gravida est malesuada et. Nullam ac urna nisl. Pellentesque at posuere ligula. Sed augue elit.
+					</p>
+				</article>		
+				<pie-chart class="bigpie"></pie-chart>
+			</div>	
+		</section>
+
+		<section class="loginarea">
+			<div class="centerer">
+				<facebook-login vote="{{vote}}" houseType="{{houseType}}"></facebook-login>
+			</div>	
+		</section>
+
+		<section class="chartarea">
+			<div class="centerer">	
+				<kaart-element class="chart"></kaart-element>
+			</div>
+		</section>
+
+		<section class="searcharea">
+			<div class="centerer">	
+				<search-element class="search"></search-element>
+			</div>
+		</section>
+
+		<section class="footerarea">	
+			<div class="centerer">	
+				<a href="disclaimer.html" class="footer"> disclaimer </a>	
+			<div>
+		</section>
+
+	</template>
+
+	<script>
+		Polymer('umbrella-element', {
+			voteChanged: function() {
+			}
+		});
+	</script>
+
+</polymer-element>
