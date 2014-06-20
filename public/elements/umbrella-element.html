@@ -4,7 +4,7 @@
 <link rel="import" href="combine-houses.html">
 <link rel="import" href="pie-chart.html">
 <link rel="import" href="kaart.html">
-
+<link rel="import" href="search-element.html">
 
 <polymer-element name="umbrella-element" attributes="user">
 	<template>
@@ -79,6 +79,12 @@
 				left:8%;
 			}
 
+			.search {
+				margin: 50px;
+				position:relative;
+				left:40%;
+			}
+
 			.footerarea {
 				width: 100%;
 				background-color: #F5F5F5;
@@ -131,6 +137,12 @@
 			</div>
 		</section>
 
+		<section class="loginarea">
+			<div class="centerer">	
+				<search-element class="search"></search-element>
+			</div>
+		</section>
+
 		<section class="footerarea">	
 			<div class="centerer">	
 				<a href="disclaimer.html" class="footer"> disclaimer </a>	
@@ -142,7 +154,6 @@
 	<script>
 		Polymer('umbrella-element', {
 			voteChanged: function() {
-				console.log(this.vote);
 			}
 		});
 	</script>
