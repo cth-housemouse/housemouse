@@ -5,14 +5,14 @@
      <template>
 
           <input type="text" value="{{ search }}"></input>
-          <p>{{ this.search }}</p>
+          <p> {{ this.search }} </p>
 
      <template if="{{ search }}">
-          <p>Result: there are {{ teller }} hits</p>
+          <p> Result: there are {{ teller }} hits. </p>
      </template>
 
      <template repeat="{{singleSearch in displaySearch}}">
-          <p> hit: {{ singleSearch.hit }} </p>
+          <p> {{ singleSearch.hit }} </p>
      </template>
 
      </template>
@@ -47,6 +47,7 @@
                                    var temp  = { hit: opendata.rows[i].title } ;
                                    
                                    this.displaySearch.push(temp);
+
                               }
                          }
                     }
