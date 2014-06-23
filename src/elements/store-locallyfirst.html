@@ -1,0 +1,25 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="store-locally" attributes="user">
+
+	<template>
+    {{user.name}}
+    {{user.id}}
+    {{user.country}}
+	</template>
+
+  <script>
+    Polymer('store-locally', {
+      db: {
+        save: function(key, name){
+          window.localStorage.setItem(key, name);
+        }
+      },
+      userChanged: function(){
+        this.db.save(this.user.id, this.user);
+        console.log(window.localStorage.getItem(this.user.id));
+      }
+  });
+  </script>
+
+</polymer-element>

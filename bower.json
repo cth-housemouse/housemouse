@@ -1,0 +1,21 @@
+{
+  "name": "housemouse",
+  "version": "0.0.0",
+  "homepage": "https://github.com/marijnkoolen/housemouse",
+  "authors": [
+    "Jan Hein Hoogstad <yeehaa123@mac.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "platform": "Polymer/platform#~0.3.3",
+    "jquery": "~2.1.1"
+  }
+}
