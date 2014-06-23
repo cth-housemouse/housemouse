@@ -1,0 +1,13 @@
+{
+  "name": "mockjson",
+  "homepage": "https://github.com/mennovanslooten/mockJSON",
+  "_release": "ea8a796a28",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ea8a796a282e2b9f1d7cc168152bc20db4468b18"
+  },
+  "_source": "https://github.com/mennovanslooten/mockJSON.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/mennovanslooten/mockJSON.git"
+}

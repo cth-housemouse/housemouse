@@ -14,7 +14,13 @@ module.exports = function(grunt) {
       jquery: {
         src: 'jquery/dist/jquery.js',
         dest: 'dist/vendor/jquery.js'
+      },
+      mockjson: {
+        src: 'mockjson/js/jquery.mockjson.js',
+        dest: 'dist/vendor/mockjson.js'
+
       }
+
     }
   });
 
