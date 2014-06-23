@@ -1,59 +1,71 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/polymer-ajax/polymer-ajax.html">
 
+<script src="../js/d3.layout.cloud.js"></script>
+
 <polymer-element name="search-element">
      <template>
+          <style type="text/css">
+               p {
+                    margin:0;
+               }
 
-          <input type="text" value="{{ search }}"></input>
-          <p> {{ this.search }} </p>
+               .searchresults{
+                    position: absolute;
+                    left: 20%;
+                    width: 50%;
+                    margin:0;
+               }
 
-     <template if="{{ search }}">
-          <p> Result: there are {{ teller }} hits. </p>
-     </template>
+               .tagsresults{
+                    position: relative;
+                    left: 70%;
+                    width: 30%;
+               }
 
-     <template repeat="{{singleSearch in displaySearch}}">
-          <p> {{ singleSearch.hit }} </p>
-     </template>
+               #wordCloudLive {
+                    width:900px;
+                    padding: 20px 0;
+                    margin: 0 auto;
+               }
 
+          </style>
+
+          <div>
+     <!--         
+               <button type="sumbit" on-click="{{ cloudGenerate }}"> Generate a Cloud</button>
+     -->           
+               <div id="wordCloudLive"></div>
+          </div>
+
+     <!--  
+          <div class="searchresults">
+
+               <input type="text" value="{{ search }}"></input>
+
+               <template if="{{ search }}">
+                    <p> Result: there are {{ teller }} hits. </p>
+               </template>
+
+               <template repeat="{{singleSearch in displaySearch}}">
+                    <p> {{ singleSearch.hit }} </p>
+               </template>
+          </div>  
+     -->
+     <!--
+          <div class="tagsresults"> 
+               <template repeat="{{singleTag in sizedTagsList}}">
+                    <p> {{ singleTag.size }} {{ singleTag.text }}  </p>
+               </template>         
+          </div>
+     -->
      </template>
 
      <script src="../data/jsonOpendata.json"></script>
-     <script>
+     <script src="search.js"></script>
 
-          Polymer('search-element', { teller: 0, search: "", display: "",
-               ready: function() {
 
-                    console.log(opendata);
-
-                    for (var i = 0; i < opendata.rows.length; i++) {
-                         opendata.rows[i].tagscomma = opendata.rows[i].tagscomma.split(", ");
-                    };   
-
-               },
-
-               searchChanged: function() {
-
-                    this.teller = 0;
-                    this.displaySearch = [];
-
-                    for (var i = 0; i < opendata.rows.length; i++) {
-
-                         for (var s = 0; s < opendata.rows[i].tagscomma.length; s++) {
-                    
-                              if (opendata.rows[i].tagscomma[s] === this.search) {
-
-                                   this.teller++;
-
-                                   var temp  = { hit: opendata.rows[i].title } ;
-                                   
-                                   this.displaySearch.push(temp);
-
-                              }
-                         }
-                    }
-               }
-        });
 
      </script>
 
-</polymer-element name="nyt-data">
+</polymer-element>
