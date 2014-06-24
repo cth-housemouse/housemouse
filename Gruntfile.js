@@ -50,6 +50,13 @@ module.exports = function(grunt) {
         dest: 'dist/vendor/mockjson.js'
       }
     },
+    express: {
+      dev: {
+        options: {
+          script: 'server.js'
+        }
+      }
+    },
     jshint: {
       all: ['src/scripts/housemouse.js']
     },
@@ -72,13 +79,19 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['jshint', 'copy', 'bowercopy', 'vulcanize']);
+  grunt.registerTask('build', ['jshint', 'copy', 'bowercopy', 'vulcanize']);
+  grunt.registerTask('default', ['build', 'express', 'watch']);
+  grunt.registerTask('deploy', ['build', 'push']);
 
+  grunt.registerTask('push', function(){
+    grunt.log.write('We are not quite there yet...')
+  })
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-vulcanize');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-express-server');
 
 }
