@@ -1,0 +1,94 @@
+header {
+  height:160px;
+  background:#E5CF39;
+  text-align: center;
+  padding-top: 40px;
+  font-family: NittyBold;
+  font-size: x-large;
+  letter-spacing: -3px;
+}
+
+h1 {
+  background: black;
+  color: #E5CF39;
+}
+
+.centerer {
+  width:1050px;
+  margin: 0 auto;
+}
+
+.housesarea {
+  width:100%;
+  height: 400px;
+  background:#F5F5F5;
+}
+
+.piearea {
+  width:100%;
+  background-color: #DEDEDE;
+  padding:100px 0px;
+  height:400px;
+}
+
+.pietext {
+  position:relative;
+  left:7%;
+  width:43%;
+  float:left;
+  margin-right:10%;
+  font-family: NittyNormal;
+  font-size: large;
+
+}
+
+.bigpie {
+  position:relative;
+  left: 7%;
+  width:50%;
+
+}
+
+.loginarea {
+  width: 100%;
+  height: 200px;
+  background: #F5F5F5;
+
+}
+
+.chartarea {
+  width: 100%;
+  /*padding-left: 80px;*/
+  background: #DEDEDE;
+}
+
+.chart {
+  position:relative;
+  left:8%;
+}
+
+.searcharea {
+  width: 100%;
+  background: #F5F5F5;
+
+}
+
+.search {
+  margin: 50px;
+  text-align:center;
+}
+
+.footerarea {
+  width: 100%;
+  background-color: #F5F5F5;
+  padding: 10 0;
+  font-size: medium;
+  font-family: NittyNormal;
+  text-align: center;
+
+}
+
+a {
+  color: black;
+}
+

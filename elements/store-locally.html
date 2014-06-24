@@ -1,0 +1,20 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="element-facebook-login.html">
+<link rel="import" href="imagine-houses.html">
+
+<polymer-element name="store-locally" attributes="user">
+
+	<template>
+    <imagine-houses houseType="{{houseType}}"></imagine-houses>
+    <element-facebook-login vote="{{vote}}" houseType="{{houseType}}"></element-facebook-login>
+	</template>
+
+	<script>
+		Polymer('store-locally', {
+			voteChanged: function() {
+				console.log(this.vote);
+			}
+		});
+	</script>
+
+</polymer-element>

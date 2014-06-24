@@ -1,0 +1,33 @@
+<link rel="import" href="house-element.html">
+<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+
+<polymer-element name="combine-houses" attributes="houseType">
+  <template>
+    <style>
+      .housescontainer {
+        width:1050px;
+        float: none;
+        background: ;
+      }
+    </style>
+
+    <template repeat="{{ image in imageList }}">
+      <house-element image="{{image}}" houseType="{{houseType}}"></house-element>
+    </template>
+
+  </template>
+  
+  <script>
+    Polymer('combine-houses', {
+      total: 0,
+      imageList: [
+        {imageUrl: 'https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/512/apartment.png', type: "flat"},
+        {imageUrl: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/home-512.png', type: "house"},
+        {imageUrl: 'http://www.flaticon.com/png/256/23393.png', type: "farm"}
+      ], 
+      houseTypeChanged: function (){
+        
+      }
+    });
+  </script>
+</polymer-element>

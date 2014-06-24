@@ -1,0 +1,50 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="imagine-house.html">
+<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+
+<polymer-element name="imagine-houses" attributes="houseType">
+  <template>
+    <style>
+      @font-face { font-family: NittyNormal; src: url('../fonts/NN.woff') format('woff'); }
+
+      @font-face { font-family: NittyBold; src: url('../fonts/NB.woff') format('woff'); }
+      :host {
+        margin: 50px;
+      }
+      header {
+        font-family: "NittyNormal";
+        text-align: center;
+        background-color: #2c7fb8;
+        padding-bottom:  30px;
+        padding-top: 50px;
+        margin-left: -10px;
+        margin-right: -10px;
+        margin-top: -30px;
+        border-style: solid;
+      }
+
+
+
+    </style>
+    <header>
+        <h1>What does 'house' mean to you?</h1>
+      </header>
+     <template repeat="{{ image in imageList }}">
+       <imagine-house image="{{image}}" houseType="{{houseType}}"></imagine-house>
+    </template>
+  </template>
+  
+  <script>
+    Polymer('imagine-houses', {
+      total: 0,
+      imageList: [
+        {imageUrl: 'https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/512/apartment.png', type: "flat"},
+        {imageUrl: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/home-512.png', type: "house"},
+        {imageUrl: 'http://www.flaticon.com/png/256/23393.png', type: "farm"}
+      ], 
+      houseTypeChanged: function (){
+        console.log(this.houseType);
+      }
+    });
+  </script>
+</polymer-element>
