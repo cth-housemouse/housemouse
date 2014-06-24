@@ -29,16 +29,60 @@
                     margin: 0 auto;
                }
 
+               .button {
+                    width: 100px;
+                    height: 100px;
+               }
+
+               .buttoncontainer {
+                    width: 650px;
+                    margin: 0 auto;
+               }
+
+               .node {
+                   stroke: #fff;
+                   stroke-width: 1.5px;
+               }
+
+               .link {
+                   stroke: #999;
+                   stroke-opacity: .6;
+               }
+
+               #forcegraph {
+                    height: 900px;
+                    width: 100%;
+               }
+
+               .node {
+                   stroke: #fff;
+                   stroke-width: 1.5px;
+               }
+
+               .link {
+                   stroke: #999;
+                   stroke-opacity: .6;
+               }
+
           </style>
 
-          <div>
-     <!--         
-               <button type="sumbit" on-click="{{ cloudGenerate }}"> Generate a Cloud</button>
-     -->           
-               <div id="wordCloudLive"></div>
+          <div id="forceGraph"></div>
+
+ <!--         
+          <div class="buttoncontainer">
+               <img class="button" src="../afbeeldingen/globe.png" on-click="{{ globe }}"></img>               
+               <img class="button" src="../afbeeldingen/personIcon.png" on-click="{{ personIcon }}"></img>
+               <img class="button" src="../afbeeldingen/money.png" on-click="{{ money }}"></img>
+               <img class="button" src="../afbeeldingen/nature.png" on-click="{{ nature }}"></img>               
+               <img class="button" src="../afbeeldingen/roads.png" on-click="{{ road }}"></img>
+               <img class="button" src="../afbeeldingen/home.png" on-click="{{ home }}"></img>
           </div>
 
-     <!--  
+-->
+          <div>     
+               <div id="wordCloudLive"></div>
+          </div>
+<!--
           <div class="searchresults">
 
                <input type="text" value="{{ search }}"></input>
@@ -48,17 +92,16 @@
                </template>
 
                <template repeat="{{singleSearch in displaySearch}}">
-                    <p> {{ singleSearch.hit }} </p>
+                    <a href="{{singleSearch.link}}"> {{ singleSearch.hit }} </a>
                </template>
           </div>  
-     -->
-     <!--
+
           <div class="tagsresults"> 
-               <template repeat="{{singleTag in sizedTagsList}}">
+               <template repeat="{{singleTag in tagsList}}">
                     <p> {{ singleTag.size }} {{ singleTag.text }}  </p>
                </template>         
           </div>
-     -->
+-->
      </template>
 
      <script src="../data/jsonOpendata.json"></script>
