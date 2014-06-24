@@ -10,6 +10,12 @@ module.exports = function(grunt) {
         flatten: true,
         src: 'src/fonts/**/*',
         dest: 'dist/fonts'
+      },
+      images: {
+        expand: true,
+        flatten: true,
+        src: 'src/images/**/*',
+        dest: 'dist/images'
       }
     },
     vulcanize: {
@@ -22,6 +28,14 @@ module.exports = function(grunt) {
       platform: {
         src: 'platform/platform.js',
         dest: 'dist/vendor/platform.js'
+      },
+      firebase: {
+        src: 'firebase/firebase.js',
+        dest: 'dist/vendor/firebase.js'
+      },
+      firebaseSimpleLogin: {
+        src: 'firebase-simple-login/firebase-simple-login.js',
+        dest: 'dist/vendor/firebase-simple-login.js'
       },
       polymer: {
         src: 'polymer/**/*',
@@ -36,10 +50,21 @@ module.exports = function(grunt) {
         dest: 'dist/vendor/mockjson.js'
       }
     },
+    jshint: {
+      all: ['src/scripts/housemouse.js']
+    },
     watch: {
       html: {
         files: ['src/**/*.html'],
         tasks: ['vulcanize']  
+      },
+      scripts: {
+        files: ['src/scripts/**/*.js'],
+        tasks: ['jshint']
+      },
+      assets: {
+        files: ['src/images/**/*', 'src/fonts/**/*'],
+        tasks: ['copy']
       },
       options: {
         livereload: true
@@ -47,10 +72,13 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['copy', 'bowercopy', 'vulcanize']);
+  grunt.registerTask('default', ['jshint', 'copy', 'bowercopy', 'vulcanize']);
 
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-vulcanize');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-notify');
+
 }

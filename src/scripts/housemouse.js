@@ -16,7 +16,7 @@ $.mockJSON.data.HTYPE = [
 'flat', 'house', 'farm'
 ];
 
-/* 
+/*; 
 This is the fixure itself. It takes some weeeird syntax, 
 but it works. It says: In permanent I want 1000-10000 array items 
 wich contain a userid of 20-40 numbers, a country of 
