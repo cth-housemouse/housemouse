@@ -1,6 +1,12 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     copy: {
+      html: {
+        expand: true,
+        cwd: 'src',
+        src: '**/*.{html,css}',
+        dest: 'dist/'
+      },
       scripts: {
         src: 'src/scripts/housemouse.js',
         dest: 'dist/scripts/housemouse.js'
@@ -71,7 +77,7 @@ module.exports = function(grunt) {
     watch: {
       html: {
         files: ['src/**/*.html'],
-        tasks: ['vulcanize']  
+        tasks: ['copy']  
       },
       scripts: {
         files: ['src/scripts/**/*.js'],
@@ -87,19 +93,15 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build', ['jshint', 'copy', 'bowercopy', 'vulcanize']);
+  grunt.registerTask('build', ['jshint', 'copy', 'bowercopy']);
   grunt.registerTask('default', ['build', 'express', 'watch']);
-  grunt.registerTask('deploy', ['build', 'push']);
+  grunt.registerTask('deploy', ['build', 'gh-pages']);
 
-  grunt.registerTask('push', function(){
-    grunt.log.write('We are not quite there yet...')
-  })
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-vulcanize');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-gh-pages');
 }
