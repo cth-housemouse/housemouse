@@ -60,6 +60,14 @@ module.exports = function(grunt) {
     jshint: {
       all: ['src/scripts/housemouse.js']
     },
+    'gh-pages': {
+      production: {
+        options: {
+          base: 'dist'
+        },
+        src: ['**']
+      }
+    },
     watch: {
       html: {
         files: ['src/**/*.html'],
@@ -93,5 +101,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-express-server');
-
+  grunt.loadNpmTasks('grunt-gh-pages');
 }
