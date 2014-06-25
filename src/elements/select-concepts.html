@@ -1,0 +1,31 @@
+<link rel="import" href="single-concept.html">
+
+<polymer-element name="select-concepts" attributes="chosenConcept">
+  <template>
+    <style>
+
+    </style>
+    
+    <template repeat="{{ concept in conceptsList}}">
+      <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
+    </template>
+
+  </template>
+  
+  <script>
+    Polymer('select-concepts', {
+      conceptsList: [
+        {src: '../images/globe.png', name: 'aardrijkskunde'},
+        {src: '../images/nature.png', name: 'environment'},
+        {src: '../images/money.png', name: 'begroting'},
+        {src: '../images/personIcon.png', name: 'ocw'},
+        {src: '../images/roads.png', name: 'transportation'},
+        {src: '../images/home.png', name: 'wonen'},
+      ],
+      chosenConceptChanged: function () {
+        //console.log(this.chosenConcept)
+
+      }
+    });
+  </script>
+</polymer-element>

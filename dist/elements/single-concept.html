@@ -1,0 +1,90 @@
+<polymer-element name="single-concept" attributes="concept chosenConcept">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+
+      .imgConcept {
+        margin: 0 20px;
+        width: 100px;
+        padding: 12px 12px ;
+        border-radius: 10px;
+        float:left;
+      }
+
+      .imgConceptChosen {
+        background:#E5CF39;
+      }
+
+      img:hover {
+        background: #E5CF39;
+      }
+
+    </style>
+    
+    <span><img id="highlight" class="imgConcept" on-click="{{ setConcept }}" src="{{concept.src}}"></span>
+
+  </template>
+
+  <script>
+    Polymer('single-concept', {
+      highlight: false,
+      setConcept: function(){
+
+        // Fool push to work  
+        var selfChosenConcept = this.chosenConcept;
+        var notOneOfChosenConcepts = 0;
+        var totalConcepts = 0;
+
+        // Pushing and and no more than 3
+
+        if (this.chosenConcept.length == 0) {
+          selfChosenConcept.push(this.concept.name);
+        }
+
+        for (var i = 0; i < this.chosenConcept.length; i++) {
+          
+          if (this.concept.name == this.chosenConcept[i]) {
+            // do nothing
+          } else {
+            notOneOfChosenConcepts++;
+          } 
+        }  
+
+        var totalConcepts = this.chosenConcept.length;
+        console.log(totalConcepts);
+
+        if (notOneOfChosenConcepts == totalConcepts) {  
+          if (this.chosenConcept.length > 2) {
+              selfChosenConcept.splice(0,1);
+              selfChosenConcept.push(this.concept.name);
+          } else {
+          selfChosenConcept.push(this.concept.name);
+          }
+        }
+          
+
+                  
+      },
+      chosenConceptChanged: function() {
+        var notOneOfChosenConcepts = 0;
+        
+        for (var i = 0; i < this.chosenConcept.length; i++) {
+          if (this.concept.name == this.chosenConcept[i]) {
+             this.shadowRoot.getElementById('highlight').classList.add('imgConceptChosen');
+          } 
+          if (this.concept.name != this.chosenConcept[i]) {
+            notOneOfChosenConcepts++;
+          }  
+        }
+
+        if (notOneOfChosenConcepts == 3) {
+          this.shadowRoot.getElementById('highlight').classList.remove('imgConceptChosen');
+        } 
+
+
+      }
+    });
+  </script>
+</polymer-element>
