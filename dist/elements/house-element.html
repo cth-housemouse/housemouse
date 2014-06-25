@@ -1,0 +1,46 @@
+<polymer-element name="house-element" attributes="image houseType">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        padding: 50px;
+      }
+
+      .imghouse {
+        margin: 20px;
+        width: 180px;
+        padding: 12px;
+        border-radius: 10px;
+      }
+
+      img:hover {
+        background: #E5CF39;
+      }
+
+      .flat {
+        background: #E5CF39;
+      }
+
+      .house {
+        background: #E34D2F;
+      }
+
+      .farm {
+        background: #75C7B3;
+      }
+
+    </style>
+    
+    <span><img class="imghouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+
+  </template>
+
+  <script>
+    Polymer('house-element', {
+      houseType: "",
+      setType: function(){
+        this.houseType = this.image.type;
+      },
+    });
+  </script>
+</polymer-element>
