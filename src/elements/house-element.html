@@ -6,7 +6,7 @@
         padding: 50px;
       }
 
-      img {
+      .imghouse {
         margin: 20px;
         width: 180px;
         padding: 12px;
@@ -31,13 +31,12 @@
 
     </style>
     
-    <span><img id= {{ houseType }} on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+    <span><img class="imghouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
 
   </template>
 
   <script>
     Polymer('house-element', {
-      count: 0,
       houseType: "",
       setType: function(){
         this.houseType = this.image.type;

@@ -311,7 +311,7 @@ html /deep/ [segment], html /deep/ segment {
         padding: 50px;
       }
 
-      img {
+      .imghouse {
         margin: 20px;
         width: 180px;
         padding: 12px;
@@ -336,13 +336,12 @@ html /deep/ [segment], html /deep/ segment {
 
     </style>
     
-    <span><img id="{{" housetype="" }}="" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+    <span><img class="imghouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
 
   </template>
 
   <script>
     Polymer('house-element', {
-      count: 0,
       houseType: "",
       setType: function(){
         this.houseType = this.image.type;
@@ -350,32 +349,128 @@ html /deep/ [segment], html /deep/ segment {
     });
   </script>
 </polymer-element>
-<link href="http://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css">
-
-<polymer-element name="combine-houses" attributes="houseType" assetpath="elements/">
+<polymer-element name="concept-element" attributes="concept chosenConcept" assetpath="elements/">
   <template>
     <style>
-      .housescontainer {
-        width:1050px;
-        float: none;
-        background: ;
+      :host {
+        display: inline-block;
       }
+
+      .imgConcept {
+        margin: 0 20px;
+        width: 100px;
+        padding: 12px 12px ;
+        border-radius: 10px;
+        float:left;
+      }
+
+      .imgConceptChosen {
+        background:#E5CF39;
+      }
+
+      img:hover {
+        background: #E5CF39;
+      }
+
+    </style>
+    
+    <span><img id="highlight" class="imgConcept" on-click="{{ setConcept }}" src="{{concept.src}}"></span>
+
+  </template>
+
+  <script>
+    Polymer('concept-element', {
+      highlight: false,
+      setConcept: function(){
+
+        // Fool push to work  
+        var selfChosenConcept = this.chosenConcept;
+        var notOneOfThree = 0;
+
+        // Pushing and and no more than 3
+
+        for (var i = 0; i < this.chosenConcept.length; i++) {
+          
+          if (this.concept.name == this.chosenConcept[i]) {
+            // do nothing
+          } else {
+            notOneOfThree++;
+          }
+        }  
+
+        if (notOneOfThree == 3) {  
+          if (this.chosenConcept.length > 2) {
+              selfChosenConcept.splice(0,1);
+              selfChosenConcept.push(this.concept.name);
+          } else {
+          selfChosenConcept.push(this.concept.name);
+          }
+        }
+          
+
+                  
+      },
+      chosenConceptChanged: function() {
+        var notOneOfThree = 0;
+        
+        for (var i = 0; i < this.chosenConcept.length; i++) {
+          if (this.concept.name == this.chosenConcept[i]) {
+             this.shadowRoot.getElementById('highlight').classList.add('imgConceptChosen');
+          } 
+          if (this.concept.name != this.chosenConcept[i]) {
+            notOneOfThree++;
+          }  
+        }
+
+        if (notOneOfThree == 3) {
+          this.shadowRoot.getElementById('highlight').classList.remove('imgConceptChosen');
+        } 
+
+
+      }
+    });
+  </script>
+</polymer-element>
+<link href="http://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css">
+
+<polymer-element name="combine-houses" attributes="houseType chosenConcept" assetpath="elements/">
+  <template>
+    <style>
+
     </style>
 
     <template repeat="{{ image in imageList }}">
       <house-element image="{{image}}" housetype="{{houseType}}"></house-element>
     </template>
+    
+    <template repeat="{{ concept in conceptsList}}">
+      <concept-element concept="{{concept}}" chosenconcept="{{chosenConcept}}"></concept-element>     
+    </template>
+
 
   </template>
   
   <script>
     Polymer('combine-houses', {
-      total: 0,
+      chosenConcept: ["","",""],
       imageList: [
         {imageUrl: 'https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/512/apartment.png', type: "flat"},
         {imageUrl: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/home-512.png', type: "house"},
         {imageUrl: 'http://www.flaticon.com/png/256/23393.png', type: "farm"}
-      ], 
+      ],
+      conceptsList: [
+        {src: '../images/globe.png', name: 'aardrijkskunde'},
+        {src: '../images/nature.png', name: 'environment'},
+        {src: '../images/money.png', name: 'begroting'},
+        {src: '../images/personIcon.png', name: 'ocw'},
+        {src: '../images/roads.png', name: 'transportation'},
+        {src: '../images/home.png', name: 'wonen'},
+      ],
+      chosenConceptChanged: function () {
+
+
+      },
+    
       houseTypeChanged: function (){
         
       }
