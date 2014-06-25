@@ -1,4 +1,4 @@
-<polymer-element name="concept-element" attributes="concept chosenConcept">
+<polymer-element name="single-concept" attributes="concept chosenConcept">
   <template>
     <style>
       :host {
@@ -28,26 +28,34 @@
   </template>
 
   <script>
-    Polymer('concept-element', {
+    Polymer('single-concept', {
       highlight: false,
       setConcept: function(){
 
         // Fool push to work  
         var selfChosenConcept = this.chosenConcept;
-        var notOneOfThree = 0;
+        var notOneOfChosenConcepts = 0;
+        var totalConcepts = 0;
 
         // Pushing and and no more than 3
+
+        if (this.chosenConcept.length == 0) {
+          selfChosenConcept.push(this.concept.name);
+        }
 
         for (var i = 0; i < this.chosenConcept.length; i++) {
           
           if (this.concept.name == this.chosenConcept[i]) {
             // do nothing
           } else {
-            notOneOfThree++;
-          }
+            notOneOfChosenConcepts++;
+          } 
         }  
 
-        if (notOneOfThree == 3) {  
+        var totalConcepts = this.chosenConcept.length;
+        console.log(totalConcepts);
+
+        if (notOneOfChosenConcepts == totalConcepts) {  
           if (this.chosenConcept.length > 2) {
               selfChosenConcept.splice(0,1);
               selfChosenConcept.push(this.concept.name);
@@ -60,18 +68,18 @@
                   
       },
       chosenConceptChanged: function() {
-        var notOneOfThree = 0;
+        var notOneOfChosenConcepts = 0;
         
         for (var i = 0; i < this.chosenConcept.length; i++) {
           if (this.concept.name == this.chosenConcept[i]) {
              this.shadowRoot.getElementById('highlight').classList.add('imgConceptChosen');
           } 
           if (this.concept.name != this.chosenConcept[i]) {
-            notOneOfThree++;
+            notOneOfChosenConcepts++;
           }  
         }
 
-        if (notOneOfThree == 3) {
+        if (notOneOfChosenConcepts == 3) {
           this.shadowRoot.getElementById('highlight').classList.remove('imgConceptChosen');
         } 
 

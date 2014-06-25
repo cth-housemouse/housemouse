@@ -1,0 +1,28 @@
+<link rel="import" href="select-house.html">
+<link rel="import" href="select-concepts.html">
+
+<polymer-element name="combine-vote" attributes="singleVote">
+  <template>
+
+    <style>
+
+    </style>
+
+    <select-house houseType="{{houseType}}"></select-house>
+    <select-concepts chosenConcept="{{chosenConcept}}"></select-concepts>
+
+  </template>
+  
+  <script>
+    Polymer('combine-vote', {singleVote: "", chosenConcept: [],
+      chosenConceptChanged: function () {
+        console.log(this.chosenConcept);
+
+      },
+    
+      houseTypeChanged: function (){
+        //console.log(this.houseType)
+      }
+    });
+  </script>
+</polymer-element>

@@ -303,7 +303,7 @@ html /deep/ [segment], html /deep/ segment {
 <script src="vendor/polymer/polymer.js"></script>
 <!--<link rel="import" href="../polymer-dev/polymer.html">--> 
 
-<polymer-element name="house-element" attributes="image houseType" assetpath="elements/">
+<polymer-element name="single-house" attributes="image houseType" assetpath="elements/">
   <template>
     <style>
       :host {
@@ -341,7 +341,7 @@ html /deep/ [segment], html /deep/ segment {
   </template>
 
   <script>
-    Polymer('house-element', {
+    Polymer('single-house', {
       houseType: "",
       setType: function(){
         this.houseType = this.image.type;
@@ -349,7 +349,36 @@ html /deep/ [segment], html /deep/ segment {
     });
   </script>
 </polymer-element>
-<polymer-element name="concept-element" attributes="concept chosenConcept" assetpath="elements/">
+
+<polymer-element name="select-house" attributes="houseType chosenConcept" assetpath="elements/">
+  <template>
+    <style>
+
+    </style>
+
+    <template repeat="{{ image in imageList }}">
+      <single-house image="{{image}}" housetype="{{houseType}}"></single-house>
+    </template>
+    
+
+  </template>
+  
+  <script>
+    Polymer('select-house', {
+      imageList: [
+        {imageUrl: './images/apartment.png', type: "flat"},
+        {imageUrl: './images/house.png', type: "house"},
+        {imageUrl: './images/farm.png', type: "farm"}
+      ],
+    
+      houseTypeChanged: function (){
+        
+      }
+    });
+  </script>
+</polymer-element>
+
+<polymer-element name="single-concept" attributes="concept chosenConcept" assetpath="elements/">
   <template>
     <style>
       :host {
@@ -379,26 +408,34 @@ html /deep/ [segment], html /deep/ segment {
   </template>
 
   <script>
-    Polymer('concept-element', {
+    Polymer('single-concept', {
       highlight: false,
       setConcept: function(){
 
         // Fool push to work  
         var selfChosenConcept = this.chosenConcept;
-        var notOneOfThree = 0;
+        var notOneOfChosenConcepts = 0;
+        var totalConcepts = 0;
 
         // Pushing and and no more than 3
+
+        if (this.chosenConcept.length == 0) {
+          selfChosenConcept.push(this.concept.name);
+        }
 
         for (var i = 0; i < this.chosenConcept.length; i++) {
           
           if (this.concept.name == this.chosenConcept[i]) {
             // do nothing
           } else {
-            notOneOfThree++;
-          }
+            notOneOfChosenConcepts++;
+          } 
         }  
 
-        if (notOneOfThree == 3) {  
+        var totalConcepts = this.chosenConcept.length;
+        console.log(totalConcepts);
+
+        if (notOneOfChosenConcepts == totalConcepts) {  
           if (this.chosenConcept.length > 2) {
               selfChosenConcept.splice(0,1);
               selfChosenConcept.push(this.concept.name);
@@ -411,18 +448,18 @@ html /deep/ [segment], html /deep/ segment {
                   
       },
       chosenConceptChanged: function() {
-        var notOneOfThree = 0;
+        var notOneOfChosenConcepts = 0;
         
         for (var i = 0; i < this.chosenConcept.length; i++) {
           if (this.concept.name == this.chosenConcept[i]) {
              this.shadowRoot.getElementById('highlight').classList.add('imgConceptChosen');
           } 
           if (this.concept.name != this.chosenConcept[i]) {
-            notOneOfThree++;
+            notOneOfChosenConcepts++;
           }  
         }
 
-        if (notOneOfThree == 3) {
+        if (notOneOfChosenConcepts == 3) {
           this.shadowRoot.getElementById('highlight').classList.remove('imgConceptChosen');
         } 
 
@@ -431,33 +468,21 @@ html /deep/ [segment], html /deep/ segment {
     });
   </script>
 </polymer-element>
-<link href="http://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css">
 
-<polymer-element name="combine-houses" attributes="houseType chosenConcept" assetpath="elements/">
+<polymer-element name="select-concepts" attributes="chosenConcept" assetpath="elements/">
   <template>
     <style>
 
     </style>
-
-    <template repeat="{{ image in imageList }}">
-      <house-element image="{{image}}" housetype="{{houseType}}"></house-element>
-    </template>
     
     <template repeat="{{ concept in conceptsList}}">
-      <concept-element concept="{{concept}}" chosenconcept="{{chosenConcept}}"></concept-element>     
+      <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
     </template>
-
 
   </template>
   
   <script>
-    Polymer('combine-houses', {
-      chosenConcept: ["","",""],
-      imageList: [
-        {imageUrl: 'https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/512/apartment.png', type: "flat"},
-        {imageUrl: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/home-512.png', type: "house"},
-        {imageUrl: 'http://www.flaticon.com/png/256/23393.png', type: "farm"}
-      ],
+    Polymer('select-concepts', {
       conceptsList: [
         {src: '../images/globe.png', name: 'aardrijkskunde'},
         {src: '../images/nature.png', name: 'environment'},
@@ -467,17 +492,39 @@ html /deep/ [segment], html /deep/ segment {
         {src: '../images/home.png', name: 'wonen'},
       ],
       chosenConceptChanged: function () {
+        //console.log(this.chosenConcept)
 
-
-      },
-    
-      houseTypeChanged: function (){
-        
       }
     });
   </script>
 </polymer-element>
 
+
+<polymer-element name="combine-vote" attributes="singleVote" assetpath="elements/">
+  <template>
+
+    <style>
+
+    </style>
+
+    <select-house housetype="{{houseType}}"></select-house>
+    <select-concepts chosenconcept="{{chosenConcept}}"></select-concepts>
+
+  </template>
+  
+  <script>
+    Polymer('combine-vote', {singleVote: "", chosenConcept: [],
+      chosenConceptChanged: function () {
+        console.log(this.chosenConcept);
+
+      },
+    
+      houseTypeChanged: function (){
+        //console.log(this.houseType)
+      }
+    });
+  </script>
+</polymer-element>
 
 <script src="vendor/firebase.js"></script>
 <script src="vendor/firebase-simple-login.js"></script>
@@ -805,7 +852,7 @@ h1 {
 
 .housesarea {
   width:100%;
-  height: 400px;
+  height: 600px;
   background:#F5F5F5;
 }
 
@@ -887,7 +934,7 @@ a {
 
 	<section class="housesarea">
 	<div class="centerer">
-		<combine-houses housetype="{{houseType}}"></combine-houses>
+		<combine-vote singlevote="{{ singeVote }}"></combine-vote>
 	</div>
 	</section>
 
@@ -895,16 +942,6 @@ a {
 	<div class="centerer">	
 		<article class="pietext">
 			<p>Coding the Humanities is a project that introduces students from the humanities faculty of the University of Amsterdam to wonderful world of programming. During one month, every working day from nine to five, the students follow an intense course on HTML, CSS and Javascript. Experts from the field give lectures on the basics of web development and programming and the students work in groups on collaborative projects.</p>
-
-			<h3>The Course</h3>
-			<p>Coding the Humanities is a project that introduces students from the humanities faculty of the University of Amsterdam to wonderful world of programming. During one month, every working day from nine to five, the students follow an intense course on HTML, CSS and Javascript. Experts from the field give lectures on the basics of web development and programming and the students work in groups on collaborative projects.</p>
-
-			<p>We are a group of students coming from a variation of disciplines, such as Media Studies, European Studies and Philosophy. Heck, we even have some guy studying Musicology! We wrote our page using <a href="elements/www.polymer-project.org">Polymer</a>, a library that allows developers to write their own custom HTML elements. The goal of the project was to learn how to program, so that we can make our own computational tools and rely less on specialists and specialist equipment.Everybody started out on different levels of coding skills, which was helpful for the more advanced students to teach and help the less advanced students and in return learn new things themselves. Not only was this project very educational, but it was also a lot of fun (and anguish and frustration, but that's part of writing code).</p>
-
-			<h3>The Project</h3>
-			<p>Our main project builds on the question "What is a house to you?" Is it a little house on the countryside? Is it an apartment on the eleventh floor, looking out over a bustling metropolis? Or perhaps something more suburban, two stories of red bricks surrounded by a lushious garden? Although we are not always aware of, we all think of something very different when asked a basic question like this. What first seems like a very simple question, turns out to be quite complex to answer as everyone has their own take on the concept of a house. How could we represent such concepts? How do we communicate complexity in the most possible clear and direct way and create something more tangible out of theories?</p>
-
-			<p>Well, like this. We ask you, our visitor, what you think. It is not some kind of competition, oh no! It was Gorbachev who started this, when he used the term "Common European Home" as a metaphor for Europe. Is the house that you envisioned applicable to the Europe you know? Is it even suitable for the Europe you want?</p>
 
 		</article>		
 		
