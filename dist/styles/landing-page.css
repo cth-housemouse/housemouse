@@ -1,0 +1,59 @@
+@font-face { font-family: NittyNormal; src: url('../fonts/NN.woff') format('woff'); }
+@font-face { font-family: NittyBold; src: url('../fonts/NB.woff') format('woff'); }
+
+header {
+  background:#E5CF39;
+  text-align: left;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-family: NittyBold;
+}
+
+a {
+  color: black !important; 
+}
+
+.logo {
+  position:relative;
+  left:10%;
+  width:78%;
+}
+
+.enterbutton {
+  text-align: center;
+
+
+}
+.summaryarea {
+  width:100%;
+  background-color: white;
+  padding:30px 0px; 
+}
+
+.summarytext {
+  position:relative;
+  left:10%;
+  width:78%;
+  margin-right:10%;
+  font-family: NittyNormal;
+  font-size: large;
+
+}
+
+.coursearea {
+  width:100%;
+  background-color: #DEDEDE;
+  padding:30px 0px;
+}
+
+.coursetext {
+  position:relative;
+  left:10%;
+  width:78%;
+  margin-right:10%;
+  font-family: NittyNormal;
+  font-size: large;
+}
+
+
+

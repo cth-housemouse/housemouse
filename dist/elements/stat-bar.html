@@ -1,0 +1,76 @@
+<polymer-element name="stat-bar" attributes="concept">
+  <template>
+      
+   <style>
+      .concept {
+          width: 80%;
+          height: 100px;
+          background-color: #6984dd;
+          min-width: 400px;
+          margin: 20px;
+      }
+      
+      .nametag{
+          float: left;
+          text-align: center;
+          padding-top: 15px;
+          width: 10%;  
+          height: 85px;
+          background-color: #e3e3e3;
+      }
+
+      .total{
+          float: left;
+          text-align: center;
+          padding-top: 15px;
+          width: 10%;
+          height: 85px;
+          background-color: #dbdbdb;
+      }
+      
+      .wrapper{
+          float: left;
+          width: 80%;
+          height: 100px;
+      }
+
+      .working{
+          float: left;
+          height: 100px;
+          background-color: #69a7dd;
+      }
+
+      .semiWorking{
+          float: left;
+          height: 100px;
+          background-color: #edbe36;
+      }
+      
+      .notWorking{
+          float: left;
+          height: 100px;
+          background-color: #dd9169;
+      }
+    </style>
+  
+    <div class="concept"> 
+      <div class="nametag"><p>{{ concept.name }}</p></div>
+      <div class="total"><p>{{ concept.total }}</p></div>
+      <div class="wrapper">
+        <div style="width:{{workingPercentage}}%;" class="working"></div>
+        <div style="width:{{semiWorkingPercentage}}%;" class="semiWorking"></div>
+        <div style="width:{{notWorkingPercentage}}%;" class="notWorking"></div>
+      </div>
+
+    </div>
+  </template>
+  <script>
+    Polymer('stat-bar', {
+      conceptChanged: function(){
+        this.workingPercentage = Math.round(this.concept.working / this.concept.total * 100);
+        this.notWorkingPercentage = Math.round(this.concept.notWorking / this.concept.total * 100);
+        this.semiWorkingPercentage = 100 - this.workingPercentage - this.notWorkingPercentage; 
+      }
+    });
+  </script>
+</polymer-element>

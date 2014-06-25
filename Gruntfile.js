@@ -61,6 +61,10 @@ module.exports = function(grunt) {
         src: 'polymer/**/*',
         dest: 'dist/vendor/polymer'
       },
+      coreTooltip: {
+        src: 'core-tooltip/**/*',
+        dest: 'dist/vendor/elements'
+      },
       jquery: {
         src: 'jquery/dist/jquery.js',
         dest: 'dist/vendor/jquery.js'
