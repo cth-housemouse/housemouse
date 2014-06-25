@@ -1,4 +1,7 @@
+<link rel="import" href="../vendor/core-tooltip/core-tooltip.html">
+
 <polymer-element name="stat-bar" attributes="concept">
+
   <template>
       
    <style>
@@ -51,15 +54,35 @@
           height: 100px;
           background-color: #dd9169;
       }
+      core-tooltip {
+        width: 100%;
+        height: 100%;
+      }
+      .status p {
+          text-align: center;
+        }
+      }
     </style>
   
     <div class="concept"> 
       <div class="nametag"><p>{{ concept.name }}</p></div>
       <div class="total"><p>{{ concept.total }}</p></div>
       <div class="wrapper">
-        <div style="width:{{workingPercentage}}%;" class="working"></div>
-        <div style="width:{{semiWorkingPercentage}}%;" class="semiWorking"></div>
-        <div style="width:{{notWorkingPercentage}}%;" class="notWorking"></div>
+        <div style="width:{{workingPercentage}}%;" class="status working">
+          <core-tooltip label="explanation">
+            <p>{{workingPercentage}}</p>
+          </core-tooltip>
+        </div>
+        <div style="width:{{semiWorkingPercentage}}%;" class="status semiWorking">
+          <core-tooltip label="explanation">
+            <p>{{semiWorkingPercentage}}</p>
+          </core-tooltip>
+        </div>
+        <div style="width:{{notWorkingPercentage}}%;" class="status notWorking">
+          <core-tooltip label="explanation">
+            <p>{{notWorkingPercentage}}</p>
+          </core-tooltip>
+        </div>
       </div>
 
     </div>

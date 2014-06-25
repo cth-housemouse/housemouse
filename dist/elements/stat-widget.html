@@ -1,13 +1,11 @@
 <link rel="import" href="stat-bar.html">
-<link rel="import" href="./elements/core-tooltip.html">
+<link rel="import" href="../vendor/core-tooltip/core-tooltip.html">
 
 <polymer-element name="stat-widget">
 
   <template attributes="vote votes">
     <template repeat="{{ chosenConcepts in dataForStatBar }}">
-      <core-tooltip label="{{chosenConcepts.name}}">
-        <stat-bar concept="{{ chosenConcepts}}"></stat-bar>
-      </core-tooltip>
+      <stat-bar concept="{{ chosenConcepts}}"></stat-bar>
     </template>
   </template>
 
