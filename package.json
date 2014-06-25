@@ -16,7 +16,8 @@
     "grunt-express-server": "^0.4.17",
     "grunt-notify": "^0.3.0",
     "grunt-vulcanize": "^0.2.1",
-    "grunt-gh-pages": "^0.9.1"
+    "grunt-gh-pages": "^0.9.1",
+    "grunt-contrib-clean": "^0.5.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

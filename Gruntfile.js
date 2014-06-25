@@ -1,6 +1,20 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    clean: {
+      build: {
+        src: ['dist/']
+      },
+      deploy: {
+        src: ['dist/elements', 'dist/index-raw.html', 'dist/vulcanized.html']
+      }
+    },
     copy: {
+      config: {
+        expand: true,
+        cwd: 'src',
+        src: 'CNAME',
+        dest: 'dist/'
+      },
       html: {
         expand: true,
         cwd: 'src',
@@ -26,7 +40,7 @@ module.exports = function(grunt) {
     },
     vulcanize: {
       files: {
-        src: 'src/index.html',
+        src: 'dist/index-raw.html',
         dest: 'dist/index.html'
       }
     },
@@ -71,7 +85,7 @@ module.exports = function(grunt) {
         options: {
           base: 'dist',
           branch: 'master',
-          repo: 'https://github.com/cth-housemouse/cth-housemouse.github.io.git'
+          repo: 'git@github.com:cth-housemouse/cth-housemouse.github.io.git'
         },
         src: ['**']
       }
@@ -79,7 +93,7 @@ module.exports = function(grunt) {
     watch: {
       html: {
         files: ['src/**/*.html'],
-        tasks: ['copy']  
+        tasks: ['copy:html', 'vulcanize']  
       },
       scripts: {
         files: ['src/scripts/**/*.js'],
@@ -87,7 +101,7 @@ module.exports = function(grunt) {
       },
       assets: {
         files: ['src/images/**/*', 'src/fonts/**/*'],
-        tasks: ['copy']
+        tasks: ['copy:images', 'copy:fonts']
       },
       options: {
         livereload: true
@@ -95,7 +109,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build', ['jshint', 'copy', 'bowercopy']);
+  grunt.registerTask('build', ['clean:build', 'jshint', 'copy', 'bowercopy', 'vulcanize', 'clean:deploy']);
   grunt.registerTask('default', ['build', 'express', 'watch']);
   grunt.registerTask('deploy', ['build', 'gh-pages']);
 
@@ -103,6 +117,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-vulcanize');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-gh-pages');
