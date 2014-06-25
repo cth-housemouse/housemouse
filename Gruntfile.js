@@ -69,7 +69,9 @@ module.exports = function(grunt) {
     'gh-pages': {
       production: {
         options: {
-          base: 'dist'
+          base: 'dist',
+          branch: 'master',
+          repo: 'https://github.com/cth-housemouse/cth-housemouse.github.io.git'
         },
         src: ['**']
       }
