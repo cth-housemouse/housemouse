@@ -493,12 +493,12 @@ html /deep/ [segment], html /deep/ segment {
   <script>
     Polymer('select-concepts', {
       conceptsList: [
-        {src: '../images/globe.png', name: 'aardrijkskunde'},
-        {src: '../images/nature.png', name: 'environment'},
-        {src: '../images/money.png', name: 'begroting'},
-        {src: '../images/personIcon.png', name: 'ocw'},
-        {src: '../images/roads.png', name: 'transportation'},
-        {src: '../images/home.png', name: 'wonen'},
+        {src: '../images/globe.png', name: 'security'},
+        {src: '../images/nature.png', name: 'wealth'},
+        {src: '../images/money.png', name: 'transport'},
+        {src: '../images/personIcon.png', name: 'health'},
+        {src: '../images/roads.png', name: 'family'},
+        {src: '../images/home.png', name: 'nature'},
       ],
       chosenConceptChanged: function () {
         
@@ -1898,7 +1898,7 @@ a {
 		
 	
 	<db-save combinedvote="{{ singleVote }}"></db-save>
-	<db-retrieve publisheddata="{{retrieved}}"></db-retrieve>
+	<db-retrieve publisheddata="{{ retrieved }}"></db-retrieve>
 
 	<section class="chartarea">
     <div class="centerer">	

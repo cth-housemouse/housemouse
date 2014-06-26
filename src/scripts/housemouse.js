@@ -42,6 +42,3 @@ var tempVotes = $.mockJSON.generateFromTemplate(votersFixture);
 var TempVotesStringified = JSON.stringify(tempVotes);
 
 localStorage.votes = TempVotesStringified;
-
-
-
