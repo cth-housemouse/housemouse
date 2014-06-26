@@ -25,10 +25,6 @@ module.exports = function(grunt) {
         src: 'src/scripts/housemouse.js',
         dest: 'dist/scripts/housemouse.js'
       },
-      scrollreveal: {
-        src: 'src/scripts/scrollreveal.min.js',
-        dest: 'dist/scripts/scrollreveal.min.js'
-      },
       fonts: {
         expand: true,
         flatten: true,
@@ -51,6 +47,10 @@ module.exports = function(grunt) {
       firebase: {
         src: 'firebase/firebase.js',
         dest: 'dist/vendor/firebase.js'
+      },
+      scrollreveal: {
+        src: 'scrollReveal.js/scrollReveal.js',
+        dest: 'dist/scripts/scrollreveal.js'
       },
       firebaseSimpleLogin: {
         src: 'firebase-simple-login/firebase-simple-login.js',

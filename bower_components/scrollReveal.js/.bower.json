@@ -1,0 +1,40 @@
+{
+  "name": "scrollReveal.js",
+  "version": "0.1.3",
+  "homepage": "https://github.com/julianlloyd/scrollReveal.js",
+  "authors": [
+    "Julian Lloyd <https://twitter.com/julianlloyd>"
+  ],
+  "description": "A simple way to create and maintain how elements fade in, triggered when they enter the viewport.",
+  "main": [
+    "scrollReveal.js"
+  ],
+  "keywords": [
+    "scrollReveal",
+    "scroll",
+    "reveal",
+    "animation",
+    "CSS",
+    "transition",
+    "JavaScript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.1.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.3",
+    "commit": "cc7f65984aefe363f270da6a2d4f3d4697924827"
+  },
+  "_source": "git://github.com/julianlloyd/scrollReveal.js.git",
+  "_target": "~0.1.3",
+  "_originalSource": "scrollReveal.js",
+  "_direct": true
+}
