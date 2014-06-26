@@ -9,26 +9,13 @@
 
             var mapStructuredVotes = [];
 
-            console.log('im this this.dot.data')
-            console.log(this.data)
-
             for (singleuser in this.data) {
-
-              console.log('im inside the loop')
-              console.log(this.data.singleuser);
-
               mapStructuredVotes.push(this.data[singleuser]);
             };
-
-            console.log('im mapstructuredvotes')
-            console.log(mapStructuredVotes)
 
             var votes = {};
             
             votes.permanent = mapStructuredVotes;
-
-            console.log('im votes permanent')
-            console.log(votes.permanent)
 
             var countryCount = [
               {country: "total", houseType: "", flat: 0, house: 0, farm: 0},
@@ -106,20 +93,16 @@
             
             for (var s = 0; s < countryTotal; s++) {
                 if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
-                    countryCount[s].houseType = "flat";
-                };
-                if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
-                    countryCount[s].houseType = "house";
-                };
-                if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
-                    countryCount[s].houseType = "farm";
-                };
-                if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
-                    countryCount[s].houseType = "undecided";
+                  countryCount[s].houseType = "flat";
                 }
-                if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
-                    countryCount[s].houseType = "nodata";
+                else if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+                  countryCount[s].houseType = "house";
                 }
+                else if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+                  countryCount[s].houseType = "farm";
+                } else {
+                  countryCount[s].houseType = "undecided";
+                };
             };
 
             for (var s = 1; s < countryTotal; s++) {
@@ -128,9 +111,6 @@
               } else {
              this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].houseType); }
             };
-
-            console.log('im country count')
-            console.log(countryCount)
 
           }
       });
