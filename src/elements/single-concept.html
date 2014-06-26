@@ -29,6 +29,7 @@
 
   <script>
     Polymer('single-concept', {
+      chosenConcept: [],
       highlight: false,
       setConcept: function(){
 
@@ -53,7 +54,6 @@
         }  
 
         var totalConcepts = this.chosenConcept.length;
-        console.log(totalConcepts);
 
         if (notOneOfChosenConcepts == totalConcepts) {  
           if (this.chosenConcept.length > 2) {
@@ -73,8 +73,7 @@
         for (var i = 0; i < this.chosenConcept.length; i++) {
           if (this.concept.name == this.chosenConcept[i]) {
              this.shadowRoot.getElementById('highlight').classList.add('imgConceptChosen');
-          } 
-          if (this.concept.name != this.chosenConcept[i]) {
+          } else { 
             notOneOfChosenConcepts++;
           }  
         }

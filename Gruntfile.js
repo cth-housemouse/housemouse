@@ -37,12 +37,7 @@ module.exports = function(grunt) {
         src: 'src/images/**/*',
         dest: 'dist/images'
       }
-    },
-    vulcanize: {
-      files: {
-        src: 'dist/index-raw.html',
-        dest: 'dist/index.html'
-      }
+      
     },
     bowercopy: {
       platform: {
@@ -65,6 +60,10 @@ module.exports = function(grunt) {
         src: 'core-tooltip/**/*',
         dest: 'dist/vendor/core-tooltip'
       },
+      firebaseElement: {
+        src: 'firebase-element/**/*',
+        dest: 'dist/vendor/firebase-element'
+      },
       jquery: {
         src: 'jquery/dist/jquery.js',
         dest: 'dist/vendor/jquery.js'
@@ -72,6 +71,12 @@ module.exports = function(grunt) {
       mockjson: {
         src: 'mockjson/js/jquery.mockjson.js',
         dest: 'dist/vendor/mockjson.js'
+      }
+    },
+    vulcanize: {
+      files: {
+        src: 'dist/index-raw.html',
+        dest: 'dist/index.html'
       }
     },
     express: {

@@ -6,7 +6,7 @@
         padding: 50px;
       }
 
-      .imghouse {
+      .imgHouse {
         margin: 20px;
         width: 180px;
         padding: 12px;
@@ -29,9 +29,13 @@
         background: #75C7B3;
       }
 
+      .imgHouseChosen {
+        background:#E5CF39;
+      }
+
     </style>
     
-    <span><img class="imghouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+    <span><img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
 
   </template>
 
@@ -41,6 +45,13 @@
       setType: function(){
         this.houseType = this.image.type;
       },
+      houseTypeChanged: function (){
+        if (this.houseType == this.image.type) {
+          this.shadowRoot.getElementById('highlightHouse').classList.add('imgHouseChosen');
+        } else { 
+          this.shadowRoot.getElementById('highlightHouse').classList.remove('imgHouseChosen');
+        }  
+      }
     });
   </script>
 </polymer-element>

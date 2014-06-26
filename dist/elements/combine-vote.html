@@ -1,28 +1,41 @@
 <link rel="import" href="select-house.html">
 <link rel="import" href="select-concepts.html">
+<link rel="import" href="user-login.html">
 
-<polymer-element name="combine-vote" attributes="singleVote">
+<polymer-element name="combine-vote">
   <template>
-
-    <style>
-
-    </style>
-
     <select-house houseType="{{houseType}}"></select-house>
     <select-concepts chosenConcept="{{chosenConcept}}"></select-concepts>
-
+    <user-login userInfo="{{userInfo}}"></user-login>
   </template>
   
   <script>
-    Polymer('combine-vote', {singleVote: "", chosenConcept: [],
-      chosenConceptChanged: function () {
-        console.log(this.chosenConcept);
-
+    Polymer('combine-vote', {
+      publish: {
+        singleVote: {}
       },
-    
+      voteCombiner: function (){
+        if (this.houseType == "flat" || this.houseType == "house" || this.houseType == "farm"){
+          if (this.chosenConcept.length === 3) {
+            if (this.userInfo.userId) {
+              this.userInfo.houseType = this.houseType;
+              this.userInfo.concepts = this.chosenConcept;
+
+              this.singleVote = this.userInfo;
+            } 
+          }
+        }
+      }, 
+      chosenConceptChanged: function () {
+        this.voteCombiner();
+      },
       houseTypeChanged: function (){
-        //console.log(this.houseType)
-      }
+        this.voteCombiner();
+      },
+      userInfoChanged: function (){
+        this.voteCombiner();
+      },
+
     });
   </script>
 </polymer-element>

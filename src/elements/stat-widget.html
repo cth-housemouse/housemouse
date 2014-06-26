@@ -1,11 +1,11 @@
 <link rel="import" href="stat-bar.html">
 <link rel="import" href="../vendor/core-tooltip/core-tooltip.html">
 
-<polymer-element name="stat-widget">
+<polymer-element name="stat-widget" attributes="vote">
 
-  <template attributes="vote votes">
+  <template>
     <template repeat="{{ chosenConcepts in dataForStatBar }}">
-      <stat-bar concept="{{ chosenConcepts}}"></stat-bar>
+      <stat-bar concept="{{ chosenConcepts }}"></stat-bar>
     </template>
   </template>
 
@@ -41,14 +41,14 @@
           semiWorking: 5
         },
         {
-          name: "pet",
+          name: "nature",
           total: 20,
           working: 8,
           notWorking: 7,
           semiWorking: 5
         },
         {
-          name: "super",
+          name: "family",
           total: 20,
           working: 8,
           notWorking: 7,
@@ -58,20 +58,28 @@
       vote: {
         id: 1,
         houseType: "flat",
-        conceptChoice: ["security", "wealth", "health"]
+        concepts: ["security", "wealth", "health"]
       },
-      dataForStatBar: [],
-      ready: function(){
-        var choices = this.vote.conceptChoice;
+      voteChanged: function(){
+        this.updateStats();
+        console.log(this.vote);
+      },
+      updateStats: function(){
+        var dataForStatBarTemp = [];
+        var choices = this.vote.concepts;
+        this.choices = this.vote.concepts;
         for(var object in this.concepts) {
           var name = this.concepts[object].name;
           for(var i = 0; i < choices.length; i++) {
             if(name === choices[i]) {
-              this.dataForStatBar[i] = this.concepts[object];
-              console.log(this.dataForStatBar[i]);
+              dataForStatBarTemp[i] = this.concepts[object];
             }
           }
         }
+        this.dataForStatBar = dataForStatBarTemp;
+      },
+      ready: function(){
+        this.updateStats();
       }       
     });
   </script>

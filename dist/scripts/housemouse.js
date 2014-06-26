@@ -24,10 +24,10 @@ the list above, and a htype of the other list above.
 */
 
 var votersFixture = { 
-	 "permanent|1000-10000" : [ 
+	 "permanent|100-400" : [ 
 		{ 
   		"userid|20-40" : "@NUMBER",
-  		"country" : "@EU_COUNTRY",
+  		"htype" : "@EU_COUNTRY",
   		"choice" : "@HTYPE"
   		}
 	 	]
@@ -42,5 +42,6 @@ var tempVotes = $.mockJSON.generateFromTemplate(votersFixture);
 var TempVotesStringified = JSON.stringify(tempVotes);
 
 localStorage.votes = TempVotesStringified;
+
 
 
