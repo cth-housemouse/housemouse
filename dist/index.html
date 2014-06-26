@@ -1044,7 +1044,7 @@ Example:
 
 <polymer-element name="db-save" assetpath="elements/">
 	<template>
-		<firebase-element id="db" location="http://cth-storage.firebaseio.com/" data="{{data}}" keys="{{keys}}" childevents="" log="">
+		<firebase-element id="db" location="http://cth-storage.firebaseio.com/" data="{{data}}" keys="{{keys}}" childevents="" log="" on-data-change:{{gotvalue}}="">
 		</firebase-element>
 	</template>
 	<script>
@@ -1052,13 +1052,19 @@ Example:
 			publish: {
 				combinedvote: {}
 			},
+			canDoThing: 0,
 			didThing: 0,
+			gotValue: function(){
+				this.canDoThing = 1;
+			},
 			combinedvoteChanged: function(){
-				if (!this.didThing) {
-					var user = this.combinedvote.userId;
-					this.data[user] = this.combinedvote;
-					this.$.db.commit();
-					this.didThing = 1;
+				if (this.canDoThing) {
+					if (!this.didThing) {
+						var user = this.combinedvote.userId;
+						this.data[user] = this.combinedvote;
+						this.$.db.commit();
+						this.didThing = 1;
+					}
 				}
 			}
 		});
