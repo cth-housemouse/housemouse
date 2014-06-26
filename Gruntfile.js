@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         src: '**/*.{html,css}',
         dest: 'dist/'
       },
-      scripts: {
+      app: {
         src: 'src/scripts/housemouse.js',
         dest: 'dist/scripts/housemouse.js'
       },
