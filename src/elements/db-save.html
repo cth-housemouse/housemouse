@@ -1,0 +1,30 @@
+<link rel="import" href="../vendor/firebase-element/firebase-element.html">
+
+
+<polymer-element name="db-save">
+	<template>
+		<firebase-element 	id="db" 
+							location="http://cth-storage.firebaseio.com/" 
+							data="{{data}}" 
+							keys="{{keys}}"
+							childEvents
+							log>
+		</firebase-element>
+	</template>
+	<script>
+		Polymer('db-save', {
+			publish: {
+				combinedvote: {}
+			},
+			didThing: 0,
+			combinedvoteChanged: function(){
+				if (!this.didThing) {
+					var user = this.combinedvote.userId;
+					this.data[user] = this.combinedvote;
+					this.$.db.commit();
+					this.didThing = 1;
+				}
+			}
+		});
+	</script>
+</polymer-element>

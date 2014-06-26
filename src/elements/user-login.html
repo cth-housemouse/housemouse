@@ -1,7 +1,7 @@
 <script src="../vendor/firebase.js"></script>
 <script src="../vendor/firebase-simple-login.js"></script>
 
-<polymer-element name="facebook-login" attributes="houseType vote">
+<polymer-element name="user-login" attributes="userInfo">
 
   <template>
     <style>
@@ -40,19 +40,18 @@
   </template>
 
   <script>
-    Polymer('facebook-login', {
+    Polymer('user-login', { userInfo: {},
        	login: function() {
           var self = this;
-          var vote = {};
+          var userInfo = {};
           var firebaseRef = new Firebase("https://crackling-fire-9322.firebaseio.com");
           var auth = new FirebaseSimpleLogin(firebaseRef, function(error, user) {
             if (error) {
               alert(error);
-            } else if (user) {
-              vote.houseType = self.houseType; 
-              vote.userId = user.id;
-              vote.country = user.thirdPartyUserData.locale.split("_")[0];
-              self.vote = vote;
+            } else if (user) { 
+              userInfo.userId = user.id;
+              userInfo.country = user.thirdPartyUserData.locale.split("_")[0];
+              self.userInfo = userInfo;
             }})
           auth.login('facebook');
         }

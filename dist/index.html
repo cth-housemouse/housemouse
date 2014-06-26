@@ -311,7 +311,7 @@ html /deep/ [segment], html /deep/ segment {
         padding: 50px;
       }
 
-      .imghouse {
+      .imgHouse {
         margin: 20px;
         width: 180px;
         padding: 12px;
@@ -334,9 +334,13 @@ html /deep/ [segment], html /deep/ segment {
         background: #75C7B3;
       }
 
+      .imgHouseChosen {
+        background:#E5CF39;
+      }
+
     </style>
     
-    <span><img class="imghouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+    <span><img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
 
   </template>
 
@@ -346,11 +350,18 @@ html /deep/ [segment], html /deep/ segment {
       setType: function(){
         this.houseType = this.image.type;
       },
+      houseTypeChanged: function (){
+        if (this.houseType == this.image.type) {
+          this.shadowRoot.getElementById('highlightHouse').classList.add('imgHouseChosen');
+        } else { 
+          this.shadowRoot.getElementById('highlightHouse').classList.remove('imgHouseChosen');
+        }  
+      }
     });
   </script>
 </polymer-element>
 
-<polymer-element name="select-house" attributes="houseType chosenConcept" assetpath="elements/">
+<polymer-element name="select-house" attributes="houseType" assetpath="elements/">
   <template>
     <style>
 
@@ -370,7 +381,6 @@ html /deep/ [segment], html /deep/ segment {
         {imageUrl: './images/house.png', type: "house"},
         {imageUrl: './images/farm.png', type: "farm"}
       ],
-    
       houseTypeChanged: function (){
         
       }
@@ -409,6 +419,7 @@ html /deep/ [segment], html /deep/ segment {
 
   <script>
     Polymer('single-concept', {
+      chosenConcept: [],
       highlight: false,
       setConcept: function(){
 
@@ -433,7 +444,6 @@ html /deep/ [segment], html /deep/ segment {
         }  
 
         var totalConcepts = this.chosenConcept.length;
-        console.log(totalConcepts);
 
         if (notOneOfChosenConcepts == totalConcepts) {  
           if (this.chosenConcept.length > 2) {
@@ -453,8 +463,7 @@ html /deep/ [segment], html /deep/ segment {
         for (var i = 0; i < this.chosenConcept.length; i++) {
           if (this.concept.name == this.chosenConcept[i]) {
              this.shadowRoot.getElementById('highlight').classList.add('imgConceptChosen');
-          } 
-          if (this.concept.name != this.chosenConcept[i]) {
+          } else { 
             notOneOfChosenConcepts++;
           }  
         }
@@ -492,35 +501,8 @@ html /deep/ [segment], html /deep/ segment {
         {src: '../images/home.png', name: 'wonen'},
       ],
       chosenConceptChanged: function () {
-        //console.log(this.chosenConcept)
+        
 
-      }
-    });
-  </script>
-</polymer-element>
-
-
-<polymer-element name="combine-vote" attributes="singleVote" assetpath="elements/">
-  <template>
-
-    <style>
-
-    </style>
-
-    <select-house housetype="{{houseType}}"></select-house>
-    <select-concepts chosenconcept="{{chosenConcept}}"></select-concepts>
-
-  </template>
-  
-  <script>
-    Polymer('combine-vote', {singleVote: "", chosenConcept: [],
-      chosenConceptChanged: function () {
-        console.log(this.chosenConcept);
-
-      },
-    
-      houseTypeChanged: function (){
-        //console.log(this.houseType)
       }
     });
   </script>
@@ -529,7 +511,7 @@ html /deep/ [segment], html /deep/ segment {
 <script src="vendor/firebase.js"></script>
 <script src="vendor/firebase-simple-login.js"></script>
 
-<polymer-element name="facebook-login" attributes="houseType vote" assetpath="elements/">
+<polymer-element name="user-login" attributes="userInfo" assetpath="elements/">
 
   <template>
     <style>
@@ -568,19 +550,18 @@ html /deep/ [segment], html /deep/ segment {
   </template>
 
   <script>
-    Polymer('facebook-login', {
+    Polymer('user-login', { userInfo: {},
        	login: function() {
           var self = this;
-          var vote = {};
+          var userInfo = {};
           var firebaseRef = new Firebase("https://crackling-fire-9322.firebaseio.com");
           var auth = new FirebaseSimpleLogin(firebaseRef, function(error, user) {
             if (error) {
               alert(error);
-            } else if (user) {
-              vote.houseType = self.houseType; 
-              vote.userId = user.id;
-              vote.country = user.thirdPartyUserData.locale.split("_")[0];
-              self.vote = vote;
+            } else if (user) { 
+              userInfo.userId = user.id;
+              userInfo.country = user.thirdPartyUserData.locale.split("_")[0];
+              self.userInfo = userInfo;
             }})
           auth.login('facebook');
         }
@@ -589,111 +570,647 @@ html /deep/ [segment], html /deep/ segment {
 </polymer-element>
 
 
+<polymer-element name="combine-vote" assetpath="elements/">
+  <template>
+
+    <style>
+
+    </style>
+
+    <select-house housetype="{{houseType}}"></select-house>
+    <select-concepts chosenconcept="{{chosenConcept}}"></select-concepts>
+    <user-login userinfo="{{userInfo}}"></user-login>
+
+  </template>
+  
+  <script>
+    Polymer('combine-vote', {
+      publish: {
+        singleVote: {}
+      },
+      voteCombiner: function (){
+        if (this.houseType == "flat" || this.houseType == "house" || this.houseType == "farm"){
+          if (this.chosenConcept.length === 3) {
+            if (this.userInfo.userId) {
+              this.userInfo.htype = this.houseType;
+              this.userInfo.concepts = this.chosenConcept;
+
+              this.singleVote = this.userInfo;
+            } 
+          }
+        }
+      }, 
+      chosenConceptChanged: function () {
+        this.voteCombiner();
+      },
+      houseTypeChanged: function (){
+        this.voteCombiner();
+      },
+      userInfoChanged: function (){
+        this.voteCombiner();
+      },
+
+    });
+  </script>
+</polymer-element>
+<script src="vendor/firebase.js"></script>
+
+
+<!--
+Element wrapper for the Firebase Web API (http://firebase.com).
+
+`firebase-element` maps a firebase location to a `data` property. 
+
+    <firebase-element id="base" location="https://YOUR.firebaseio.com/" data="{{data}}" keys="{{keys}}"></firebase-element>
+
+    <h3>My Firebase Data</h3>
+    
+    <template repeat="{{key in keys}}">
+      <p>{{key}}: {{data[key]}}</p>
+    </template>
+    
+## Data Persistence
+
+- changes that occur on the remote data are automatically reflected back into 
+  the client-side data.
+- assignments to the `data` property, or modifications to `data`'s **own** properties, are 
+  automatically persisted back to the Firebase store.
+- changes to **sub-properties** of `data` are not generally observable and are **not** 
+  automatically persisted.
+- properties bound to the `data` property work just like `data` itself (all Polymer
+  bindings are like this).
+  
+Examples:
+
+    // assume `this.data` is bound to the firebase-element data as shown above
+    
+    resetData: function() {
+      // setting the data object directly will automatically also 
+      // set the firebase location 
+      this.data = {
+        name: 'anonymous',
+        info: 'none',
+        more: {
+          color: "yellow"
+        }
+      };
+    },
+
+    updateInfo: function(info) {
+      // setting top-level properties of the data object 
+      // will automatically update the database
+      // this works via binding also
+      this.data.info = info;
+    },
+
+    updateColor: function(color) {
+      // changes to deep properties of the data object 
+      // are not observed automatically, and must be
+      // commited to update the database
+      this.data.more.color = color;
+      // in this case, we use `commitProperty` to commit 
+      // the top-level property that has deep changes
+      this.$.base.commitProperty('more');
+    }
+
+## Observing Changes
+
+Whenever `firebase-element` detects a change in data, from either client or server side, it
+bubbles a `data-change` event. `data-change` events are frequency-limited (throttled).
+
+Changes in data objects are also observable directly, but you must observe relevant properties
+directly. Changes in sub-properties are not automatically observed, following normal Polymer rules.
+
+Examples:
+
+    observe: {
+      // dataChanged only called if data is pointed at a new object
+      // changes to data's _properties or sub-properites are not observed_
+      data: 'dataChanged',
+      // dataNameChanged called if `data.name` changes
+      'data.name': 'dataNameChanged'
+    } 
+
+## Arrays and Objects
+
+Firebase stores all data as Objects, even Arrays are stored as objects with numerical keys. 
+As a convenience, the Firebase Web API automatically converts Array-like Objects into Arrays
+for use JavaScript.
+
+Arrays are generally inconvenient for large data-storage. For example, if you delete an
+element from an array, all the subsequent elements need their indices (keys) updated.
+
+To support lists of data without using Arrays, Firebase supports a `push` method which 
+adds an entry to an Object using a string key instead of an index.
+
+    addEntry: function(value) {
+      this.$.base.push({foo: value});
+    }
+
+## Child Events
+
+Firebase supports notifications when properties on `data` are removed, added, or modified. 
+Any of these changes will cause firebase-element to fire `data-change` method as described 
+above. However, you can also listen for discrete child events, by setting `childEvents`
+property to true. The events are `child-added`, `child-removed`, and `child-changed`. Each
+`event` object has a `detail` property with `name` and `value` properties identifying the 
+modified item.
+
+Example:
+
+    <firebase-element childEvents on-child-added="{{childAdded}}" ...>
+    ...
+    childAdded: function(event) {
+      console.log('added ', event.detail.name, ':', event.detail.value);
+    }
+
+@class firebase-element
+@blurb Element wrapper for the Firebase Web API (http://firebase.com).
+@status alpha
+@snap snap.png
+-->
+<polymer-element name="firebase-element" assetpath="vendor/firebase-element/">
+<script>
+  /*
+    note: switching between Array and Object datatypes will mess up 
+    live firebase-element elements
+  */
+  Polymer('firebase-element', {
+    publish: {
+      /**
+       * Fired when properties on `data` are added, removed, or modified.
+       *
+       * @event data-change
+       */
+
+      /**
+       * Firebase location mapped to `data`.
+       * @attribute location
+       * @type String
+       */
+      location: null,
+      /**
+       * Firebase `ref` object corresponding to `location`.
+       * @attribute ref
+       * @type Object
+       */
+      ref: null,
+      /**
+       * Restricts the number of records reflected on the client.
+       * @attribute limit
+       * @type Number
+       */
+      limit: 0,
+      /**
+       * Specify a starting record for the set of records reflected on the client.
+       * @attribute start
+       * @type Any
+       */
+      start: null,
+      /**
+       * Specify an ending record for the set of records reflected on the client.
+       * @attribute end
+       * @type Any
+       */
+      end: null,
+      /**
+       * The `data` object mapped to `location`.
+       * @attribute data
+       * @type Object
+       */
+      data: null,
+      /**
+       * All keys in data (array of names, if you think of data as a set of name/value pairs).
+       * @attribute keys
+       * @type Array
+       */
+      keys: null,
+      /**
+       * If true, will fire `child-added`, `child-removed`, `child-changed` events.
+       * @attribute childEvents
+       * @type Boolean
+       */
+      childEvents: false,
+      /**
+       * When set, data will be stored with the given Firebase priority level.
+       * @attribute priority
+       * @type Number
+       */
+      priority: null,
+      /**
+       * Reflects whether the data at this locaation as been read at least once
+       * @attribute initialized
+       * @type Boolean
+       */
+      dataReady: false,
+      /**
+       * If true, will log various occurances to the console api.
+       * @attribute log
+       * @type Boolean
+       */
+      log: false
+    },
+    observe: {
+      'ref limit start end': 'requery'
+    },
+    locationChanged: function() {
+      // shut-down previous observers (if any)
+      this.closeQuery();
+      this.closeObserver();
+      // connect to db
+      if (this.location) {
+        this.ref = new Firebase(this.location);
+      } else {
+        this.ref = null;
+      }
+    },
+    requery: function() {
+      // shut-down previous observers (if any)
+      this.closeQuery();
+      this.closeObserver();
+      // construct new query
+      var query = this.ref;
+      if (query) {
+        if (this.start) {
+          query = query.startAt(this.start);
+        }
+        if (this.end) {
+          query = query.endAt(this.start);
+        }
+        if (this.limit > 0) {
+          query = query.limit(this.limit);
+        }
+        this.query = query;
+      }
+    },
+    queryChanged: function() {
+      // initialize
+      this._setData(null);
+      // data acquisition
+      this.dataReady = false;
+      this.valueLoading = true;
+      this.query.once('value', this.valueLoaded, this);
+      // observe server-side data
+      this.observeQuery();
+    },
+    valueLoaded: function(snapshot) {
+      this.valueLoading = false;
+      if (this.ref.name() !== snapshot.name()) {
+        this.log && console.warn('squelching stale response [%s]', snapshot.name());
+        return;
+      }
+      this.log && console.log('acquired value ' + this.location);
+      this.dataReady = true;
+      this._setData(snapshot.val());
+      if (this.data) {
+        this.dataChange();
+      }
+    },
+    _setData: function(data) {
+      this.closeObserver();
+      this.data = this._data = data;
+      this.observeData();
+    },
+    //
+    // server-side data-observation
+    //
+    observeQuery: function() {
+      // server side dynamics
+      this.query.on('child_added', this.childAdded, this);
+      this.query.on('child_changed', this.childChanged, this);
+      this.query.on('child_removed', this.childRemoved, this);
+    },
+    closeQuery: function() {
+      if (this.query) {
+        this.query.off();
+      }
+    },
+    //
+    // client-side data-observation
+    //
+    observeData: function() {
+      if (this.data instanceof Array) {
+        this.observer = new ArrayObserver(this.data);
+        this.observer.open(this.observeArray.bind(this));
+      } else if (this.data instanceof Object) {
+        this.observer = new ObjectObserver(this.data);
+        this.observer.open(this.observeObject.bind(this));
+      }
+    },
+    closeObserver: function() {
+      if (this.observer) {
+        this.observer.close();
+        this.observer = null;
+      }
+    },
+    dataChanged: function() {
+      if (this._data !== this.data) {
+        this._setData(this.data);
+        this.commit();
+      }
+    },
+    priorityChanged: function() {
+      if (this.ref && (this.priority != null)) {
+        this.ref.setPriority(this.priority);
+      }
+    },
+    discardObservations: function() {
+      if (this.observer) {
+        this.observer.discardChanges();
+      }
+    },
+    deliverObservations: function() {
+      if (this.observer) {
+        this.observer.deliver();
+      }
+    },
+    //
+    // server-side effects
+    //
+    childAdded: function(snapshot) {
+      if (this.data) {
+        // ignore initial adds, we'll take the 'value' instead
+        this.modulateData('updateData', snapshot);
+      } else if (!this.valueLoading) {
+        // if children are added to a previously null location, grab the whole value in one go
+        this.valueLoading = true;
+        this.query.once('value', this.valueLoaded, this);
+      }
+      this.childEvent('child-added', snapshot);
+    },
+    childChanged: function(snapshot) {
+      this.modulateData('updateData', snapshot);
+      this.childEvent('child-changed', snapshot);
+    },
+    childRemoved: function(snapshot) {
+      this.modulateData('removeData', snapshot);
+      this.childEvent('child-removed', snapshot);
+    },
+    childEvent: function(kind, snapshot) {
+      this.log && console.log(kind, snapshot.name());
+      if (this.childEvents) {
+        this.fire(kind, {name: snapshot.name(), value: snapshot.val()});
+      }
+    },
+    modulateData: function(operation, snapshot) {
+      // handle any pending observations
+      this.deliverObservations();
+      this[operation](snapshot);
+      this.dataChange();
+      // discard any observations so we don't send this value back to the
+      // server, it may already be stale from the server's perspective
+      this.discardObservations();      
+    },
+    updateData: function(snapshot) {
+      if (!this.data) {
+        this.data = {};
+      }
+      this.data[snapshot.name()] = snapshot.val();
+    },
+    removeData: function(snapshot) {
+      var key = snapshot.name();
+      if (this.data instanceof Array) {
+        this.data.splice(key, 1);
+        if (data.length == 0) {
+          this._setData(null);
+        }
+      } else if (this.data) {
+        delete this.data[key];
+        if (Object.keys(this.data).length === 0) {
+          this._setData(null);
+        }
+      }
+    },
+    dataChange: function() {
+      //this.job('change', function() {
+        if (this.data) {
+          this.keys = this.data ? Object.keys(this.data) : [];
+        }
+        this.fire('data-change');
+      //});
+    },
+    //
+    // client-side effects
+    //
+    observeArray: function(splices) {
+      //console.warn('observeArray');
+      // TODO(sjmiles): arrays are nasty because simple insertions/deletions
+      // cause changes to ripple through keys
+      this.commit();
+    },
+    observeObject: function(added, removed, changed, getOldValueFn) {
+      // client-side dynamics
+      var ctrlr = this;
+      Object.keys(added).forEach(function(property) {
+        ctrlr.commitProperty(property);
+      });
+      Object.keys(removed).forEach(function(property) {
+        ctrlr.remove(property);
+      });
+      Object.keys(changed).forEach(function(property) {
+        ctrlr.commitProperty(property);
+      });
+    },
+    // api for manual commits
+    commitProperty: function(key) {
+      this.log && console.log('commitProperty ' + key);
+      if (this.ref) {
+        this.ref.child(key).set(this.data[key]);
+      }
+    },
+    remove: function(key) {
+      this.ref.child(key).remove();
+    },
+    commit: function() {
+      this.log && console.log('commit');
+      if (this.ref) {
+        if (this.priority != null) {
+          this.ref.setWithPriority(this.data || {}, this.priority);
+        } else {
+          this.ref.set(this.data || {});
+        }
+      }
+    },
+    push: function(item) {
+      var neo;
+      if (this.data instanceof Array) {
+        this.ref.commitProperty(this.data.push(item)-1);
+      } else {
+        neo = this.ref.push(item);
+      }
+      this.dataChange();
+      return neo;
+    }
+  });
+</script>
+</polymer-element>
+
+
+
+<polymer-element name="db-save" assetpath="elements/">
+	<template>
+		<firebase-element id="db" location="http://cth-storage.firebaseio.com/" data="{{data}}" keys="{{keys}}" childevents="" log="">
+		</firebase-element>
+	</template>
+	<script>
+		Polymer('db-save', {
+			publish: {
+				combinedvote: {}
+			},
+			didThing: 0,
+			combinedvoteChanged: function(){
+				if (!this.didThing) {
+					var user = this.combinedvote.userId;
+					this.data[user] = this.combinedvote;
+					this.$.db.commit();
+					this.didThing = 1;
+				}
+			}
+		});
+	</script>
+</polymer-element>
+
+
+<polymer-element name="db-retrieve" assetpath="elements/">
+	<template>
+		<firebase-element id="db" location="http://cth-storage.firebaseio.com/" data="{{data}}" keys="{{keys}}" childevents="" log="">
+		</firebase-element>
+	</template>
+	<script>
+		Polymer('db-retrieve', {
+			publish: {
+				publishedData: {}
+			},
+			dataChanged: function() {
+				this.publishedData = this.data;
+			}
+		});
+	</script>
+</polymer-element>
+
+<!-- bower install --save Polymer/firebase-element -->
+
 <polymer-element name="map-element" assetpath="elements/">
 
   <script>
       Polymer('map-element', {
-          ready: function() {
-            var votes = JSON.parse(localStorage.votes);
+          publish: {
+            data: {}
+          },
+          dataChanged: function() {
 
-            var countryCount = [
-              {country: "total", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "gl", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "is", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "pt", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "es", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "be", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "it", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "by", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "pl", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "gr", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "fi", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "de", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "se", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "no", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "ua", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "ie", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "ch", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "at", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "cz", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "sk", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "hu", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "lt", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "lv", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "md", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "ro", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "bg", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "al", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "ee", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "ad", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "sm", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "mc", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "lu", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "fr", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "li", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "nl", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "ba", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "si", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "mk", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "hr", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "ru", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "gb", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "va", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "mt", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "dk", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "cy", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "rs", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "me", htype: "", flat: 0, house: 0, farm: 0},
-              {country: "Kosovo", htype: "", flat: 0, house: 0, farm: 0}
-            ];
+            var mapStructuredVotes = [];
 
-            var votesTotal = votes.permanent.length;
-            var countryTotal = countryCount.length;
+            console.log(this.data.testuser)
 
-            for (var i = 0; i < votesTotal; i++) {
+            // for (singleuser in this.data) {
+              
+            //   console.log('im inside the loop')
+            //   console.log(this.data.singleuser);
+            //   mapStructuredVotes.push(singleuser);
+            // };
 
-              for (var s = 1; s < countryTotal; s++) {
+            // console.log('im mapstructuredvotes')
+            // console.log(mapStructuredVotes)
 
-                if (votes.permanent[i].country == countryCount[s].country) {
-                  if (votes.permanent[i].choice == "flat") {
-                    countryCount[s].flat++;
-                  };
-                  if (votes.permanent[i].choice == "house") {
-                    countryCount[s].house++;
-                  };
-                  if (votes.permanent[i].choice == "farm") {
-                    countryCount[s].farm++;
+           //  var countryCount = [
+           //    {country: "total", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "gl", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "is", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "pt", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "es", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "be", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "it", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "by", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "pl", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "gr", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "fi", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "de", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "se", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "no", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "ua", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "ie", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "ch", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "at", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "cz", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "sk", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "hu", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "lt", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "lv", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "md", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "ro", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "bg", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "al", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "ee", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "ad", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "sm", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "mc", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "lu", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "fr", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "li", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "nl", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "ba", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "si", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "mk", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "hr", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "ru", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "gb", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "va", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "mt", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "dk", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "cy", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "rs", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "me", htype: "", flat: 0, house: 0, farm: 0},
+           //    {country: "Kosovo", htype: "", flat: 0, house: 0, farm: 0}
+           //  ];
 
-                  };
-                };
-              };
-            };
+           //  var votesTotal = votes.permanent.length;
+           //  var countryTotal = countryCount.length;
+
+           //  for (var i = 0; i < votesTotal; i++) {
+
+           //    for (var s = 1; s < countryTotal; s++) {
+
+           //      if (votes.permanent[i].country == countryCount[s].country) {
+           //        if (votes.permanent[i].choice == "flat") {
+           //          countryCount[s].flat++;
+           //        };
+           //        if (votes.permanent[i].choice == "house") {
+           //          countryCount[s].house++;
+           //        };
+           //        if (votes.permanent[i].choice == "farm") {
+           //          countryCount[s].farm++;
+
+           //        };
+           //      };
+           //    };
+           //  };
 
             
-            for (var s = 0; s < countryTotal; s++) {
-                if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
-                    countryCount[s].htype = "flat";
-                };
-                if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
-                    countryCount[s].htype = "house";
-                };
-                if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
-                    countryCount[s].htype = "farm";
-                };
-                if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
-                    countryCount[s].htype = "undecided";
-                }
-                if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
-                    countryCount[s].htype = "nodata";
-                }
-            };
+           //  for (var s = 0; s < countryTotal; s++) {
+           //      if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
+           //          countryCount[s].htype = "flat";
+           //      };
+           //      if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+           //          countryCount[s].htype = "house";
+           //      };
+           //      if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+           //          countryCount[s].htype = "farm";
+           //      };
+           //      if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
+           //          countryCount[s].htype = "undecided";
+           //      }
+           //      if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
+           //          countryCount[s].htype = "nodata";
+           //      }
+           //  };
 
-           for (var s = 1; s < countryTotal; s++) {
-              if (countryCount[s].htype === ""){
-               console.log(countryCount[s].htype);
-              } else {
-             this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].htype); }
-            };
+           // for (var s = 1; s < countryTotal; s++) {
+           //    if (countryCount[s].htype === ""){
+           //     console.log(countryCount[s].htype);
+           //    } else {
+           //   this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].htype); }
+           //  };
 
           }
       });
@@ -718,6 +1235,8 @@ html /deep/ [segment], html /deep/ segment {
       .nodata {fill: purple;}
       
     </style>
+
+    <
 
     <div class="mapcontainer">
       <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" height="100%" viewbox="1754 161 9938 7945" id="svg2">
@@ -934,7 +1453,7 @@ a {
 
 	<section class="housesarea">
 	<div class="centerer">
-		<combine-vote singlevote="{{ singeVote }}"></combine-vote>
+		<combine-vote singlevote="{{ singleVote }}"></combine-vote>
 	</div>
 	</section>
 
@@ -947,16 +1466,13 @@ a {
 		
 	</div>	
 	</section>
-
-	<section class="loginarea">
-	<div class="centerer">
-		<facebook-login vote="{{vote}}" housetype="{{houseType}}"></facebook-login>
-	</div>	
-	</section>
+	
+	<db-save combinedvote="{{ singleVote }}"></db-save>
+	<db-retrieve publisheddata="{{retrieved}}"></db-retrieve>
 
 	<section class="chartarea">
 	<div class="centerer">	
-		<map-element class="chart"></map-element>
+		<map-element class="chart" data="{{retrieved}}"></map-element>
 	</div>
 	</section>
 
@@ -976,7 +1492,9 @@ a {
 
 	<script>
 		Polymer('umbrella-element', {
-			voteChanged: function() {
+			singleVoteChanged: function() {
+				console.log('hi im the umbrella');
+				console.log(this.singleVote)
 			}
 		});
 	</script>
