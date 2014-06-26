@@ -7,7 +7,7 @@
 
 <link rel="import" href="map-element.html">
 
-<polymer-element name="cth-housemouse" noscript>
+<polymer-element name="cth-housemouse">
 	<template>
     <link rel='stylesheet' href='../styles/umbrella-element.css'>
 
@@ -27,11 +27,11 @@
 	<db-save combinedvote="{{ singleVote }}"></db-save>
 	<db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
 
-	<section class="chartarea">
+	<!-- <section class="chartarea">
     <div class="centerer">	
       <map-element class="chart" data="{{retrieved}}"></map-element>
     </div>
-	</section>
+	</section> -->
 
   <stat-widget vote="{{ singleVote }}"></stat-widget>
 
@@ -42,5 +42,13 @@
 	</section>
 
 	</template>
+	<script>
+		Polymer('cth-housemouse', {
+			singleVoteChanged: function(){
+				console.log('singleVote from within umbrella:');
+				console.log(this.singleVote);
+			}
+		});
+	</script>
 </polymer-element>
 
