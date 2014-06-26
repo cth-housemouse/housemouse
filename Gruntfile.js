@@ -25,6 +25,10 @@ module.exports = function(grunt) {
         src: 'src/scripts/housemouse.js',
         dest: 'dist/scripts/housemouse.js'
       },
+      scripts: {
+        src: 'src/scripts/owl.carousel.min.js',
+        dest: 'dist/scripts/owl.carousel.min.js'
+      },
       fonts: {
         expand: true,
         flatten: true,
