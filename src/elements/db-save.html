@@ -8,7 +8,8 @@
 							data="{{data}}" 
 							keys="{{keys}}"
 							childEvents
-							log>
+							log
+							on-data-change:{{gotValue}}>
 		</firebase-element>
 	</template>
 	<script>
@@ -16,13 +17,19 @@
 			publish: {
 				combinedvote: {}
 			},
+			canDoThing: 0,
 			didThing: 0,
+			gotValue: function(){
+				this.canDoThing = 1;
+			},
 			combinedvoteChanged: function(){
-				if (!this.didThing) {
-					var user = this.combinedvote.userId;
-					this.data[user] = this.combinedvote;
-					this.$.db.commit();
-					this.didThing = 1;
+				if (this.canDoThing) {
+					if (!this.didThing) {
+						var user = this.combinedvote.userId;
+						this.data[user] = this.combinedvote;
+						this.$.db.commit();
+						this.didThing = 1;
+					}
 				}
 			}
 		});
