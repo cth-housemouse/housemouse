@@ -7,7 +7,7 @@
 
 <link rel="import" href="map-element.html">
 
-<polymer-element name="cth-housemouse" noscript>
+<polymer-element name="cth-housemouse">
 	<template>
     <link rel='stylesheet' href='../styles/umbrella-element.css'>
 
@@ -40,5 +40,13 @@
 	</section>
 
 	</template>
+	<script>
+		Polymer('cth-housemouse', {
+			singleVoteChanged: function(){
+				console.log('singleVote from within umbrella:');
+				console.log(this.singleVote);
+			}
+		});
+	</script>
 </polymer-element>
 
