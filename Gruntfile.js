@@ -25,6 +25,10 @@ module.exports = function(grunt) {
         src: 'src/scripts/housemouse.js',
         dest: 'dist/scripts/housemouse.js'
       },
+      scrollreveal: {
+        src: 'src/scripts/scrollreveal.min.js',
+        dest: 'dist/scripts/scrollreveal.min.js'
+      },
       fonts: {
         expand: true,
         flatten: true,
