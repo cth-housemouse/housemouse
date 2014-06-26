@@ -1,0 +1,57 @@
+<polymer-element name="single-house" attributes="image houseType">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        padding: 50px;
+      }
+
+      .imgHouse {
+        margin: 20px;
+        width: 180px;
+        padding: 12px;
+        border-radius: 10px;
+      }
+
+      img:hover {
+        background: #E5CF39;
+      }
+
+      .flat {
+        background: #E5CF39;
+      }
+
+      .house {
+        background: #E34D2F;
+      }
+
+      .farm {
+        background: #75C7B3;
+      }
+
+      .imgHouseChosen {
+        background:#E5CF39;
+      }
+
+    </style>
+    
+    <span><img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+
+  </template>
+
+  <script>
+    Polymer('single-house', {
+      houseType: "",
+      setType: function(){
+        this.houseType = this.image.type;
+      },
+      houseTypeChanged: function (){
+        if (this.houseType == this.image.type) {
+          this.shadowRoot.getElementById('highlightHouse').classList.add('imgHouseChosen');
+        } else { 
+          this.shadowRoot.getElementById('highlightHouse').classList.remove('imgHouseChosen');
+        }  
+      }
+    });
+  </script>
+</polymer-element>
