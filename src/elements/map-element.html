@@ -9,116 +9,128 @@
 
             var mapStructuredVotes = [];
 
-            console.log(this.data.testuser)
+            console.log('im this this.dot.data')
+            console.log(this.data)
 
-            // for (singleuser in this.data) {
-              
-            //   console.log('im inside the loop')
-            //   console.log(this.data.singleuser);
-            //   mapStructuredVotes.push(singleuser);
-            // };
+            for (singleuser in this.data) {
 
-            // console.log('im mapstructuredvotes')
-            // console.log(mapStructuredVotes)
+              console.log('im inside the loop')
+              console.log(this.data.singleuser);
 
-           //  var countryCount = [
-           //    {country: "total", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "gl", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "is", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "pt", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "es", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "be", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "it", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "by", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "pl", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "gr", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "fi", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "de", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "se", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "no", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "ua", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "ie", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "ch", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "at", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "cz", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "sk", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "hu", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "lt", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "lv", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "md", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "ro", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "bg", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "al", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "ee", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "ad", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "sm", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "mc", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "lu", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "fr", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "li", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "nl", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "ba", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "si", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "mk", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "hr", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "ru", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "gb", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "va", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "mt", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "dk", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "cy", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "rs", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "me", htype: "", flat: 0, house: 0, farm: 0},
-           //    {country: "Kosovo", htype: "", flat: 0, house: 0, farm: 0}
-           //  ];
+              mapStructuredVotes.push(this.data[singleuser]);
+            };
 
-           //  var votesTotal = votes.permanent.length;
-           //  var countryTotal = countryCount.length;
+            console.log('im mapstructuredvotes')
+            console.log(mapStructuredVotes)
 
-           //  for (var i = 0; i < votesTotal; i++) {
+            var votes = {};
+            
+            votes.permanent = mapStructuredVotes;
 
-           //    for (var s = 1; s < countryTotal; s++) {
+            console.log('im votes permanent')
+            console.log(votes.permanent)
 
-           //      if (votes.permanent[i].country == countryCount[s].country) {
-           //        if (votes.permanent[i].choice == "flat") {
-           //          countryCount[s].flat++;
-           //        };
-           //        if (votes.permanent[i].choice == "house") {
-           //          countryCount[s].house++;
-           //        };
-           //        if (votes.permanent[i].choice == "farm") {
-           //          countryCount[s].farm++;
+            var countryCount = [
+              {country: "total", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "gl", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "is", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "pt", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "es", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "be", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "it", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "by", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "pl", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "gr", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "fi", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "de", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "se", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "no", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ua", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ie", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ch", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "at", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "cz", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "sk", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "hu", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "lt", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "lv", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "md", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ro", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "bg", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "al", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ee", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ad", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "sm", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "mc", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "lu", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "fr", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "li", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "nl", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ba", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "si", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "mk", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "hr", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ru", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "gb", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "va", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "mt", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "dk", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "cy", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "rs", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "me", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "Kosovo", houseType: "", flat: 0, house: 0, farm: 0}
+            ];
 
-           //        };
-           //      };
-           //    };
-           //  };
+            var votesTotal = votes.permanent.length;
+            var countryTotal = countryCount.length;
+
+            for (var i = 0; i < votesTotal; i++) {
+
+              for (var s = 1; s < countryTotal; s++) {
+
+                if (votes.permanent[i].country == countryCount[s].country) {
+                  if (votes.permanent[i].houseType == "flat") {
+                    countryCount[s].flat++;
+                  };
+                  if (votes.permanent[i].houseType == "house") {
+                    countryCount[s].house++;
+                  };
+                  if (votes.permanent[i].houseType == "farm") {
+                    countryCount[s].farm++;
+
+                  };
+                };
+              };
+            };
 
             
-           //  for (var s = 0; s < countryTotal; s++) {
-           //      if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
-           //          countryCount[s].htype = "flat";
-           //      };
-           //      if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
-           //          countryCount[s].htype = "house";
-           //      };
-           //      if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
-           //          countryCount[s].htype = "farm";
-           //      };
-           //      if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
-           //          countryCount[s].htype = "undecided";
-           //      }
-           //      if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
-           //          countryCount[s].htype = "nodata";
-           //      }
-           //  };
+            for (var s = 0; s < countryTotal; s++) {
+                if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
+                    countryCount[s].houseType = "flat";
+                };
+                if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+                    countryCount[s].houseType = "house";
+                };
+                if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+                    countryCount[s].houseType = "farm";
+                };
+                if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
+                    countryCount[s].houseType = "undecided";
+                }
+                if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
+                    countryCount[s].houseType = "nodata";
+                }
+            };
 
-           // for (var s = 1; s < countryTotal; s++) {
-           //    if (countryCount[s].htype === ""){
-           //     console.log(countryCount[s].htype);
-           //    } else {
-           //   this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].htype); }
-           //  };
+            for (var s = 1; s < countryTotal; s++) {
+              if (countryCount[s].houseType === ""){
+               console.log(countryCount[s].houseType);
+              } else {
+             this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].houseType); }
+            };
+
+            console.log('im country count')
+            console.log(countryCount)
 
           }
       });

@@ -24,7 +24,7 @@
         if (this.houseType == "flat" || this.houseType == "house" || this.houseType == "farm"){
           if (this.chosenConcept.length === 3) {
             if (this.userInfo.userId) {
-              this.userInfo.htype = this.houseType;
+              this.userInfo.houseType = this.houseType;
               this.userInfo.concepts = this.chosenConcept;
 
               this.singleVote = this.userInfo;
