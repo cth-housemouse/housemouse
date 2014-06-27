@@ -12,6 +12,48 @@
 </head>
 
 <body>
+	<script>
+
+		function enterHousemouse(){
+		window.location.href='http://housemouse.codingthehumanities.com'
+			};
+
+	$(document).ready(function() {
+ 
+  	$("#owl-demo").owlCarousel({
+ 
+      navigation : true, // Show next and prev buttons
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem:true
+ 
+      // "singleItem:true" is a shortcut for:
+      // items : 1, 
+      // itemsDesktop : false,
+      // itemsDesktopSmall : false,
+      // itemsTablet: false,
+      // itemsMobile : false
+ 
+  		});
+ 
+		});
+
+	  window.fbAsyncInit = function() {
+        FB.init({
+          appId      : 587317334716557,
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "http://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+		</script>
 	<header>
 		<div class="logo">
 			<a href="http://housemouse.codingthehumanities.com">
@@ -23,16 +65,21 @@
 		</div>
 			
 	</header>
-			<div class="fb-like" data-href="https://www.facebook.com/codingthehumanities" data-width="50px" data-layout="box_count" data-action="like" data-show-faces="false" data-share="true"></div>
+			
 		<section class="projectarea">	
 			<article class="projecttext">
+
+			
 
 			<h3>The Project</h3>
 
 			<div class="row">
 				<div class="col-md-6">
 			<p>The main project builds on a typical question for the Humanities "What is a house to you?" Although we are not always aware of, every person has a different connotation to such a simple word. What first seems like a very simple question, turns out to be quite complex to answer as everyone has their own take on the concept of a house. On the website the user is asked this question and also to choose from three images that represent their type of house. The next step is to confront the user with six different images that are a metaphor for concepts they would associate with when thinking of their type of house.</p>
-				</div>
+
+      		<div id="fb-root"></div>
+			<div class="fb-like" data-href="https://www.facebook.com/codingthehumanities" data-width="70px" data-layout="box_count" data-action="like" data-show-faces="false" data-share="true"></div>
+			</div>
 	
 				<div class="col-md-6">
 			<p>The user input is stored and according to the choice that is made of the type of house, a map of Europe is shown that displays what type of house users from European countries chose. After this step the images associated with the chosen type of house are connected to concepts that are searched for in the dataset the Dutch government has made public (openoverheid.org). A statistical table is presented with the choice correlated with the data from the dataset. The table actually shows the user how much working links, semi working links and broken links are found in the dataset the government has made public. In this way data is connected to a humanities question and in a way is a critical look at the dataset that is made public by the Dutch government.</p>
@@ -87,56 +134,12 @@
 			<p>Reika Chavers, Steven Gielen, Jan Hein Hoogstad,</p>	 
 			<p>Patty Jansen, Cameron Kelly, Taeke Keuning,	</p>
 			<p>Marijn Koolen, Robert-Jan Korteschiel,</p>
-			<p>Aram Lauxtermann, Moira Meijer, Jade Pauli,</p>
+			<p>Aram Michael, Moira Meijer, Jade Pauli,</p>
 		 	<p>Tessa Ranzijn, Sabrina Sauer, Leander van Splunter,</p> 
 			<p>Reinier Tromp, Charlie Vielvoye, Erik van Zummeren.</p>			
 				</div>
 			</div>
 			</article>
 		</section>
-
-	<script>
-
-		function enterHousemouse(){
-		window.location.href='http://housemouse.codingthehumanities.com'
-			};
-
-	$(document).ready(function() {
- 
-  	$("#owl-demo").owlCarousel({
- 
-      navigation : true, // Show next and prev buttons
-      slideSpeed : 300,
-      paginationSpeed : 400,
-      singleItem:true
- 
-      // "singleItem:true" is a shortcut for:
-      // items : 1, 
-      // itemsDesktop : false,
-      // itemsDesktopSmall : false,
-      // itemsTablet: false,
-      // itemsMobile : false
- 
-  });
- 
-});
-
-	  window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '{your-app-id}',
-          xfbml      : true,
-          version    : 'v2.0'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-		
-		</script>
 </body>
 </html>
