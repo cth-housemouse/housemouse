@@ -21,12 +21,11 @@ a {
   width:78%;
 }
 .wrapper {
-  position: relative;
-  left: 75%;
+  width: 100%;
 } 
 .enterbutton {
-  position: absolute:
-  top: 50%;
+  position: relative;
+  left: 75%;
   height: 50px;
   width: 200px;
   background-color: black;
@@ -85,5 +84,5 @@ width:100%;
     height: auto;
 }
 .fb-like iframe{
-  width:50px !important;
+  width:200px !important;
   height:100px !important;}
