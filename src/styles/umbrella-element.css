@@ -1,11 +1,10 @@
+@font-face { font-family: NittyNormal; src: url('./fonts/NN.woff') format('woff'); }
+@font-face { font-family: NittyBold; src: url('./fonts/NB.woff') format('woff'); }
+
 header {
-  height:160px;
+  height: 600px;
   background:#E5CF39;
-  text-align: center;
   padding-top: 40px;
-  font-family: NittyBold;
-  font-size: x-large;
-  letter-spacing: -3px;
 }
 
 h1 {
@@ -13,6 +12,29 @@ h1 {
   color: #E5CF39;
 }
 
+body {      
+  margin:0;
+}
+
+.logowrapper {
+    margin-top: 100px;
+    width: 300px;
+}
+
+img.logowhatdoes {
+    width: 460px;
+}
+      
+img.logohouse {
+    width: 297px;
+    margin-top: 5px;
+}
+
+img.logomeantoyou {
+    width: 537px;
+    margin-top: 5px;
+}
+      
 .centerer {
   width:1050px;
   margin: 0 auto;
