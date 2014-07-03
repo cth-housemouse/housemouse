@@ -107,19 +107,20 @@
             for (var s = 0; s < countryTotal; s++) {
                 if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
                     countryCount[s].houseType = "flat";
-                };
-                if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+                }
+                else if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
                     countryCount[s].houseType = "house";
-                };
-                if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+                }
+                else if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
                     countryCount[s].houseType = "farm";
-                };
-                if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
-                    countryCount[s].houseType = "undecided";
                 }
-                if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
+                else if (countryCount[s].flat == 0 && countryCount[s].house == 0 && countryCount.farm == 0) {
                     countryCount[s].houseType = "nodata";
-                }
+                } 
+                else {
+                    countryCount[s].houseType = "undecided";
+                }     
+
             };
 
             for (var s = 1; s < countryTotal; s++) {
@@ -169,13 +170,13 @@
          height="100%"
          viewBox="1754 161 9938 7945"
          id="svg2">
-        <title id="title4">Countries of Europe</title>
+        <title id="title4">Coding the Humanities</title>
         <metadata id="metadata82">
           <rdf:RDF>
             <cc:Work rdf:about="">
               <dc:format>image/svg+xml</dc:format>
               <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-              <dc:title>Countries of Europe</dc:title>
+              <dc:title>Coding the Humanities</dc:title>
             </cc:Work>
           </rdf:RDF>
         </metadata>
