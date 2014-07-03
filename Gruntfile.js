@@ -40,6 +40,12 @@ module.exports = function(grunt) {
         flatten: true,
         src: 'src/images/**/*',
         dest: 'dist/images'
+      },
+      styles: {
+        expand: true,
+        flatten: true,
+        src: 'src/styles/**/*',
+        dest: 'dist/styles'
       }
       
     },
@@ -117,8 +123,8 @@ module.exports = function(grunt) {
         tasks: ['jshint']
       },
       assets: {
-        files: ['src/images/**/*', 'src/fonts/**/*'],
-        tasks: ['copy:images', 'copy:fonts']
+        files: ['src/images/**/*', 'src/fonts/**/*', 'src/styles/**/*'],
+        tasks: ['copy:images', 'copy:fonts', 'copy:styles']
       },
       options: {
         livereload: true
