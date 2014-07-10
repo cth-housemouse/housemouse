@@ -29,6 +29,10 @@ module.exports = function(grunt) {
         src: 'src/scripts/owl.carousel.min.js',
         dest: 'dist/scripts/owl.carousel.min.js'
       },
+      scriptScroll: {
+        src: 'src/scripts/scroll.js',
+        dest: 'dist/scripts/scroll.js'
+      },
       fonts: {
         expand: true,
         flatten: true,
@@ -127,12 +131,12 @@ module.exports = function(grunt) {
         tasks: ['copy:images', 'copy:fonts', 'copy:styles']
       },
       options: {
-        livereload: true
+        livereload: true  
       },
     }
   });
 
-  grunt.registerTask('build', ['clean:build', 'jshint', 'copy', 'bowercopy', 'vulcanize', 'clean:deploy']);
+  grunt.registerTask('build', ['clean:build', 'jshint', 'copy', 'bowercopy', 'vulcanize']);
   grunt.registerTask('default', ['build', 'express', 'watch']);
   grunt.registerTask('deploy', ['build', 'gh-pages']);
 

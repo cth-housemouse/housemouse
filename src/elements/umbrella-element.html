@@ -1,52 +1,119 @@
+<!-- The element include -->
 <link rel="import" href="../vendor/polymer/polymer.html">
-
 <link rel="import" href="combine-vote.html">
 <link rel="import" href="db-save.html">
 <link rel="import" href="db-retrieve.html"> 
 <link rel="import" href="stat-widget.html">
-
 <link rel="import" href="map-element.html">
-
+    
 <polymer-element name="cth-housemouse">
-	<template>
-    <link rel='stylesheet' href='../styles/umbrella-element.css'>
 
-	<section class="housesarea">
-    <div class="centerer">
-      <combine-vote singleVote="{{ singleVote }}"></combine-vote>
-    </div>
-	</section>
+    <template>
+
+		<!-- Bootstrap Core CSS -->
+		<link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+		<!-- font for arrow -->
+		<!-- <link href="h
+		ttp://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+
+		<!-- Custom Theme CSS -->
+		<link href="../styles/style.css" rel="stylesheet">
+
+
+		<nav class="navbar navbar-custom  navbar-fixed-top" role="navigation">
+		    <div class="container">
+		        <div class="navbar-header">
+		          
+		            <a class="navbar-brand" href="#page-top">
+		              <span class="light">test</span>
+		            </a>
+		        </div>
+
+		        <div class="navrectangle ">
+		            <ul class="nav navbar-nav">
+		             
+		                <li class="page-scroll bol">
+		                    <a href="#page-top"></a>
+		                </li>
+		             
+		                <li class="page-scroll bol">
+		                    <a href="#about"></a>
+		                </li>
+		                <li class="page-scroll bol">
+		                    <a href="#download"></a>
+		                </li>
+		                <li class="page-scroll bol">
+		                    <a href="#contact"></a>
+		                </li>
+		            </ul>
+		         
+		        </div>
+		  
+
+		    </div>
+		</nav>
+
+        <section class="intro p1">
+            <div id="page-top" class="intro-body">
+                	<div class="logowrapper">
+                		<img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
+				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
+				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
+				    </div>                         
+                    <div class="page-scroll">
+                    	
+                        <a href="#about" class="btn btn-circle">
+                          <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+            </div>
+        </section>
+
+        <section id="about" class="intro p2">
+            <div class="centerer">
+              <combine-vote singleVote="{{ singleVote }}"></combine-vote>
+            </div>
+        </section>
+            
+        
+        <db-save combinedvote="{{ singleVote }}"></db-save>
+        <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
+
+        <section id="download" class="intro p3">
+            <div class="centerer">  
+              <map-element class="chart" data="{{retrieved}}"></map-element>
+            </div>
+        </section>
+
+        <section id="contact" class="intro p4">
+            <div class="centerer">  
+              <stat-widget vote="{{ singleVote }}"></stat-widget>
+            </div>
+        </section>
+
+        <section class="footerarea">    
+            <div class="centerer">  
+                <a href="disclaimer.html" class="footer"> disclaimer </a>   
+            <div>
+        </section>
 		
-	
-	<db-save combinedvote="{{ singleVote }}"></db-save>
-	<db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
+    </template>
 
-	<section class="chartarea">
-    <div class="centerer">	
-      <map-element class="chart" data="{{retrieved}}"></map-element>
-    </div>
-	</section>
+    <script>
+        Polymer('cth-housemouse', {
+            singleVoteChanged: function(){
+                console.log('singleVote from within umbrella:');
+                console.log(this.singleVote);
+            }
+        });
+        
+    </script>
 
-	<section class="statArea">
-    <div class="centerer">	
-      <stat-widget vote="{{ singleVote }}"></stat-widget>
-    </div>
-	</section>
+    <script src="../scripts/jquery.min.js"></script>
+    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="../scripts/jquery.easing.min.js"></script>
 
-	<section class="footerarea">	
-		<div class="centerer">	
-			<a href="disclaimer.html" class="footer"> disclaimer </a>	
-		<div>
-	</section>
-
-	</template>
-	<script>
-		Polymer('cth-housemouse', {
-			singleVoteChanged: function(){
-				console.log('singleVote from within umbrella:');
-				console.log(this.singleVote);
-			}
-		});
-	</script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../scripts/scroll.js"></script>
 </polymer-element>
-
