@@ -1,46 +1,54 @@
 <!doctype html>
 <html>
 	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Coding the Humanities - Pilot Class">
+
+    <title>Project Housemouse</title>
+
 		<!-- Webcomponent polyfill to make polymer possible -->
 		<script src="./vendor/platform.js"></script>
 
-		<!-- Includes for the project: jQuerry for the mockJSON and D3 for the piechart -->
-		<script type="text/javascript" src="./vendor/jquery.js"></script>
-    <script type="text/javascript" src="./vendor/mockjson.js"></script>
-
-
-    <!-- The script that runs outside elements -->
-    <script type="text/javascript" src="./scripts/housemouse.js"></script>
-    <script type="text/javascript" src="./scripts/scrollreveal.js"></script>
-
-
     <!-- The element include -->
     <link rel="import" href="./elements/umbrella-element.html">
-    <link rel="stylesheet" href="./styles/umbrella-element.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> 
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- font for arrow -->
+    <!-- <link href="h
+    ttp://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Custom Theme CSS -->
+    <link href="styles/style.css" rel="stylesheet">
+
   </head>
-   
-    <body>
-
-      <header>
+  <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+      <!--       <header>
         <section class="logowrapper">
-          <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
-          <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
-          <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
+          
         </section>
-      </header>
-
+      </header> -->
      	<cth-housemouse></cth-housemouse>
 
       <script>
-        window.scrollReveal = new scrollReveal();
+        // window.scrollReveal = new scrollReveal();
 
-        $(window).load(function () {
-           $('body').delay(10000)
-             .animate({
-              'scrollTop': $('cth-housemouse').offset().top}, 800
-              ); 
-        });
+        // $(window).load(function () {
+        //    $('body').delay(10000)
+        //      .animate({
+        //       'scrollTop': $('cth-housemouse').offset().top}, 800
+        //       ); 
+        // });
       </script>
-	 </body>
+
+      <script src="../scripts/jquery.min.js"></script>
+      <script src="../scripts/bootstrap.min.js"></script>
+      <script src="../scripts/jquery.easing.min.js"></script>
+
+      <!-- Custom Theme JavaScript -->
+      <script src="./scripts/scroll.js"></script>
+  </body>    
+
 </html>
