@@ -33,10 +33,6 @@
   	
     <img src="../images/fblogin.png" class="loginButton" name="facebook-login" on-click="{{login}}"></img>
 
-    <template if="{{ vote }}">
-        <p class="text">Succesfull</p>
-    </template>
-
   </template>
 
   <script>
@@ -44,7 +40,7 @@
        	login: function() {
           var self = this;
           var userInfo = {};
-          var firebaseRef = new Firebase("https://crackling-fire-9322.firebaseio.com");
+          var firebaseRef = new Firebase("https://housemouse-users.firebaseio.com/");
           var auth = new FirebaseSimpleLogin(firebaseRef, function(error, user) {
             if (error) {
               alert(error);

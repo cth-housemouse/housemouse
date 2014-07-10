@@ -391,6 +391,255 @@ html /deep/ [segment], html /deep/ segment {
   </script>
 </polymer-element>
 
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+The `core-tooltip` element creates a hover tooltip centered for the content
+it contains. It can be positioned on the top|bottom|left|right of content using
+the `position` attribute.
+
+To include HTML in the tooltip, include the `tip` attribute on the relevant
+content.
+
+<b>Example</b>:
+
+    <core-tooltip label="I'm a tooltip">
+      <span>Hover over me.</span>
+    </core-tooltip>
+
+<b>Example</b> - positioning the tooltip to the right:
+
+    <core-tooltip label="I'm a tooltip to the right" position="right">
+      <polymer-ui-icon-button icon="drawer"></polymer-ui-icon-button>
+    </core-tooltip>
+
+<b>Example</b> - no arrow and showing by default:
+
+    <core-tooltip label="Tooltip with no arrow and always on" noarrow show>
+      <img src="image.jpg">
+    </core-tooltip>
+
+<b>Example</b> - rich tooltip using the `tip` attribute:
+
+    <core-tooltip>
+      <div>Example of a rich information tooltip</div>
+      <div tip>
+        <img src="profile.jpg">Foo <b>Bar</b> - <a href="#">@baz</a>
+      </div>
+    </core-tooltip>
+
+@group Polymer Core Elements
+@element core-tooltip
+@homepage http://polymer.github.io/core-tooltip
+-->
+
+
+
+<!-- TODO: would be nice to inherit from label to get .htmlFor, and .control,
+           but the latter is readonly. -->
+<!-- TODO: support off center arrows. -->
+<!-- TODO: detect mobile and apply the .large class, instead of manual
+           control. -->
+<!-- TODO: possibly reuse core-overlay. -->
+<polymer-element name="core-tooltip" attributes="noarrow position label show" tabindex="0" assetpath="vendor/core-tooltip/">
+<template>
+
+  <style>/* Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt */
+
+:host {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+}
+
+:host(:hover) .polymer-tooltip {
+  visibility: visible !important;
+}
+
+:host(:focus) .polymer-tooltip {
+  visibility: visible !important;
+}
+
+.polymer-tooltip:not(.show) {
+  visibility: hidden;
+}
+
+.polymer-tooltip {
+   pointer-events: none; 
+  position: absolute;
+  display: flex;
+  font-size: 10px;
+  font-family: sans-serif;
+  padding: 8px;
+  color: white;
+  background-color: rgba(0,0,0,0.8);
+  box-sizing: border-box;
+  border-radius: 3px; /* TODO: not in spec. */
+  white-space: nowrap;
+  line-height: 6px;
+  z-index: 1002; /* TODO: this is brittle. */
+}
+
+:host([large]) .polymer-tooltip {
+  line-height: 14px;
+  font-size: 14px;
+  padding: 16px;
+}
+
+.polymer-tooltip.noarrow::after {
+  display: none;
+}
+
+.polymer-tooltip::after {
+  position: absolute;
+  border: solid transparent;
+  content: '';
+  height: 0;
+  width: 0;
+  border-width: 4px;
+}
+
+.top {
+  margin-bottom: 10px; /* TODO: not specified in spec */
+  bottom: 100%;
+}
+
+.right {
+  margin-left: 10px; /* TODO: not specified in spec */
+  left: 100%;
+}
+
+.bottom {
+  top: 100%;
+  margin-top: 10px; /* TODO: not specified in spec */
+}
+
+.left {
+  margin-right: 10px; /* TODO: not specified in spec */
+  right: 100%;
+}
+
+.polymer-tooltip.bottom::after {
+  bottom: 100%;
+  left: calc(50% - 4px);
+  border-bottom-color: rgba(0,0,0,0.8);
+}
+
+.polymer-tooltip.left::after {
+  left: 100%;
+  top: calc(50% - 4px);
+  border-left-color: rgba(0,0,0,0.8);
+}
+
+.polymer-tooltip.top::after {
+  top: 100%;
+  left: calc(50% - 4px);
+  border-top-color: rgba(0,0,0,0.8);
+}
+
+.polymer-tooltip.right::after {
+  right: 100%;
+  top: calc(50% - 4px);
+  border-right-color: rgba(0,0,0,0.8);
+}
+</style>
+
+  <div id="tooltip" class="polymer-tooltip {{position}} {{ {noarrow: noarrow, show: show} | tokenList}}">
+    <content select="[tip]">{{label}}</content>
+  </div>
+
+  <content></content>
+
+</template>
+<script>
+
+  Polymer('core-tooltip', {
+
+    /**
+     * A simple string label for the tooltip to display. To display a rich
+     * that includes HTML, use the `tip` attribute on the content.
+     *
+     * @attribute label
+     * @type string
+     * @default null
+     */
+    label: null,
+
+    /**
+     * If true, the tooltip an arrow pointing towards the content.
+     *
+     * @attribute noarrow
+     * @type boolean
+     * @default false
+     */
+    noarrow: false,
+
+    /**
+     * If true, the tooltip displays by default.
+     *
+     * @attribute show
+     * @type boolean
+     * @default false
+     */
+    show: false,
+
+    /**
+     * Positions the tooltip to the top, right, bottom, left of its content.
+     *
+     * @attribute position
+     * @type string
+     * @default 'bottom'
+     */
+    position: 'bottom',
+
+    attached: function() {
+      this.setPosition();
+    },
+
+    labelChanged: function(oldVal, newVal) {
+      // Run if we're not after attached().
+      if (oldVal) {
+        this.setPosition();
+      }
+    },
+
+    setPosition: function() {
+      var controlWidth = this.clientWidth;
+      var controlHeight = this.clientHeight;
+
+      var styles = getComputedStyle(this.$.tooltip);
+      var toolTipWidth = parseFloat(styles.width);
+      var toolTipHeight = parseFloat(styles.height);
+
+      switch (this.position) {
+        case 'top':
+        case 'bottom':
+          this.$.tooltip.style.left = (controlWidth - toolTipWidth) / 2 + 'px';
+          break;
+        case 'left':
+        case 'right':
+          this.$.tooltip.style.top = (controlHeight - toolTipHeight) / 2 + 'px';
+          break;
+      }
+    }
+  });
+
+</script>
+</polymer-element>
+
+
 <polymer-element name="single-concept" attributes="concept chosenConcept" assetpath="elements/">
   <template>
     <style>
@@ -410,14 +659,20 @@ html /deep/ [segment], html /deep/ segment {
         background:#E5CF39;
       }
 
-      img:hover {
+      img:hover { 
         background: #E5CF39;
+      }
+      core-tooltip {
+        text-transform: capitalize;
       }
 
     </style>
     
-    <span><img id="highlight" class="imgConcept" on-click="{{ setConcept }}" src="{{concept.src}}"></span>
-
+    <span>
+      <core-tooltip label="{{ concept.name }}" position="bottom">
+        <img id="highlight" class="imgConcept" on-click="{{ setConcept }}" src="{{concept.src}}">
+      </core-tooltip>
+    </span>
   </template>
 
   <script>
@@ -546,10 +801,6 @@ html /deep/ [segment], html /deep/ segment {
   	
     <img src="images/fblogin.png" class="loginButton" name="facebook-login" on-click="{{login}}">
 
-    <template if="{{ vote }}">
-        <p class="text">Succesfull</p>
-    </template>
-
   </template>
 
   <script>
@@ -557,7 +808,7 @@ html /deep/ [segment], html /deep/ segment {
        	login: function() {
           var self = this;
           var userInfo = {};
-          var firebaseRef = new Firebase("https://crackling-fire-9322.firebaseio.com");
+          var firebaseRef = new Firebase("https://housemouse-users.firebaseio.com/");
           var auth = new FirebaseSimpleLogin(firebaseRef, function(error, user) {
             if (error) {
               alert(error);
@@ -581,18 +832,23 @@ html /deep/ [segment], html /deep/ segment {
   </template>
   
   <script>
-    Polymer('combine-vote', {
+    Polymer('combine-vote', { 
       publish: {
         singleVote: {}
       },
+      doneOnce: 0,
       voteCombiner: function (){
         if (this.houseType == "flat" || this.houseType == "house" || this.houseType == "farm"){
           if (this.chosenConcept.length === 3) {
             if (this.userInfo.userId) {
-              this.userInfo.houseType = this.houseType;
-              this.userInfo.concepts = this.chosenConcept;
+              if (this.doneOnce === 0){
+                this.userInfo.houseType = this.houseType;
+                this.userInfo.concepts = this.chosenConcept;
+                this.singleVote = this.userInfo;
+                this.doneOnce ++
 
-              this.singleVote = this.userInfo;
+              }
+              
             } 
           }
         }
@@ -1047,7 +1303,7 @@ Example:
 
 <polymer-element name="db-save" assetpath="elements/">
 	<template>
-		<firebase-element id="db" location="http://cth-storage.firebaseio.com/" data="{{data}}" keys="{{keys}}" childevents="" log="" on-data-change:{{gotvalue}}="">
+		<firebase-element id="db" location="https://housemouse-users.firebaseio.com/" data="{{data}}" keys="{{keys}}" childevents="" log="" on-data-change="{{gotValue}}">
 		</firebase-element>
 	</template>
 	<script>
@@ -1077,7 +1333,7 @@ Example:
 
 <polymer-element name="db-retrieve" assetpath="elements/">
 	<template>
-		<firebase-element id="db" location="http://cth-storage.firebaseio.com/" data="{{data}}" keys="{{keys}}" childevents="" log="">
+		<firebase-element id="db" location="https://housemouse-users.firebaseio.com/" data="{{data}}" keys="{{keys}}" childevents="" log="">
 		</firebase-element>
 	</template>
 	<script>
@@ -1093,253 +1349,6 @@ Example:
 </polymer-element>
 
 <!-- bower install --save Polymer/firebase-element --> 
-<!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<!--
-The `core-tooltip` element creates a hover tooltip centered for the content
-it contains. It can be positioned on the top|bottom|left|right of content using
-the `position` attribute.
-
-To include HTML in the tooltip, include the `tip` attribute on the relevant
-content.
-
-<b>Example</b>:
-
-    <core-tooltip label="I'm a tooltip">
-      <span>Hover over me.</span>
-    </core-tooltip>
-
-<b>Example</b> - positioning the tooltip to the right:
-
-    <core-tooltip label="I'm a tooltip to the right" position="right">
-      <polymer-ui-icon-button icon="drawer"></polymer-ui-icon-button>
-    </core-tooltip>
-
-<b>Example</b> - no arrow and showing by default:
-
-    <core-tooltip label="Tooltip with no arrow and always on" noarrow show>
-      <img src="image.jpg">
-    </core-tooltip>
-
-<b>Example</b> - rich tooltip using the `tip` attribute:
-
-    <core-tooltip>
-      <div>Example of a rich information tooltip</div>
-      <div tip>
-        <img src="profile.jpg">Foo <b>Bar</b> - <a href="#">@baz</a>
-      </div>
-    </core-tooltip>
-
-@group Polymer Core Elements
-@element core-tooltip
-@homepage http://polymer.github.io/core-tooltip
--->
-
-
-
-<!-- TODO: would be nice to inherit from label to get .htmlFor, and .control,
-           but the latter is readonly. -->
-<!-- TODO: support off center arrows. -->
-<!-- TODO: detect mobile and apply the .large class, instead of manual
-           control. -->
-<!-- TODO: possibly reuse core-overlay. -->
-<polymer-element name="core-tooltip" attributes="noarrow position label show" tabindex="0" assetpath="vendor/core-tooltip/">
-<template>
-
-  <style>/* Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt */
-
-:host {
-  box-sizing: border-box;
-  position: relative;
-  display: inline-block;
-}
-
-:host(:hover) .polymer-tooltip {
-  visibility: visible !important;
-}
-
-:host(:focus) .polymer-tooltip {
-  visibility: visible !important;
-}
-
-.polymer-tooltip:not(.show) {
-  visibility: hidden;
-}
-
-.polymer-tooltip {
-   pointer-events: none; 
-  position: absolute;
-  display: flex;
-  font-size: 10px;
-  font-family: sans-serif;
-  padding: 8px;
-  color: white;
-  background-color: rgba(0,0,0,0.8);
-  box-sizing: border-box;
-  border-radius: 3px; /* TODO: not in spec. */
-  white-space: nowrap;
-  line-height: 6px;
-  z-index: 1002; /* TODO: this is brittle. */
-}
-
-:host([large]) .polymer-tooltip {
-  line-height: 14px;
-  font-size: 14px;
-  padding: 16px;
-}
-
-.polymer-tooltip.noarrow::after {
-  display: none;
-}
-
-.polymer-tooltip::after {
-  position: absolute;
-  border: solid transparent;
-  content: '';
-  height: 0;
-  width: 0;
-  border-width: 4px;
-}
-
-.top {
-  margin-bottom: 10px; /* TODO: not specified in spec */
-  bottom: 100%;
-}
-
-.right {
-  margin-left: 10px; /* TODO: not specified in spec */
-  left: 100%;
-}
-
-.bottom {
-  top: 100%;
-  margin-top: 10px; /* TODO: not specified in spec */
-}
-
-.left {
-  margin-right: 10px; /* TODO: not specified in spec */
-  right: 100%;
-}
-
-.polymer-tooltip.bottom::after {
-  bottom: 100%;
-  left: calc(50% - 4px);
-  border-bottom-color: rgba(0,0,0,0.8);
-}
-
-.polymer-tooltip.left::after {
-  left: 100%;
-  top: calc(50% - 4px);
-  border-left-color: rgba(0,0,0,0.8);
-}
-
-.polymer-tooltip.top::after {
-  top: 100%;
-  left: calc(50% - 4px);
-  border-top-color: rgba(0,0,0,0.8);
-}
-
-.polymer-tooltip.right::after {
-  right: 100%;
-  top: calc(50% - 4px);
-  border-right-color: rgba(0,0,0,0.8);
-}
-</style>
-
-  <div id="tooltip" class="polymer-tooltip {{position}} {{ {noarrow: noarrow, show: show} | tokenList}}">
-    <content select="[tip]">{{label}}</content>
-  </div>
-
-  <content></content>
-
-</template>
-<script>
-
-  Polymer('core-tooltip', {
-
-    /**
-     * A simple string label for the tooltip to display. To display a rich
-     * that includes HTML, use the `tip` attribute on the content.
-     *
-     * @attribute label
-     * @type string
-     * @default null
-     */
-    label: null,
-
-    /**
-     * If true, the tooltip an arrow pointing towards the content.
-     *
-     * @attribute noarrow
-     * @type boolean
-     * @default false
-     */
-    noarrow: false,
-
-    /**
-     * If true, the tooltip displays by default.
-     *
-     * @attribute show
-     * @type boolean
-     * @default false
-     */
-    show: false,
-
-    /**
-     * Positions the tooltip to the top, right, bottom, left of its content.
-     *
-     * @attribute position
-     * @type string
-     * @default 'bottom'
-     */
-    position: 'bottom',
-
-    attached: function() {
-      this.setPosition();
-    },
-
-    labelChanged: function(oldVal, newVal) {
-      // Run if we're not after attached().
-      if (oldVal) {
-        this.setPosition();
-      }
-    },
-
-    setPosition: function() {
-      var controlWidth = this.clientWidth;
-      var controlHeight = this.clientHeight;
-
-      var styles = getComputedStyle(this.$.tooltip);
-      var toolTipWidth = parseFloat(styles.width);
-      var toolTipHeight = parseFloat(styles.height);
-
-      switch (this.position) {
-        case 'top':
-        case 'bottom':
-          this.$.tooltip.style.left = (controlWidth - toolTipWidth) / 2 + 'px';
-          break;
-        case 'left':
-        case 'right':
-          this.$.tooltip.style.top = (controlHeight - toolTipHeight) / 2 + 'px';
-          break;
-      }
-    }
-  });
-
-</script>
-</polymer-element>
 
 
 <polymer-element name="stat-bar" attributes="concept" assetpath="elements/">
@@ -1582,26 +1591,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             var mapStructuredVotes = [];
 
-            console.log('im this this.dot.data')
+            console.log('Im the database')
             console.log(this.data)
 
             for (singleuser in this.data) {
 
-              console.log('im inside the loop')
-              console.log(this.data.singleuser);
-
               mapStructuredVotes.push(this.data[singleuser]);
             };
-
-            console.log('im mapstructuredvotes')
-            console.log(mapStructuredVotes)
 
             var votes = {};
             
             votes.permanent = mapStructuredVotes;
-
-            console.log('im votes permanent')
-            console.log(votes.permanent)
 
             var countryCount = [
               {country: "total", houseType: "", flat: 0, house: 0, farm: 0},
@@ -1644,7 +1644,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               {country: "mk", houseType: "", flat: 0, house: 0, farm: 0},
               {country: "hr", houseType: "", flat: 0, house: 0, farm: 0},
               {country: "ru", houseType: "", flat: 0, house: 0, farm: 0},
-              {country: "gb", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "gb+", houseType: "", flat: 0, house: 0, farm: 0},
               {country: "va", houseType: "", flat: 0, house: 0, farm: 0},
               {country: "mt", houseType: "", flat: 0, house: 0, farm: 0},
               {country: "dk", houseType: "", flat: 0, house: 0, farm: 0},
@@ -1678,31 +1678,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             
             for (var s = 0; s < countryTotal; s++) {
+
                 if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
                     countryCount[s].houseType = "flat";
-                };
-                if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+                }
+                else if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
                     countryCount[s].houseType = "house";
-                };
-                if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+                }
+                else if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
                     countryCount[s].houseType = "farm";
-                };
-                if (countryCount[s].flat == countryCount[s].house || countryCount[s].house == countryCount[s].farm ||  countryCount[s].farm == countryCount[s].flat) {
-                    countryCount[s].houseType = "undecided";
                 }
-                if (countryCount[s].flat == 0 || countryCount[s].house == 0 || countryCount.farm == 0) {
+                else if (countryCount[s].flat === 0 && countryCount[s].house === 0 && countryCount[s].farm === 0) {
                     countryCount[s].houseType = "nodata";
-                }
+                } 
+                else {
+                    countryCount[s].houseType = "undecided";
+                }     
+
             };
 
             for (var s = 1; s < countryTotal; s++) {
-              if (countryCount[s].houseType === ""){
-               console.log(countryCount[s].houseType);
-              } else {
-             this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].houseType); }
+                this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].houseType); 
             };
 
-            console.log('im country count')
+            console.log('Im countryCount')
             console.log(countryCount)
 
           }
@@ -1724,21 +1723,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .house {fill: #E5CF39;}
       .flat {fill: #E34D2F;}
       .farm {fill: #75C7B3;}
-      .undecided {fill: grey;}
-      .nodata {fill: purple;}
+      .undecided {fill: pink;}
+      .nodata {fill: grey;}
       
     </style>
 
 
     <div class="mapcontainer">
       <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.0" width="100%" height="100%" viewbox="1754 161 9938 7945" id="svg2">
-        <title id="title4">Countries of Europe</title>
+        <title id="title4">Coding the Humanities</title>
         <metadata id="metadata82">
           <rdf:rdf>
             <cc:work rdf:about="">
               <dc:format>image/svg+xml</dc:format>
               <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage">
-              <dc:title>Countries of Europe</dc:title>
+              <dc:title>Coding the Humanities</dc:title>
             </dc:type></cc:work>
           </rdf:rdf>
         </metadata>
@@ -1841,14 +1840,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="cth-housemouse" assetpath="elements/">
 	<template>
-    <style>header {
-  height:160px;
+    <style>@font-face { font-family: NittyNormal; src: url(fonts/NN.woff) format('woff'); }
+@font-face { font-family: NittyBold; src: url(fonts/NB.woff) format('woff'); }
+
+header {
+  height: 600px;
   background:#E5CF39;
-  text-align: center;
   padding-top: 40px;
-  font-family: NittyBold;
-  font-size: x-large;
-  letter-spacing: -3px;
 }
 
 h1 {
@@ -1856,6 +1854,29 @@ h1 {
   color: #E5CF39;
 }
 
+body {      
+  margin:0;
+}
+
+.logowrapper {
+    margin-top: 100px;
+    width: 300px;
+}
+
+img.logowhatdoes {
+    width: 460px;
+}
+      
+img.logohouse {
+    width: 297px;
+    margin-top: 5px;
+}
+
+img.logomeantoyou {
+    width: 537px;
+    margin-top: 5px;
+}
+      
 .centerer {
   width:1050px;
   margin: 0 auto;
@@ -1977,63 +1998,31 @@ a {
 </polymer-element>
 
 
-
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-
-    <style type="text/css">
-      @font-face { font-family: NittyNormal; src: url(fonts/NN.woff) format('woff'); }
-      @font-face { font-family: NittyBold; src: url(fonts/NB.woff) format('woff'); }
-
-      body {
-        margin:0;
-      }
-      header {
-        height: 600px !important;
-        background: #E5CF39;
-      }
-      .logowrapper {
-          margin-top: 100px;
-          width: 300px;
-      }
-      img.logowhatdoes {
-          width: 460px;
-      }
-      img.logohouse {
-          width: 297px;
-          margin-top: 5px;
-      }
-      img.logomeantoyou {
-          width: 537px;
-          margin-top: 5px;
-      }
-   </style>
-          
+    <link rel="stylesheet" href="styles/umbrella-element.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> 
   </head>
+   
     <body>
 
       <header>
-        <div class="container">
-           
-                    <div class="logowrapper">
-                        <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg">
-                        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg">
-                        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg">
-                    </div>
-        </div>
-    </header>
+        <section class="logowrapper">
+          <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg">
+          <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg">
+          <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg">
+        </section>
+      </header>
 
      	<cth-housemouse></cth-housemouse>
 
-          <script>
+      <script>
         window.scrollReveal = new scrollReveal();
 
         $(window).load(function () {
-           $('body').delay(3000)
+           $('body').delay(10000)
              .animate({
-              'scrollTop': $('cth-housemouse').offset().top}, 900
+              'scrollTop': $('cth-housemouse').offset().top}, 800
               ); 
         });
-    </script>
+      </script>
 	 </body>
 </html>

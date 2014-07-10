@@ -4,12 +4,12 @@
 <polymer-element name="db-save">
 	<template>
 		<firebase-element 	id="db" 
-							location="http://cth-storage.firebaseio.com/" 
+							location="https://housemouse-users.firebaseio.com/" 
 							data="{{data}}" 
 							keys="{{keys}}"
 							childEvents
 							log
-							on-data-change:{{gotValue}}>
+							on-data-change={{gotValue}}>
 		</firebase-element>
 	</template>
 	<script>
