@@ -2,13 +2,12 @@
 
 <polymer-element name="select-concepts" attributes="chosenConcept">
   <template>
-    <style>
 
-    </style>
-    
-    <template repeat="{{ concept in conceptsList}}">
-      <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
-    </template>
+    <div>
+        <template repeat="{{ concept in conceptsList}}">
+          <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
+        </template>
+    </div>    
 
   </template>
   
@@ -21,11 +20,7 @@
         {src: '../images/health.png', name: 'health'},
         {src: '../images/family.png', name: 'family'},
         {src: '../images/nature.png', name: 'nature'},
-      ],
-      chosenConceptChanged: function () {
-        
-
-      }
+      ]
     });
   </script>
 </polymer-element>
