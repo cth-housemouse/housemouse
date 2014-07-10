@@ -10,18 +10,23 @@
   </template>
   
   <script>
-    Polymer('combine-vote', {
+    Polymer('combine-vote', { 
       publish: {
         singleVote: {}
       },
+      doneOnce: 0,
       voteCombiner: function (){
         if (this.houseType == "flat" || this.houseType == "house" || this.houseType == "farm"){
           if (this.chosenConcept.length === 3) {
             if (this.userInfo.userId) {
-              this.userInfo.houseType = this.houseType;
-              this.userInfo.concepts = this.chosenConcept;
+              if (this.doneOnce === 0){
+                this.userInfo.houseType = this.houseType;
+                this.userInfo.concepts = this.chosenConcept;
+                this.singleVote = this.userInfo;
+                this.doneOnce ++
 
-              this.singleVote = this.userInfo;
+              }
+              
             } 
           }
         }
