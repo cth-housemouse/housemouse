@@ -2280,7 +2280,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 		        <div class="navbar-header">
 		          
 		            <a class="navbar-brand" href="elements/#page-top">
-		              <span class="light">Im here, but im still ugly --- > look at me nav back at bottom</span>
+		              <span class="light"></span>
 		            </a>
 		        </div>
 
@@ -2288,17 +2288,17 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 		            <ul class="nav navbar-nav">
 		             
 		                <li class="page-scroll bol">
-		                    <a href="elements/#page-top"></a>
+		                    <a href="#page-top"></a>
 		                </li>
 		             
 		                <li class="page-scroll bol">
-		                    <a href="elements/#about"></a>
+		                    <a href="#about"></a>
 		                </li>
 		                <li class="page-scroll bol">
-		                    <a href="elements/#download"></a>
+		                    <a href="#download"></a>
 		                </li>
 		                <li class="page-scroll bol">
-		                    <a href="elements/#contact"></a>
+		                    <a href="#contact"></a>
 		                </li>
 		            </ul>
 		         
@@ -2372,31 +2372,33 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
                 window.scrollReveal = new scrollReveal();
 
-
                 // Navbar workarround
 
-                //jQuery to collapse the navbar on scroll
+                //targetting the <a> tags within the pagescrollbullets
+                var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
 
-                var scrollingWorkArround = this.shadowRoot;
+                //getting the id
 
-                $(scrollingWorkArround).scroll(function() {
-                    if ($(".navbar").offset().top > 50) {
-                        $(".navbar-fixed-top").addClass("top-nav-collapse");
-                    } else {
-                        $(".navbar-fixed-top").removeClass("top-nav-collapse");
-                    }
+                var shadowRootFix = this.shadowRoot;
+
+                // jQuery for page scrolling feature - requires jQuery Easing plugin
+                $(function() {
+                    $(navSelector).bind('click', function(event) {
+                        event.preventDefault();
+
+                        var $anchor = $(this);
+                        var clickedBullet = $anchor.attr('href');
+                        var selectedClickedBullet = shadowRootFix.querySelector(clickedBullet);
+
+                        // console.log('im clicked');
+                        // console.log(selectedClickedBullet)
+
+                        $('html, body').stop().animate({   
+                            scrollTop: $(selectedClickedBullet).offset().top
+                        }, 1500, 'easeInOutExpo');
+                        
+                    });
                 });
-
-                //jQuery for page scrolling feature - requires jQuery Easing plugin
-                // $(function() {
-                //     $('.page-scroll a').bind('click', function(event) {
-                //         var $anchor = $(this);
-                //         $('html, body').stop().animate({
-                //             scrollTop: $($anchor.attr('href')).offset().top
-                //         }, 1500, 'easeInOutExpo');
-                //         event.preventDefault();
-                //     });
-                // });
 
             }
         });

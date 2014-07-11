@@ -120,16 +120,27 @@
 
                 // Navbar workarround
 
+                //targetting the <a> tags within the pagescrollbullets
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
+
+                //getting the id
+
+                var shadowRootFix = this.shadowRoot;
 
                 // jQuery for page scrolling feature - requires jQuery Easing plugin
                 $(function() {
                     $(navSelector).bind('click', function(event) {
-                        event.preventDefault();    
+                        event.preventDefault();
+
                         var $anchor = $(this);
-                        console.log($anchor)
-                        $('html, body').stop().animate({
-                            scrollTop: $($anchor.attr('href')).offset().top
+                        var clickedBullet = $anchor.attr('href');
+                        var selectedClickedBullet = shadowRootFix.querySelector(clickedBullet);
+
+                        // console.log('im clicked');
+                        // console.log(selectedClickedBullet)
+
+                        $('html, body').stop().animate({   
+                            scrollTop: $(selectedClickedBullet).offset().top
                         }, 1500, 'easeInOutExpo');
                         
                     });
