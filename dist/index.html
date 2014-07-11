@@ -2298,13 +2298,14 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         <section class="intro p1">
             <div id="page-top" class="intro-body">
                 	<div class="logowrapper">
-                		<img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="images/whatdoes.svg">
+                        <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="images/whatdoes.svg">
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="images/house.svg">
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="images/meantoyou.svg">
-				    </div>                         
-                   <!--  <div class="page-scroll">
+				    </div>     
+
+                    <!-- <div class="page-scroll">
                         <a href="#about" class="btn btn-circle">
-                          <i class="fa fa-angle-double-down animated"></i>
+                            <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div> -->
             </div>
@@ -2312,7 +2313,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
         <section id="about" class="intro p2">
             <div class="intro-body">
-              <combine-vote singlevote="{{ singleVote }}"></combine-vote>
+                <combine-vote singlevote="{{ singleVote }}"></combine-vote>
             </div>
         </section>
             
@@ -2322,13 +2323,13 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
         <section id="download" class="intro p3">
             <div class="centerer">  
-              <map-element class="chart" data="{{retrieved}}"></map-element>
+                <map-element class="chart" data="{{retrieved}}"></map-element>
             </div>
         </section>
 
         <section id="contact" class="intro p4">
             <div class="centerer">  
-              <stat-widget vote="{{ singleVote }}"></stat-widget>
+                <stat-widget vote="{{ singleVote }}"></stat-widget>
             </div>
         </section>
 
@@ -2339,6 +2340,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         </div></div></section>
 		
     </template>
+    
 
     <script>
         Polymer('cth-housemouse', {
@@ -2346,21 +2348,32 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
             singleVoteChanged: function(){
                 console.log('singleVote from within umbrella:');
                 console.log(this.singleVote);
+            },
 
-            window.scrollReveal = new scrollReveal();
+            ready: function() {
 
+                // Wrote a workarround to target our elements inside the shadowRoot correctly, its a dirty fix, but it works. Might be that another library would work better for our case. The animation isn't that complicated. 
+
+                window.workArroundScrollReveal = this.shadowRoot.querySelectorAll('[data-scroll-reveal]');
+
+                // Normal call of scrollReveal
+
+                window.scrollReveal = new scrollReveal();
             }
         });
         
     </script>
 
-      <script src="vendor/jquery.min.js"></script>
-      <script src="vendor/bootstrap.min.js"></script>
-      <script src="vendor/jquery.easing.min.js"></script>
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+    <script src="vendor/jquery.easing.min.js"></script>
 
-      <!-- Custom Theme JavaScript -->
-      <script src="scripts/scroll.js"></script>
-      <script src="vendor/scrollReveal.min.js"></script>
+    <!-- Revealing scroll for the logo -->
+    <script src="scripts/CTH-VERSION-scrollReveal.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <!-- <script src="../scripts/scroll.js"></script> -->
+    
 
 </polymer-element>
 
@@ -2383,7 +2396,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
       <script src="vendor/jquery.easing.min.js"></script>
 
       <!-- Custom Theme JavaScript -->
-      <script src="scripts/scroll.js"></script>
+      <!-- <script src="./scripts/scroll.js"></script> -->
 
   </body>    
 

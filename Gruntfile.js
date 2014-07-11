@@ -30,6 +30,10 @@ module.exports = function(grunt) {
         src: 'src/scripts/owl.carousel.min.js',
         dest: 'dist/scripts/owl.carousel.min.js'
       },
+      cthVersionScrollReveal: {
+        src: 'src/scripts/CTH-VERSION-scrollReveal.js',
+        dest: 'dist/scripts/CTH-VERSION-scrollReveal.js'
+      },
       fonts: {
         expand: true,
         flatten: true,
@@ -58,10 +62,6 @@ module.exports = function(grunt) {
       firebase: {
         src: 'firebase/firebase.js',
         dest: 'dist/vendor/firebase.js'
-      },
-      scrollreveal: {
-        src: 'scrollReveal.js/dist/scrollReveal.min.js',
-        dest: 'dist/vendor/scrollreveal.min.js'
       },
       firebaseSimpleLogin: {
         src: 'firebase-simple-login/firebase-simple-login.js',
@@ -122,6 +122,10 @@ module.exports = function(grunt) {
       html: {
         files: ['src/**/*.html'],
         tasks: ['copy:html', 'vulcanize']  
+      },
+      css: {
+        files: ['src/**/*.css'],
+        tasks: ['copy:styles', 'vulcanize']  
       },
       scripts: {
         files: ['src/scripts/**/*.js'],
