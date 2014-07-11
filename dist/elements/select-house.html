@@ -2,15 +2,9 @@
 
 <polymer-element name="select-house" attributes="houseType">
   <template>
-    <style>
-
-    </style>
-
-    <template repeat="{{ image in imageList }}">
-      <single-house image="{{image}}" houseType="{{houseType}}"></single-house>
-    </template>
-    
-
+      <template repeat="{{ image in imageList }}">
+        <single-house image="{{image}}" houseType="{{houseType}}"></single-house>
+      </template>
   </template>
   
   <script>
@@ -19,10 +13,7 @@
         {imageUrl: './images/apartment.png', type: "flat"},
         {imageUrl: './images/house.png', type: "house"},
         {imageUrl: './images/farm.png', type: "farm"}
-      ],
-      houseTypeChanged: function (){
-        
-      }
+      ]
     });
   </script>
 </polymer-element>

@@ -4,7 +4,21 @@
 
 <polymer-element name="combine-vote">
   <template>
-    <select-house houseType="{{houseType}}"></select-house>
+    
+    <style type="text/css">
+
+      .houseBar {
+        background-color: red;
+        display: block;
+        width: 80%;
+        height: 25%;
+        margin: 0 auto;
+      }
+
+
+    </style>
+
+    <select-house houseType="{{houseType}}" class="houseBar"></select-house>
     <select-concepts chosenConcept="{{chosenConcept}}"></select-concepts>
     <user-login userInfo="{{userInfo}}"></user-login>
   </template>
@@ -39,8 +53,7 @@
       },
       userInfoChanged: function (){
         this.voteCombiner();
-      },
-
+      }
     });
   </script>
 </polymer-element>

@@ -101,18 +101,24 @@
 
     <script>
         Polymer('cth-housemouse', {
+
             singleVoteChanged: function(){
                 console.log('singleVote from within umbrella:');
                 console.log(this.singleVote);
+
+            window.scrollReveal = new scrollReveal();
+
             }
         });
         
     </script>
 
-    <script src="../scripts/jquery.min.js"></script>
-    <script src="../scripts/bootstrap.min.js"></script>
-    <script src="../scripts/jquery.easing.min.js"></script>
+      <script src="../vendor/jquery.min.js"></script>
+      <script src="../vendor/bootstrap.min.js"></script>
+      <script src="../vendor/jquery.easing.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../scripts/scroll.js"></script>
+      <!-- Custom Theme JavaScript -->
+      <script src="../scripts/scroll.js"></script>
+      <script src="../vendor/scrollReveal.min.js"></script>
+
 </polymer-element>

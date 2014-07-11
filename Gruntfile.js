@@ -8,6 +8,7 @@ module.exports = function(grunt) {
         src: ['dist/elements', 'dist/index-raw.html', 'dist/vulcanized.html']
       }
     },
+
     copy: {
       config: {
         expand: true,
@@ -21,17 +22,13 @@ module.exports = function(grunt) {
         src: '**/*.{html,css}',
         dest: 'dist/'
       },
-      app: {
-        src: 'src/scripts/housemouse.js',
-        dest: 'dist/scripts/housemouse.js'
-      },
       scripts: {
-        src: 'src/scripts/owl.carousel.min.js',
-        dest: 'dist/scripts/owl.carousel.min.js'
-      },
-      scriptScroll: {
         src: 'src/scripts/scroll.js',
         dest: 'dist/scripts/scroll.js'
+      },
+      scriptsOwl: {
+        src: 'src/scripts/owl.carousel.min.js',
+        dest: 'dist/scripts/owl.carousel.min.js'
       },
       fonts: {
         expand: true,
@@ -50,9 +47,9 @@ module.exports = function(grunt) {
         flatten: true,
         src: 'src/styles/**/*',
         dest: 'dist/styles'
-      }
-      
+      }  
     },
+
     bowercopy: {
       platform: {
         src: 'platform/platform.js',
@@ -63,8 +60,8 @@ module.exports = function(grunt) {
         dest: 'dist/vendor/firebase.js'
       },
       scrollreveal: {
-        src: 'scrollReveal.js/scrollReveal.js',
-        dest: 'dist/scripts/scrollreveal.js'
+        src: 'scrollReveal.js/dist/scrollReveal.min.js',
+        dest: 'dist/vendor/scrollreveal.min.js'
       },
       firebaseSimpleLogin: {
         src: 'firebase-simple-login/firebase-simple-login.js',
@@ -83,12 +80,16 @@ module.exports = function(grunt) {
         dest: 'dist/vendor/firebase-element'
       },
       jquery: {
-        src: 'jquery/dist/jquery.js',
-        dest: 'dist/vendor/jquery.js'
+        src: 'jquery/dist/jquery.min.js',
+        dest: 'dist/vendor/jquery.min.js'
       },
-      mockjson: {
-        src: 'mockjson/js/jquery.mockjson.js',
-        dest: 'dist/vendor/mockjson.js'
+      jqueryEasingPlugin: {
+        src: 'jquery.easing/js/jquery.easing.min.js',
+        dest: 'dist/vendor/jquery.easing.min.js'
+      },
+      bootstrap: {
+        src: 'bootstrap/dist/js/bootstrap.min.js',
+        dest: 'dist/vendor/bootstrap.min.js'
       }
     },
     vulcanize: {
@@ -132,7 +133,7 @@ module.exports = function(grunt) {
       },
       options: {
         livereload: true  
-      },
+      }
     }
   });
 

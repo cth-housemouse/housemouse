@@ -3,14 +3,23 @@
     <style>
       :host {
         display: inline-block;
-        padding: 50px;
+        padding: 0 50px;
+      }
+
+      .imgContainer {
+        width: 33%;
+        height: 150px;
+        background-color: purple;
+        display: block;
+        float: left;
       }
 
       .imgHouse {
-        margin: 20px;
-        width: 180px;
-        padding: 12px;
-        border-radius: 10px;
+        height: 100%;
+        width: auto;
+        
+        /*padding: 12px;*/
+        /*border-radius: 10px;*/
       }
 
       img:hover {
@@ -35,7 +44,9 @@
 
     </style>
     
-    <span><img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+    <div class="imgContainer">
+      <img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
+    </div>
 
   </template>
 

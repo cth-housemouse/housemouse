@@ -307,14 +307,23 @@ html /deep/ [segment], html /deep/ segment {
     <style>
       :host {
         display: inline-block;
-        padding: 50px;
+        padding: 0 50px;
+      }
+
+      .imgContainer {
+        width: 33%;
+        height: 150px;
+        background-color: purple;
+        display: block;
+        float: left;
       }
 
       .imgHouse {
-        margin: 20px;
-        width: 180px;
-        padding: 12px;
-        border-radius: 10px;
+        height: 100%;
+        width: auto;
+        
+        /*padding: 12px;*/
+        /*border-radius: 10px;*/
       }
 
       img:hover {
@@ -339,7 +348,9 @@ html /deep/ [segment], html /deep/ segment {
 
     </style>
     
-    <span><img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}"></span>
+    <div class="imgContainer">
+      <img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
+    </div>
 
   </template>
 
@@ -362,15 +373,9 @@ html /deep/ [segment], html /deep/ segment {
 
 <polymer-element name="select-house" attributes="houseType" assetpath="elements/">
   <template>
-    <style>
-
-    </style>
-
-    <template repeat="{{ image in imageList }}">
-      <single-house image="{{image}}" housetype="{{houseType}}"></single-house>
-    </template>
-    
-
+      <template repeat="{{ image in imageList }}">
+        <single-house image="{{image}}" housetype="{{houseType}}"></single-house>
+      </template>
   </template>
   
   <script>
@@ -379,10 +384,7 @@ html /deep/ [segment], html /deep/ segment {
         {imageUrl: './images/apartment.png', type: "flat"},
         {imageUrl: './images/house.png', type: "house"},
         {imageUrl: './images/farm.png', type: "farm"}
-      ],
-      houseTypeChanged: function (){
-        
-      }
+      ]
     });
   </script>
 </polymer-element>
@@ -646,7 +648,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .imgConcept {
         margin: 0 20px;
         width: 100px;
-        padding: 12px 12px ;
+        padding: 0px 12px ;
         border-radius: 10px;
         float:left;
       }
@@ -658,6 +660,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       img:hover { 
         background: #E5CF39;
       }
+
       core-tooltip {
         text-transform: capitalize;
       }
@@ -734,13 +737,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="select-concepts" attributes="chosenConcept" assetpath="elements/">
   <template>
-    <style>
 
-    </style>
-    
-    <template repeat="{{ concept in conceptsList}}">
-      <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
-    </template>
+    <div>
+        <template repeat="{{ concept in conceptsList}}">
+          <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
+        </template>
+    </div>    
 
   </template>
   
@@ -753,11 +755,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         {src: '../images/health.png', name: 'health'},
         {src: '../images/family.png', name: 'family'},
         {src: '../images/nature.png', name: 'nature'},
-      ],
-      chosenConceptChanged: function () {
-        
-
-      }
+      ]
     });
   </script>
 </polymer-element>
@@ -822,7 +820,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="combine-vote" assetpath="elements/">
   <template>
-    <select-house housetype="{{houseType}}"></select-house>
+    
+    <style type="text/css">
+
+      .houseBar {
+        background-color: red;
+        display: block;
+        width: 80%;
+        height: 25%;
+        margin: 0 auto;
+      }
+
+
+    </style>
+
+    <select-house housetype="{{houseType}}" class="houseBar"></select-house>
     <select-concepts chosenconcept="{{chosenConcept}}"></select-concepts>
     <user-login userinfo="{{userInfo}}"></user-login>
   </template>
@@ -857,8 +869,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       userInfoChanged: function (){
         this.voteCombiner();
-      },
-
+      }
     });
   </script>
 </polymer-element>
@@ -1853,7 +1864,6 @@ body {
 
 
 .logowrapper {
-    margin-top: 5%;
     margin-left: 5%;
     width: 50%;
     text-align: left;
@@ -2254,32 +2264,32 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
 		<nav class="navbar navbar-custom  navbar-fixed-top" role="navigation">
 		    <div class="container">
-		        <div class="navbar-header">
+		        <!-- <div class="navbar-header">
 		          
-		            <a class="navbar-brand" href="elements/#page-top">
+		            <a class="navbar-brand" href="#page-top">
 		              <span class="light">test</span>
 		            </a>
-		        </div>
+		        </div> -->
 
-		        <div class="navrectangle ">
+		       <!--  <div class="navrectangle ">
 		            <ul class="nav navbar-nav">
 		             
 		                <li class="page-scroll bol">
-		                    <a href="elements/#page-top"></a>
+		                    <a href="#page-top"></a>
 		                </li>
 		             
 		                <li class="page-scroll bol">
-		                    <a href="elements/#about"></a>
+		                    <a href="#about"></a>
 		                </li>
 		                <li class="page-scroll bol">
-		                    <a href="elements/#download"></a>
+		                    <a href="#download"></a>
 		                </li>
 		                <li class="page-scroll bol">
-		                    <a href="elements/#contact"></a>
+		                    <a href="#contact"></a>
 		                </li>
 		            </ul>
 		         
-		        </div>
+		        </div> -->
 		  
 
 		    </div>
@@ -2292,17 +2302,16 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="images/house.svg">
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="images/meantoyou.svg">
 				    </div>                         
-                    <div class="page-scroll">
-                    	
-                        <a href="elements/#about" class="btn btn-circle">
+                   <!--  <div class="page-scroll">
+                        <a href="#about" class="btn btn-circle">
                           <i class="fa fa-angle-double-down animated"></i>
                         </a>
-                    </div>
+                    </div> -->
             </div>
         </section>
 
         <section id="about" class="intro p2">
-            <div class="centerer">
+            <div class="intro-body">
               <combine-vote singlevote="{{ singleVote }}"></combine-vote>
             </div>
         </section>
@@ -2333,58 +2342,49 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
     <script>
         Polymer('cth-housemouse', {
+
             singleVoteChanged: function(){
                 console.log('singleVote from within umbrella:');
                 console.log(this.singleVote);
+
+            window.scrollReveal = new scrollReveal();
+
             }
         });
         
     </script>
 
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    <script src="scripts/jquery.easing.min.js"></script>
+      <script src="vendor/jquery.min.js"></script>
+      <script src="vendor/bootstrap.min.js"></script>
+      <script src="vendor/jquery.easing.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="scripts/scroll.js"></script>
+      <!-- Custom Theme JavaScript -->
+      <script src="scripts/scroll.js"></script>
+      <script src="vendor/scrollReveal.min.js"></script>
+
 </polymer-element>
 
     <!-- Bootstrap Core CSS -->
     <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- font for arrow -->
-    <!-- <link href="h
-    ttp://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="styles/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Theme CSS -->
     <link href="styles/style.css" rel="stylesheet">
 
   </head>
   <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-      <!--       <header>
-        <section class="logowrapper">
-          
-        </section>
-      </header> -->
+  
      	<cth-housemouse></cth-housemouse>
 
-      <script>
-        // window.scrollReveal = new scrollReveal();
-
-        // $(window).load(function () {
-        //    $('body').delay(10000)
-        //      .animate({
-        //       'scrollTop': $('cth-housemouse').offset().top}, 800
-        //       ); 
-        // });
-      </script>
-
-      <script src="../scripts/jquery.min.js"></script>
-      <script src="../scripts/bootstrap.min.js"></script>
-      <script src="../scripts/jquery.easing.min.js"></script>
+      <script src="vendor/jquery.min.js"></script>
+      <script src="vendor/bootstrap.min.js"></script>
+      <script src="vendor/jquery.easing.min.js"></script>
 
       <!-- Custom Theme JavaScript -->
       <script src="scripts/scroll.js"></script>
+
   </body>    
 
 </html>
