@@ -1,5 +1,5 @@
-   @font-face { font-family: NittyNormal; src: url('./fonts/NN.woff') format('woff'); }
-      @font-face { font-family: NittyBold; src: url('./fonts/NB.woff') format('woff'); }
+@font-face { font-family: NittyNormal; src: url('./fonts/NN.woff') format('woff'); }
+@font-face { font-family: NittyBold; src: url('./fonts/NB.woff') format('woff'); }
 
 body {
     width: 100%;
@@ -32,8 +32,13 @@ img.logomeantoyou {
 }
 
 
+/* clearing an apparantly bad effect from polymer which disabled fixed property*/
 
-
+.clearTransform {
+  -webkit-transform: none;
+  -o-transform: none;
+  transform: none;
+}
 
 .navrectangle {
   position: fixed;
@@ -42,7 +47,15 @@ img.logomeantoyou {
   height: 100px;
   bottom: 10px;
   right: 20px;
+
+  -webkit-transform: none;
+  -o-transform: none;
+  transform: none;
+
 }
+
+
+
 
 .bol{
   border-radius: 50%;

@@ -1850,8 +1850,8 @@ Example:
 		ttp://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
 
 		<!-- Custom Theme CSS -->
-		<style>   @font-face { font-family: NittyNormal; src: url(styles/fonts/NN.woff) format('woff'); }
-      @font-face { font-family: NittyBold; src: url(styles/fonts/NB.woff) format('woff'); }
+		<style>@font-face { font-family: NittyNormal; src: url(styles/fonts/NN.woff) format('woff'); }
+@font-face { font-family: NittyBold; src: url(styles/fonts/NB.woff) format('woff'); }
 
 body {
     width: 100%;
@@ -1884,8 +1884,13 @@ img.logomeantoyou {
 }
 
 
+/* clearing an apparantly bad effect from polymer which disabled fixed property*/
 
-
+.clearTransform {
+  -webkit-transform: none;
+  -o-transform: none;
+  transform: none;
+}
 
 .navrectangle {
   position: fixed;
@@ -1894,7 +1899,15 @@ img.logomeantoyou {
   height: 100px;
   bottom: 10px;
   right: 20px;
+
+  -webkit-transform: none;
+  -o-transform: none;
+  transform: none;
+
 }
+
+
+
 
 .bol{
   border-radius: 50%;
@@ -2262,35 +2275,34 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 </style>
 
 
-		<nav class="navbar navbar-custom  navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-custom  navbar-fixed-top  clearTransform" role="navigation">
 		    <div class="container">
-		        <!-- <div class="navbar-header">
+		        <div class="navbar-header">
 		          
-		            <a class="navbar-brand" href="#page-top">
-		              <span class="light">test</span>
+		            <a class="navbar-brand" href="elements/#page-top">
+		              <span class="light">Im here, but im still ugly --- > look at me nav back at bottom</span>
 		            </a>
-		        </div> -->
+		        </div>
 
-		       <!--  <div class="navrectangle ">
+		        <div class="navrectangle ">
 		            <ul class="nav navbar-nav">
 		             
 		                <li class="page-scroll bol">
-		                    <a href="#page-top"></a>
+		                    <a href="elements/#page-top"></a>
 		                </li>
 		             
 		                <li class="page-scroll bol">
-		                    <a href="#about"></a>
+		                    <a href="elements/#about"></a>
 		                </li>
 		                <li class="page-scroll bol">
-		                    <a href="#download"></a>
+		                    <a href="elements/#download"></a>
 		                </li>
 		                <li class="page-scroll bol">
-		                    <a href="#contact"></a>
+		                    <a href="elements/#contact"></a>
 		                </li>
 		            </ul>
 		         
-		        </div> -->
-		  
+		        </div>
 
 		    </div>
 		</nav>
@@ -2359,6 +2371,33 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                 // Normal call of scrollReveal
 
                 window.scrollReveal = new scrollReveal();
+
+
+                // Navbar workarround
+
+                //jQuery to collapse the navbar on scroll
+
+                var scrollingWorkArround = this.shadowRoot;
+
+                $(scrollingWorkArround).scroll(function() {
+                    if ($(".navbar").offset().top > 50) {
+                        $(".navbar-fixed-top").addClass("top-nav-collapse");
+                    } else {
+                        $(".navbar-fixed-top").removeClass("top-nav-collapse");
+                    }
+                });
+
+                //jQuery for page scrolling feature - requires jQuery Easing plugin
+                // $(function() {
+                //     $('.page-scroll a').bind('click', function(event) {
+                //         var $anchor = $(this);
+                //         $('html, body').stop().animate({
+                //             scrollTop: $($anchor.attr('href')).offset().top
+                //         }, 1500, 'easeInOutExpo');
+                //         event.preventDefault();
+                //     });
+                // });
+
             }
         });
         
@@ -2370,10 +2409,6 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
     <!-- Revealing scroll for the logo -->
     <script src="scripts/CTH-VERSION-scrollReveal.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <!-- <script src="../scripts/scroll.js"></script> -->
-    
 
 </polymer-element>
 
