@@ -38,13 +38,13 @@
 		                </li>
 		             
 		                <li class="page-scroll bol">
-		                    <a href="../#about"></a>
+		                    <a href="../#vote"></a>
 		                </li>
 		                <li class="page-scroll bol">
-		                    <a href="../#download"></a>
+		                    <a href="../#map"></a>
 		                </li>
 		                <li class="page-scroll bol">
-		                    <a href="../#contact"></a>
+		                    <a href="../#stats"></a>
 		                </li>
 		            </ul>
 		         
@@ -69,7 +69,7 @@
             </div>
         </section>
 
-        <section id="about" class="intro p2">
+        <section id="vote" class="intro p2">
             <div class="intro-body">
                 <combine-vote singleVote="{{ singleVote }}"></combine-vote>
             </div>
@@ -79,13 +79,13 @@
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
 
-        <section id="download" class="intro p3">
+        <section id="map" class="intro p3">
             <div class="centerer">  
                 <map-element class="chart" data="{{retrieved}}"></map-element>
             </div>
         </section>
 
-        <section id="contact" class="intro p4">
+        <section id="stats" class="intro p4">
             <div class="centerer">  
                 <stat-widget vote="{{ singleVote }}"></stat-widget>
             </div>
@@ -123,25 +123,30 @@
                 //targetting the <a> tags within the pagescrollbullets
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
 
-                //getting the id
-
-                var shadowRootFix = this.shadowRoot;
-
                 // jQuery for page scrolling feature - requires jQuery Easing plugin
                 $(function() {
                     $(navSelector).bind('click', function(event) {
                         event.preventDefault();
 
                         var $anchor = $(this);
-                        var clickedBullet = $anchor.attr('href');
-                        var selectedClickedBullet = shadowRootFix.querySelector(clickedBullet);
 
-                        // console.log('im clicked');
-                        // console.log(selectedClickedBullet)
+                        var clickedBullet = $anchor.attr('href');
+
+                        var fixHeight = window.innerHeight;
+                        var usedHeight = 0;
+
+                        if (clickedBullet == '#page-top') {
+                            usedHeight = 0;
+                        } else if (clickedBullet == '#vote') {
+                            usedHeight = fixHeight;
+                        } else if (clickedBullet == '#map') {
+                            usedHeight = fixHeight * 2;
+                        } else if (clickedBullet == '#stats') {
+                            usedHeight = fixHeight * 3;
+                        }
 
                         $('html, body').stop().animate({   
-                            scrollTop: $(selectedClickedBullet).offset().top
-                        }, 1500, 'easeInOutExpo');
+                            scrollTop: usedHeight}, 1500, 'easeInOutExpo');
                         
                     });
                 });
