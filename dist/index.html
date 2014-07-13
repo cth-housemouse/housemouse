@@ -7,11 +7,9 @@
 
     <title>Project Housemouse</title>
 
-		<!-- Webcomponent polyfill to make polymer possible -->
+		<!-- Webcomponents -->
 		<script src="vendor/platform.js"></script>
-
-    <!-- The element include -->
-    <!-- The element include -->
+    <!-- Webcomponents -->
 <!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -2016,7 +2014,6 @@ a:focus {
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus,
 .navbar-custom .nav li.active {
-
     outline: 0;
     background-color: rgba(255,255,255,.0);
 }
@@ -2078,6 +2075,11 @@ a:focus {
 .p4{
      background-color: #45b6db;
 }
+.p5{
+    background-color: #f7f266;     
+}
+
+
 .intro-body {
     display: table-cell;
     vertical-align: middle;
@@ -2287,10 +2289,9 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 </style>
 
 
-		<nav class="navbar navbar-custom  navbar-fixed-top  clearTransform" role="navigation">
+		<nav id="page-top" class="navbar navbar-custom  navbar-fixed-top  clearTransform" role="navigation">
 		    <div class="container">
 		        <div class="navbar-header">
-		          
 		            <a class="navbar-brand" href="elements/#page-top">
 		              <span class="light"></span>
 		            </a>
@@ -2298,11 +2299,9 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
 		        <div class="navrectangle ">
 		            <ul class="nav navbar-nav">
-		             
 		                <li class="page-scroll bol">
 		                    <a href="#page-top"></a>
 		                </li>
-		             
 		                <li class="page-scroll bol">
 		                    <a href="#vote"></a>
 		                </li>
@@ -2320,7 +2319,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 		</nav>
 
         <section class="intro p1">
-            <div id="page-top" class="intro-body">
+            <div class="intro-body">
                 	<div class="logowrapper">
                         <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="images/whatdoes.svg">
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="images/house.svg">
@@ -2363,7 +2362,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
             <stat-widget vote="{{ singleVote }}"></stat-widget>
         </section>
 
-        <section class="intro p1">    
+        <section class="p5">    
             <div class="centerer">  
                 <a href="elements/disclaimer.html" class="footer"> disclaimer </a>   
             <div>
@@ -2394,31 +2393,21 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
                 //targetting the <a> tags within the pagescrollbullets
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
+                var shadowRootFix = this.shadowRoot;
 
                 // jQuery for page scrolling feature - requires jQuery Easing plugin
                 $(function() {
                     $(navSelector).bind('click', function(event) {
+
+                        var cleanID = $(this).attr('href');
+                        var targetSelector = shadowRootFix.querySelector(cleanID);
+                        var targetOffset = targetSelector.offsetTop;
+
+                        $('html, body').stop().animate({
+                            scrollTop: targetOffset
+                            }, 1500, 'easeInOutExpo');
+
                         event.preventDefault();
-
-                        var $anchor = $(this);
-
-                        var clickedBullet = $anchor.attr('href');
-
-                        var fixHeight = window.innerHeight;
-                        var usedHeight = 0;
-
-                        if (clickedBullet == '#page-top') {
-                            usedHeight = 0;
-                        } else if (clickedBullet == '#vote') {
-                            usedHeight = fixHeight;
-                        } else if (clickedBullet == '#map') {
-                            usedHeight = fixHeight * 2;
-                        } else if (clickedBullet == '#stats') {
-                            usedHeight = fixHeight * 3;
-                        }
-
-                        $('html, body').stop().animate({   
-                            scrollTop: usedHeight}, 1500, 'easeInOutExpo');
                         
                     });
                 });
@@ -2427,37 +2416,23 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         });
         
     </script>
-
-    <script src="vendor/jquery.min.js"></script>
-    <script src="vendor/bootstrap.min.js"></script>
-    <script src="vendor/jquery.easing.min.js"></script>
-
-    <!-- Revealing scroll for the logo -->
-    <script src="scripts/CTH-VERSION-scrollReveal.js"></script>
-
 </polymer-element>
 
-    <!-- font for arrow -->
-    <link href="styles/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core CSS -->
+    <!-- CSS -->
     <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Custom Theme CSS -->
     <link href="styles/style.css" rel="stylesheet">
 
   </head>
+
   <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   
      	<cth-housemouse></cth-housemouse>
 
       <script src="vendor/jquery.min.js"></script>
-      <script src="vendor/bootstrap.min.js"></script>
       <script src="vendor/jquery.easing.min.js"></script>
 
-      <!-- Custom Theme JavaScript -->
-      <!-- <script src="./scripts/scroll.js"></script> -->
+      <!-- Revealing scroll for the logo -->
+      <script src="../scripts/CTH-VERSION-scrollReveal.js"></script>
 
   </body>    
-
 </html>

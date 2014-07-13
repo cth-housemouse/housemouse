@@ -1,4 +1,4 @@
-<!-- The element include -->
+<!-- Webcomponents -->
 <link rel="import" href="../vendor/polymer/polymer.html">
 <link rel="import" href="combine-vote.html">
 <link rel="import" href="db-save.html">
@@ -20,10 +20,9 @@
 		<link href="../styles/style.css" rel="stylesheet">
 
 
-		<nav class="navbar navbar-custom  navbar-fixed-top  clearTransform" role="navigation">
+		<nav id="page-top" class="navbar navbar-custom  navbar-fixed-top  clearTransform" role="navigation">
 		    <div class="container">
 		        <div class="navbar-header">
-		          
 		            <a class="navbar-brand" href="#page-top">
 		              <span class="light"></span>
 		            </a>
@@ -31,11 +30,9 @@
 
 		        <div class="navrectangle ">
 		            <ul class="nav navbar-nav">
-		             
 		                <li class="page-scroll bol">
 		                    <a href="../#page-top"></a>
 		                </li>
-		             
 		                <li class="page-scroll bol">
 		                    <a href="../#vote"></a>
 		                </li>
@@ -53,7 +50,7 @@
 		</nav>
 
         <section class="intro p1">
-            <div id="page-top" class="intro-body">
+            <div class="intro-body">
                 	<div class="logowrapper">
                         <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
@@ -96,7 +93,7 @@
             <stat-widget vote="{{ singleVote }}"></stat-widget>
         </section>
 
-        <section class="intro p1">    
+        <section class="p5">    
             <div class="centerer">  
                 <a href="disclaimer.html" class="footer"> disclaimer </a>   
             <div>
@@ -127,31 +124,21 @@
 
                 //targetting the <a> tags within the pagescrollbullets
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
+                var shadowRootFix = this.shadowRoot;
 
                 // jQuery for page scrolling feature - requires jQuery Easing plugin
                 $(function() {
                     $(navSelector).bind('click', function(event) {
+
+                        var cleanID = $(this).attr('href');
+                        var targetSelector = shadowRootFix.querySelector(cleanID);
+                        var targetOffset = targetSelector.offsetTop;
+
+                        $('html, body').stop().animate({
+                            scrollTop: targetOffset
+                            }, 1500, 'easeInOutExpo');
+
                         event.preventDefault();
-
-                        var $anchor = $(this);
-
-                        var clickedBullet = $anchor.attr('href');
-
-                        var fixHeight = window.innerHeight;
-                        var usedHeight = 0;
-
-                        if (clickedBullet == '#page-top') {
-                            usedHeight = 0;
-                        } else if (clickedBullet == '#vote') {
-                            usedHeight = fixHeight;
-                        } else if (clickedBullet == '#map') {
-                            usedHeight = fixHeight * 2;
-                        } else if (clickedBullet == '#stats') {
-                            usedHeight = fixHeight * 3;
-                        }
-
-                        $('html, body').stop().animate({   
-                            scrollTop: usedHeight}, 1500, 'easeInOutExpo');
                         
                     });
                 });
@@ -160,12 +147,4 @@
         });
         
     </script>
-
-    <script src="../vendor/jquery.min.js"></script>
-    <script src="../vendor/bootstrap.min.js"></script>
-    <script src="../vendor/jquery.easing.min.js"></script>
-
-    <!-- Revealing scroll for the logo -->
-    <script src="../scripts/CTH-VERSION-scrollReveal.js"></script>
-
 </polymer-element>
