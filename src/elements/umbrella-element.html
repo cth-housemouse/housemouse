@@ -48,35 +48,34 @@
 		        </div>
 
 		    </div>
-		</nav>
+		</nav>  
         
-        <!-- <core-collapse id="collapseVote" opened> -->
-            <section class="intro p1">
-                <div class="intro-body">
-                    	<div class="logowrapper">
-                            <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
-    				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
-    				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
-    				    </div>     
+        <section class="intro p1">
+            <div class="intro-body">
+                	<div class="logowrapper">
+                        <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
+				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
+				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
+				    </div>     
 
-                        <div class="page-scroll floatingleft">
-                            <a href="../#vote" class="btn btn-circle">
-                                <i class="fa fa-angle-double-down animated"></i>
-                            </a>
-                        </div>
-                </div>
-            </section>
-        <!-- </core-collapse> -->
-        
-        <section id="vote" class="intro p2">
-                <combine-vote singleVote="{{ singleVote }}"></combine-vote>
-                <div class="page-scroll floatingleft">
-                    <a href="../#map" class="btn btn-circle">
-                        <i class="fa fa-angle-double-down animated"></i>
-                    </a>
-                </div>
+                    <div class="page-scroll floatingleft">
+                        <a href="../#vote" class="btn btn-circle">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+            </div>
         </section>
-            
+        
+        <core-collapse id="collapseVote" opened>
+            <section id="vote" class="intro p2">
+                    <combine-vote singleVote="{{ singleVote }}"></combine-vote>
+                    <div class="page-scroll floatingleft">
+                        <a href="../#map" class="btn btn-circle">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+            </section>
+        </core-collapse>    
         
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
@@ -111,6 +110,7 @@
         Polymer('cth-housemouse', {
 
             singleVoteChanged: function(){
+                this.shadowRoot.querySelector('#collapseVote').toggle();
                 this.shadowRoot.querySelector('#collapseMap').toggle();
                 this.shadowRoot.querySelector('#collapseStats').toggle();
             },
