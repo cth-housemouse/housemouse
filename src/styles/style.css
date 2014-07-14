@@ -235,9 +235,18 @@ a:focus {
 
 .footer {
     background-color: black;
+    width: 400px;
+    margin: auto;
+}
+
+.footerText {
     color:#E5CF39;
     font-family: NittyNormal;
     font-size: 20px;
+}
+
+.footerText:hover {
+    color:#E5CF39;
 }
 
 
