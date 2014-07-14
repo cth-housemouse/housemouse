@@ -65,10 +65,10 @@ window.scrollReveal = (function (window) {
   scrollReveal.prototype = {
 
     defaults: {
-      after:  '3s',
-      enter:  'x',
-      move:   '100px',
-      over:   '3s',
+      after:  '0s',
+      enter:  'bottom',
+      move:   '24px',
+      over:   '0.66s',
       easing: 'ease-in-out',
 
   //  if 0, the element is considered in the viewport as soon as it enters

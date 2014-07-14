@@ -2393,14 +2393,16 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
                 //targetting the <a> tags within the pagescrollbullets
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
-                var shadowRootFix = this.shadowRoot;
+
+                // Global shadowRootFix
+                window.shadowRootFix = this.shadowRoot;
 
                 // jQuery for page scrolling feature - requires jQuery Easing plugin
                 $(function() {
                     $(navSelector).bind('click', function(event) {
 
                         var cleanID = $(this).attr('href');
-                        var targetSelector = shadowRootFix.querySelector(cleanID);
+                        var targetSelector = window.shadowRootFix.querySelector(cleanID);
                         var targetOffset = targetSelector.offsetTop;
 
                         $('html, body').stop().animate({
@@ -2424,7 +2426,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
   </head>
 
-  <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+  <body data-spy="scroll" data-target=".navbar-custom">
   
      	<cth-housemouse></cth-housemouse>
 
@@ -2433,6 +2435,9 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
       <!-- Revealing scroll for the logo -->
       <script src="../scripts/CTH-VERSION-scrollReveal.js"></script>
+
+      <!-- Bootstrap for scrollspy -->
+      <script src="scripts/CTH-VERSION-bootstrap.js"></script>
 
   </body>    
 </html>

@@ -22,10 +22,6 @@ module.exports = function(grunt) {
         src: '**/*.{html,css}',
         dest: 'dist/'
       },
-      scripts: {
-        src: 'src/scripts/scroll.js',
-        dest: 'dist/scripts/scroll.js'
-      },
       scriptsOwl: {
         src: 'src/scripts/owl.carousel.min.js',
         dest: 'dist/scripts/owl.carousel.min.js'
@@ -33,6 +29,10 @@ module.exports = function(grunt) {
       cthVersionScrollReveal: {
         src: 'src/scripts/CTH-VERSION-scrollReveal.js',
         dest: 'dist/scripts/CTH-VERSION-scrollReveal.js'
+      },
+      cthVersionBootstrap: {
+        src: 'src/scripts/CTH-VERSION-bootstrap.js',
+        dest: 'dist/scripts/CTH-VERSION-bootstrap.js'
       },
       fonts: {
         expand: true,
@@ -86,10 +86,6 @@ module.exports = function(grunt) {
       jqueryEasingPlugin: {
         src: 'jquery.easing/js/jquery.easing.min.js',
         dest: 'dist/vendor/jquery.easing.min.js'
-      },
-      bootstrap: {
-        src: 'bootstrap/dist/js/bootstrap.min.js',
-        dest: 'dist/vendor/bootstrap.min.js'
       }
     },
     vulcanize: {
