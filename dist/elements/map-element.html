@@ -138,9 +138,70 @@
       .farm {fill: #75C7B3;}
       .undecided {fill: pink;}
       .nodata {fill: grey;}
+
+      h1 {
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
+      }
+
+      .mapBar {
+        display: block;
+        width: 80%;
+        height: 25%;
+        margin: 20px auto;
+      }
+
+      .legendary {
+        width:15%;
+        padding: 10px;
+        float:left;
+        margin-top: 10%;
+        margin-left: 10%;
+      }
+
+      .biggerBlock {
+        margin: 20px;
+      }
+
+      .block {
+        height:30px;
+        width:30px;
+        float: left;
+        border-radius: 50%;
+        border:solid 2px grey;
+      }
+
+      .houseBlock {
+        background-color: #E5CF39;  
+      }
       
+      .flatBlock {
+        background-color: #E34D2F;
+      }
+
+      .farmBlock {
+        background-color: #75C7B3;
+      }
+
     </style>
 
+    <h1 class="mapBar">Looks_like_others_have_chosen_differently</h1>
+
+    <div class="legendary">
+      <div class="biggerBlock">
+        <div class="block houseBlock"></div>
+        <p>Family Home</p>
+      </div>
+      <div class="biggerBlock">
+        <div class="block flatBlock"></div>
+        <p>Appartment Building</p>
+      </div>
+      <div class="biggerBlock">     
+        <div class="block farmBlock"></div>
+        <p>Rural Home</p>
+      </div>
+    </div>
 
     <div class="mapcontainer">
       <svg
