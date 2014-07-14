@@ -9,9 +9,6 @@
 
             var mapStructuredVotes = [];
 
-            console.log('Im the database')
-            console.log(this.data)
-
             for (singleuser in this.data) {
 
               mapStructuredVotes.push(this.data[singleuser]);
@@ -118,9 +115,6 @@
             for (var s = 1; s < countryTotal; s++) {
                 this.shadowRoot.getElementById(countryCount[s].country).classList.add(countryCount[s].houseType); 
             };
-
-            console.log('Im countryCount')
-            console.log(countryCount)
 
           }
       });
