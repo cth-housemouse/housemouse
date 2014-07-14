@@ -214,7 +214,7 @@ a:focus {
      background-color: #E5CF39;
 }
 .p2{
-     background-color: #E8E8E8  ;
+     background-color: #E8E8E8;
 }
 .p3{
      background-color: #75C7B3;
@@ -263,7 +263,7 @@ a:focus {
     font-size: 18px;
 }
 
-@media(min-width:767px) {
+@media(min-width:400px) {
     .intro {
         height: 100%;
         padding: 0;
