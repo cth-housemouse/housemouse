@@ -3,11 +3,21 @@
 <polymer-element name="select-concepts" attributes="chosenConcept">
   <template>
 
-    <div>
-        <template repeat="{{ concept in conceptsList}}">
-          <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
-        </template>
-    </div>    
+    <style type="text/css">
+
+      h1 {
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
+      }
+
+    </style>
+
+    <h1>Choose_three_preffered_idea's_</h1>
+
+    <template repeat="{{ concept in conceptsList}}">
+        <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
+    </template>  
 
   </template>
   

@@ -7,35 +7,71 @@
       }
 
       .imgContainer {
-        width: 33%;
-        height: 150px;
-        background-color: purple;
+        width: 100%;
+        height: auto;
         display: block;
         float: left;
       }
 
       .imgHouse {
-        height: 100%;
+        height: 10%;
         width: auto;
         
         /*padding: 12px;*/
         /*border-radius: 10px;*/
       }
 
+      img {
+        -webkit-transition-property: -webkit-transform;
+        -webkit-transition-duration: 1s;
+        -moz-transition-property: -moz-transform;
+        -moz-transition-duration: 1s;
+        cursor:pointer;
+      }
+
       img:hover {
-        background: #E5CF39;
+        -webkit-animation-name: pulse;
+        -moz-animation-name: pulse;
+        -webkit-animation-duration: 1.5s;
+        -moz-animation-duration: 1.5s;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-timing-function: linear;
       }
 
-      .flat {
-        background: #E5CF39;
+      @-webkit-keyframes pulse {    
+          0 {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+          }
+
+          50% {
+              -webkit-transform: scale(1.2);
+              transform: scale(1.2);
+          }
+
+          100% {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+          }
       }
 
-      .house {
-        background: #E34D2F;
-      }
+      @-moz-keyframes pulse {    
+          0 {
+              -moz-transform: scale(1);
+              transform: scale(1);
+          }
 
-      .farm {
-        background: #75C7B3;
+          50% {
+              -moz-transform: scale(1.2);
+              transform: scale(1.2);
+          }
+
+          100% {
+              -moz-transform: scale(1);
+              transform: scale(1);
+          }
       }
 
       .imgHouseChosen {

@@ -6,30 +6,77 @@
   <template>
     <style>
 
-    .loginButton {
-      display: block;
-      width: 200px;
-      height: auto;
-      font-family: NittyBold;
-      margin: 0 auto;
-      padding-top:50px;
-      cursor: pointer;
-    }
-    .loginButton:hover {
-      display: block;
-      width: 210px;
-      height: auto;
-      font-family: NittyBold;
-      margin: 0 auto;
-      padding-top:50px;
-      cursor: pointer;
-    }
+      .loginButton {
+        display: block;
+        width: 100px;
+        height: auto;
+        font-family: NittyBold;
+        margin: 0 auto;
+        cursor: pointer;
+      }
 
-    .text {
-      text-align: center;
-    }
+      h1 {
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
+      }
+
+      img {
+        -webkit-transition-property: -webkit-transform;
+        -webkit-transition-duration: 1s;
+        -moz-transition-property: -moz-transform;
+        -moz-transition-duration: 1s;
+        cursor:pointer;
+      }
+
+      img:hover {
+        -webkit-animation-name: pulse;
+        -moz-animation-name: pulse;
+        -webkit-animation-duration: 1.5s;
+        -moz-animation-duration: 1.5s;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-timing-function: linear;
+      }
+
+      @-webkit-keyframes pulse {    
+          0 {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+          }
+
+          50% {
+              -webkit-transform: scale(1.2);
+              transform: scale(1.2);
+          }
+
+          100% {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+          }
+      }
+
+      @-moz-keyframes pulse {    
+          0 {
+              -moz-transform: scale(1);
+              transform: scale(1);
+          }
+
+          50% {
+              -moz-transform: scale(1.2);
+              transform: scale(1.2);
+          }
+
+          100% {
+              -moz-transform: scale(1);
+              transform: scale(1);
+          }
+      }
 
     </style>
+
+    <h1>Some_extra_info_pleaaaaase_</h1>
   	
     <img src="../images/fb.png" class="loginButton" name="facebook-login" on-click="{{login}}"></img>
 

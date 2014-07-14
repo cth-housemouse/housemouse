@@ -309,35 +309,71 @@ html /deep/ [segment], html /deep/ segment {
       }
 
       .imgContainer {
-        width: 33%;
-        height: 150px;
-        background-color: purple;
+        width: 100%;
+        height: auto;
         display: block;
         float: left;
       }
 
       .imgHouse {
-        height: 100%;
+        height: 10%;
         width: auto;
         
         /*padding: 12px;*/
         /*border-radius: 10px;*/
       }
 
+      img {
+        -webkit-transition-property: -webkit-transform;
+        -webkit-transition-duration: 1s;
+        -moz-transition-property: -moz-transform;
+        -moz-transition-duration: 1s;
+        cursor:pointer;
+      }
+
       img:hover {
-        background: #E5CF39;
+        -webkit-animation-name: pulse;
+        -moz-animation-name: pulse;
+        -webkit-animation-duration: 1.5s;
+        -moz-animation-duration: 1.5s;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-timing-function: linear;
       }
 
-      .flat {
-        background: #E5CF39;
+      @-webkit-keyframes pulse {    
+          0 {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+          }
+
+          50% {
+              -webkit-transform: scale(1.2);
+              transform: scale(1.2);
+          }
+
+          100% {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+          }
       }
 
-      .house {
-        background: #E34D2F;
-      }
+      @-moz-keyframes pulse {    
+          0 {
+              -moz-transform: scale(1);
+              transform: scale(1);
+          }
 
-      .farm {
-        background: #75C7B3;
+          50% {
+              -moz-transform: scale(1.2);
+              transform: scale(1.2);
+          }
+
+          100% {
+              -moz-transform: scale(1);
+              transform: scale(1);
+          }
       }
 
       .imgHouseChosen {
@@ -371,8 +407,21 @@ html /deep/ [segment], html /deep/ segment {
 
 <polymer-element name="select-house" attributes="houseType" assetpath="elements/">
   <template>
+      
+      <style type="text/css">
+
+      h1 {
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
+      }
+
+      </style>
+
+      <h1>Choose_your_preffered_association_</h1>
+
       <template repeat="{{ image in imageList }}">
-        <single-house image="{{image}}" housetype="{{houseType}}"></single-house>
+          <single-house image="{{image}}" housetype="{{houseType}}"></single-house>
       </template>
   </template>
   
@@ -499,12 +548,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .polymer-tooltip::after {
-  position: absolute;
+  /*position: absolute;
   border: solid transparent;
   content: '';
   height: 0;
   width: 0;
-  border-width: 4px;
+  border-width: 4px;*/
 }
 
 .top {
@@ -646,21 +695,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .imgConcept {
         margin: 0 20px;
         width: 100px;
-        padding: 0px 12px ;
-        border-radius: 10px;
+        border-radius: 50%;
         float:left;
       }
 
       .imgConceptChosen {
-        background:#E5CF39;
+        -webkit-box-shadow: inset 0px 0px 0px 3px rgba(0,0,0,1);
+        -moz-box-shadow: inset 0px 0px 0px 3px rgba(0,0,0,1);
+        box-shadow: inset 0px 0px 0px 3px rgba(0,0,0,1);
       }
 
       img:hover { 
-        background: #E5CF39;
+        -webkit-box-shadow: inset 0px 0px 0px 3px rgba(0,0,0,1);
+        -moz-box-shadow: inset 0px 0px 0px 3px rgba(0,0,0,1);
+        box-shadow: inset 0px 0px 0px 3px rgba(0,0,0,1);
       }
 
       core-tooltip {
         text-transform: capitalize;
+        border: none;
       }
 
     </style>
@@ -736,11 +789,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <polymer-element name="select-concepts" attributes="chosenConcept" assetpath="elements/">
   <template>
 
-    <div>
-        <template repeat="{{ concept in conceptsList}}">
-          <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
-        </template>
-    </div>    
+    <style type="text/css">
+
+      h1 {
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
+      }
+
+    </style>
+
+    <h1>Choose_three_preffered_idea's_</h1>
+
+    <template repeat="{{ concept in conceptsList}}">
+        <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
+    </template>  
 
   </template>
   
@@ -766,30 +829,77 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
 
-    .loginButton {
-      display: block;
-      width: 200px;
-      height: auto;
-      font-family: NittyBold;
-      margin: 0 auto;
-      padding-top:50px;
-      cursor: pointer;
-    }
-    .loginButton:hover {
-      display: block;
-      width: 210px;
-      height: auto;
-      font-family: NittyBold;
-      margin: 0 auto;
-      padding-top:50px;
-      cursor: pointer;
-    }
+      .loginButton {
+        display: block;
+        width: 100px;
+        height: auto;
+        font-family: NittyBold;
+        margin: 0 auto;
+        cursor: pointer;
+      }
 
-    .text {
-      text-align: center;
-    }
+      h1 {
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
+      }
+
+      img {
+        -webkit-transition-property: -webkit-transform;
+        -webkit-transition-duration: 1s;
+        -moz-transition-property: -moz-transform;
+        -moz-transition-duration: 1s;
+        cursor:pointer;
+      }
+
+      img:hover {
+        -webkit-animation-name: pulse;
+        -moz-animation-name: pulse;
+        -webkit-animation-duration: 1.5s;
+        -moz-animation-duration: 1.5s;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-timing-function: linear;
+      }
+
+      @-webkit-keyframes pulse {    
+          0 {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+          }
+
+          50% {
+              -webkit-transform: scale(1.2);
+              transform: scale(1.2);
+          }
+
+          100% {
+              -webkit-transform: scale(1);
+              transform: scale(1);
+          }
+      }
+
+      @-moz-keyframes pulse {    
+          0 {
+              -moz-transform: scale(1);
+              transform: scale(1);
+          }
+
+          50% {
+              -moz-transform: scale(1.2);
+              transform: scale(1.2);
+          }
+
+          100% {
+              -moz-transform: scale(1);
+              transform: scale(1);
+          }
+      }
 
     </style>
+
+    <h1>Some_extra_info_pleaaaaase_</h1>
   	
     <img src="images/fb.png" class="loginButton" name="facebook-login" on-click="{{login}}">
 
@@ -822,7 +932,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style type="text/css">
 
       .houseBar {
-        background-color: red;
         display: block;
         width: 80%;
         height: 25%;
@@ -833,8 +942,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <select-house housetype="{{houseType}}" class="houseBar"></select-house>
-    <select-concepts chosenconcept="{{chosenConcept}}"></select-concepts>
-    <user-login userinfo="{{userInfo}}"></user-login>
+    <select-concepts chosenconcept="{{chosenConcept}}" class="houseBar"></select-concepts>
+    <user-login userinfo="{{userInfo}}" class="houseBar"></user-login>
   </template>
   
   <script>
@@ -2058,13 +2167,13 @@ a:focus {
 }
 
 .p1{
-     background-color: #f7f266;
+     background-color: #E5CF39;
 }
 .p2{
-     background-color: #f7af66;
+     background-color: #E8E8E8  ;
 }
 .p3{
-     background-color: #82f766;
+     background-color: #75C7B3;
 }
 .p4{
      background-color: #45b6db;
@@ -2413,6 +2522,10 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         
     </script>
 </polymer-element>
+
+    <style type="text/css">
+      @font-face { font-family: NittyNormal; src: url(fonts/NN.woff) format('woff'); }
+    </style>
 
     <!-- CSS -->
     <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css">

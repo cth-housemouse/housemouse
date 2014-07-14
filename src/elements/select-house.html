@@ -2,8 +2,21 @@
 
 <polymer-element name="select-house" attributes="houseType">
   <template>
+      
+      <style type="text/css">
+
+      h1 {
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
+      }
+
+      </style>
+
+      <h1>Choose_your_preffered_association_</h1>
+
       <template repeat="{{ image in imageList }}">
-        <single-house image="{{image}}" houseType="{{houseType}}"></single-house>
+          <single-house image="{{image}}" houseType="{{houseType}}"></single-house>
       </template>
   </template>
   
