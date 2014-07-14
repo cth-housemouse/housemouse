@@ -1118,7 +1118,7 @@ Example:
         this.log && console.warn('squelching stale response [%s]', snapshot.name());
         return;
       }
-      this.log && console.log('acquired value ' + this.location);
+      this.log // && console.log('acquired value ' + this.location);
       this.dataReady = true;
       this._setData(snapshot.val());
       if (this.data) {
@@ -1206,7 +1206,7 @@ Example:
       this.childEvent('child-removed', snapshot);
     },
     childEvent: function(kind, snapshot) {
-      this.log && console.log(kind, snapshot.name());
+      this.log // && console.log(kind, snapshot.name());
       if (this.childEvents) {
         this.fire(kind, {name: snapshot.name(), value: snapshot.val()});
       }
