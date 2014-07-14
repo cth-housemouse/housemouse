@@ -1,24 +1,17 @@
 <polymer-element name="single-house" attributes="image houseType">
   <template>
     <style>
-      :host {
-        display: inline-block;
-        padding: 0 50px;
-      }
 
-      .imgContainer {
-        width: 100%;
-        height: auto;
-        display: block;
-        float: left;
+      .houseContainer {
+        display: inline-block;
+        width: 20%;
+        margin: 0 3%;
       }
 
       .imgHouse {
-        height: 10%;
-        width: auto;
-        
-        /*padding: 12px;*/
-        /*border-radius: 10px;*/
+        width: 100%;
+        height: auto;
+        float: left;
       }
 
       img {
@@ -47,8 +40,8 @@
           }
 
           50% {
-              -webkit-transform: scale(1.2);
-              transform: scale(1.2);
+              -webkit-transform: scale(1.1);
+              transform: scale(1.1);
           }
 
           100% {
@@ -64,8 +57,8 @@
           }
 
           50% {
-              -moz-transform: scale(1.2);
-              transform: scale(1.2);
+              -moz-transform: scale(1.1);
+              transform: scale(1.1);
           }
 
           100% {
@@ -76,16 +69,16 @@
 
       .imgHouseChosen {
         border-radius: 50%;
-         -webkit-box-shadow: 0px 0px 0px 5px rgba(0,0,0,1);
+        -webkit-box-shadow: 0px 0px 0px 5px rgba(0,0,0,1);
         -moz-box-shadow: 0px 0px 0px 5px rgba(0,0,0,1);
         box-shadow: 0px 0px 0px 5px rgba(0,0,0,1);
       }
 
     </style>
-    
-    <div class="imgContainer">
+
+    <div class="houseContainer">
       <img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
-    </div>
+    <div>
 
   </template>
 

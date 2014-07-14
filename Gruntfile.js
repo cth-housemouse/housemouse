@@ -75,6 +75,10 @@ module.exports = function(grunt) {
         src: 'core-tooltip/**/*',
         dest: 'dist/vendor/core-tooltip'
       },
+      coreCollapse: {
+        src: 'core-collapse/**/*',
+        dest: 'dist/vendor/core-collapse'
+      },
       firebaseElement: {
         src: 'firebase-element/**/*',
         dest: 'dist/vendor/firebase-element'
