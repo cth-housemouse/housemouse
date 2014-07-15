@@ -398,7 +398,7 @@ Example:
     },
     // api for manual commits
     commitProperty: function(key) {
-      this.log && console.log('commitProperty ' + key);
+      this.log //&& console.log('commitProperty ' + key);
       if (this.ref) {
         this.ref.child(key).set(this.data[key]);
       }
@@ -407,7 +407,7 @@ Example:
       this.ref.child(key).remove();
     },
     commit: function() {
-      this.log && console.log('commit');
+      this.log // && console.log('commit');
       if (this.ref) {
         if (this.priority != null) {
           this.ref.setWithPriority(this.data || {}, this.priority);

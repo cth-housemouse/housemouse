@@ -6,6 +6,7 @@
 <link rel="import" href="stat-widget.html">
 <link rel="import" href="map-element.html">
 <link rel="import" href="../vendor/core-collapse/core-collapse.html">
+<link rel="import" href="../vendor/core-overlay/core-overlay.html">
     
 <polymer-element name="cth-housemouse">
 
@@ -30,6 +31,7 @@
 		        </div>
 
 		        <div class="navrectangle ">
+                    <button on-click="{{ toggleOverlay }}" class="helpBoxButton">H<br>E<br>L<br>P</button>
 		            <ul class="nav navbar-nav">
 		                <li class="page-scroll bol">
 		                    <a href="../#page-top"></a>
@@ -56,7 +58,23 @@
                         <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
-				    </div>     
+				    </div>
+
+                    <core-overlay id="overlay" layered backdrop transition="core-transition-center">
+                    
+                    <section class="helpBox">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. </p>
+
+                        <p>Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+
+                        <p>Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. </p>
+
+                        <p>Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. </p>
+
+                        <p>Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci. Ut eu diam at pede suscipit sodales. </p>
+                    </section>
+
+                    </core-overlay>     
             </div>
         </section>
         
@@ -90,7 +108,7 @@
 
         <section class="p5">
             <div class="footer">    
-                <a class="footerText" href="disclaimer.html"> disclaimer </a> 
+                <a class="footerText" href="disclaimer.html"> Disclaimer_ </a> 
             </div>  
         </section>
 		
@@ -101,7 +119,6 @@
         Polymer('cth-housemouse', {
 
             singleVoteChanged: function(){
-                console.log('singleVote CHANGED!')
                 this.shadowRoot.querySelector('#collapseCecking').toggle();
                 this.checkingData();
             },
@@ -192,6 +209,9 @@
                 };
 
                 addConsoleTag();
+            },
+            toggleOverlay: function() {
+                this.shadowRoot.querySelector('#overlay').toggle(); 
             }
 
 

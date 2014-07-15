@@ -79,6 +79,18 @@ module.exports = function(grunt) {
         src: 'core-collapse/**/*',
         dest: 'dist/vendor/core-collapse'
       },
+      coreOverlay: {
+        src: 'core-overlay/**/*',
+        dest: 'dist/vendor/core-overlay'
+      },
+      coreTransitionforOverlay: {
+        src: 'core-transition/**/*',
+        dest: 'dist/vendor/core-transition'
+      },
+      coreMetaforOverlay: {
+        src: 'core-meta/**/*',
+        dest: 'dist/vendor/core-meta'
+      },
       firebaseElement: {
         src: 'firebase-element/**/*',
         dest: 'dist/vendor/firebase-element'
