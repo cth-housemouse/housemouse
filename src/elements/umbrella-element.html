@@ -60,27 +60,29 @@
             </div>
         </section>
         
-        <section id="vote" class="intro p2">
+        <core-collapse id="collapseVote" class="cCollapse" fixedsize duration="4">
+            <section id="vote" class="intro p2">
                 <combine-vote class="polymerContent" singleVote="{{ singleVote }}"></combine-vote>
-        </section>
-
+            </section>
+        </core-collapse>
         
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
         
+        <core-collapse id="collapseCecking" duration="1">
+            <section class="consoleContainer">
+                <div id="consoleTextVote" class="consoleText">
+                </div>
+            </section>
+        </core-collapse>    
 
-        <section style="height:300px; background-color:#F8512A;">
-            <div id="consoleTextVote">
-            </div>
-        </section>
-
-        <core-collapse class="cCollapse" id="collapseMap" fixedsize opened>
+        <core-collapse class="cCollapse" id="collapseMap" fixedsize duration="4">
             <section id="map" class="intro p3">
-                <map-element class="polymerContent vCenter" data="{{retrieved}}"></map-element>
+                <!-- <map-element class="polymerContent vCenter" data="{{retrieved}}"></map-element> -->
             </section>
         </core-collapse>
         
-        <core-collapse class="cCollapse" id="collapseStats" fixedsize opened>
+        <core-collapse class="cCollapse" id="collapseStats" fixedsize duration="4">
             <section id="stats" class="intro p4">      
                 <stat-widget class="polymerContent" vote="{{ singleVote }}"></stat-widget>
             </section>
@@ -100,9 +102,7 @@
 
             singleVoteChanged: function(){
                 console.log('singleVote CHANGED!')
-                this.shadowRoot.querySelector('#collapseMap').toggle();
-                this.shadowRoot.querySelector('#collapseStats').toggle();
-
+                this.shadowRoot.querySelector('#collapseCecking').toggle();
                 this.checkingData();
             },
 
@@ -141,22 +141,57 @@
                     });
                 });
 
+                // calling the unwind of the Vote element
+
+                var shadowFix = this.shadowRoot;
+
+                function openVote() {
+                    shadowFix.querySelector('#collapseVote').toggle();
+                };
+
+                setTimeout(openVote, 3000);
+
             },
             checkingData: function() {
 
                 var text = [
-                    "hi",
-                    "bye",
-                    "Yeah!",
-                    "NOOOOO!"
+                    "&lt;hi&gt;",
+                    "&lt;bye&gt;",
+                    "&lt;Yeah!&gt;",
+                    "&lt;NOOOOO!&gt;",
+                    "&lt;Done&gt;",
+                    "&gt;&#95;"
                 ];
 
-                for (var i = 0; i < text.length; i++) {
-                    var addition = "<p>" + text[i] + "<p>";
+                var shadowFix = this.shadowRoot;
 
-                    this.shadowRoot.querySelector('#consoleTextVote').innerHTML += addition;
+                var i = 0;
+                var newTop = 82;
+
+                function addConsoleTag() {
+                    // making room for new value
+                    newTop = newTop - 32;
+                    var newTopPx = newTop + "px";
+                    shadowFix.querySelector('#consoleTextVote').style.top = newTopPx;
+
+                    // adding the new one
+                    var addition = "<p style=\"margin: 0 ;\">" + text[i] + "</p>";
+                    shadowFix.querySelector('#consoleTextVote').innerHTML += addition;
+
+                    // opening the final
+                    if (i== text.length - 1) {
+                        shadowFix.querySelector('#collapseMap').toggle();
+                        shadowFix.querySelector('#collapseStats').toggle();
+                    }
+
+                    i++;
+                    if (i < text.length) {
+                        setTimeout(addConsoleTag, 500);
+                    };
 
                 };
+
+                addConsoleTag();
             }
 
 
