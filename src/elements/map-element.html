@@ -122,10 +122,13 @@
 
   <template>
     <style>
+  
+      /*containers CSS*/
+
       .completeMap {
         display:table;
         width: 80%;
-        height: auto;
+        height: 100%;
         margin: auto;
       }
 
@@ -133,7 +136,17 @@
         display: table-cell;
         height: auto;
         width: 100%;
+        height:100%;
       }
+
+      .legendContainer {
+        display:table-cell;
+        padding: 10px;
+        width: 40%;
+        height: 100%;
+      }
+
+      /*SVG CSS*/
 
       .house {fill: #E5CF39;}
       .flat {fill: #E34D2F;}
@@ -145,23 +158,15 @@
         fill: lightblue;
       }
 
+      /*text CSS*/
+
       h1 {
         background-color: black;
         color:#E8E8E8;
         font-family: NittyNormal;
       }
 
-      .textContainer {
-        width: 80%;
-        margin: 20px auto;
-        overflow:hidden;
-      }
-
-      .legendary {
-        display:table-cell;
-        padding: 10px;
-        width: 40%;
-      }
+      /*legend CSS*/
 
       .biggerBlock {
         margin: 20px;
@@ -189,12 +194,11 @@
 
     </style>
 
-    <div class="textContainer">
-      <h1>Looks_like_others_have_chosen_differently</h1>
-    </div>
+    <h1>Comparison_</h1>
 
-    <div class="completeMap"> 
-      <div class="legendary">
+    <div class="completeMap">
+     
+      <div class="legendContainer">
         <div class="biggerBlock">
           <div class="block houseBlock"></div>
           <p>Family Home</p>
