@@ -68,7 +68,7 @@
         
         <!-- <core-collapse id="collapseVote" opened> -->
             <section id="vote" class="intro p2">
-                    <combine-vote singleVote="{{ singleVote }}"></combine-vote>
+                    <combine-vote class="polymerContent" singleVote="{{ singleVote }}"></combine-vote>
                     <!-- <div class="page-scroll floatingleft">
                         <a href="../#map" class="btn btn-circle">
                             <i class="fa fa-angle-double-down animated"></i>
@@ -82,7 +82,7 @@
         
         <core-collapse id="collapseMap">
             <section id="map" class="intro p3">
-                <map-element class="chart" data="{{retrieved}}"></map-element>
+                <map-element class="polymerContent" class="chart" data="{{retrieved}}"></map-element>
             <!--     <div class="page-scroll floatingleft">
                     <a href="../#stats" class="btn btn-circle">
                         <i class="fa fa-angle-double-down animated"></i>
@@ -93,7 +93,7 @@
         
         <core-collapse id="collapseStats">
             <section id="stats" class="intro p4">
-                <stat-widget vote="{{ singleVote }}"></stat-widget>
+                <stat-widget class="polymerContent" vote="{{ singleVote }}"></stat-widget>
             </section>
         </core-collapse>
 

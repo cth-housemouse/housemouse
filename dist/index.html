@@ -682,7 +682,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: inline-block;
         width: 10%;
-        margin: 1% 3%;
+        margin: 2% 3%;
       }
 
       img {
@@ -913,21 +913,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="combine-vote" assetpath="elements/">
   <template>
-    
-    <style type="text/css">
 
-      .maxWidth {
-        display:block;
-        width: 80%;
-        margin: 0 auto;
-      }
-
-
-    </style>
-
-    <select-house housetype="{{houseType}}" class="maxWidth"></select-house>
-    <select-concepts chosenconcept="{{chosenConcept}}" class="maxWidth"></select-concepts>
-    <user-login userinfo="{{userInfo}}" class="maxWidth"></user-login>
+    <select-house housetype="{{houseType}}"></select-house>
+    <select-concepts chosenconcept="{{chosenConcept}}"></select-concepts>
+    <user-login userinfo="{{userInfo}}"></user-login>
 
   </template>
   
@@ -1599,31 +1588,24 @@ Example:
 
   <template> <!-- attributes="vote votes"> -->
     <style type="text/css">
+     
       h1 {
           background-color: black;
           color:#E8E8E8;
           font-family: NittyNormal;
-          overflow: hidden;
-        }
-
-      .textContainer {
-        width: 80%;
-        margin: 20px auto;
-      }  
+        } 
 
     </style>
 
-      <div class="textContainer">
-        <h1>Thanks_for_your_input_</h1>
-        <h1>We_wanted_to_do_so_much_more_</h1>
-        <h1>But_there_is_trouble_with_the_govermental_dataset_</h1>
-      </div>
+      <h1>Thanks_for_your_input_</h1>
+      <h1>We_wanted_to_do_so_much_more_</h1>
+      <h1>But_there_is_trouble_with_the_govermental_dataset_</h1>
 
       <template repeat="{{ chosenConcepts in dataForStatBar }}">
         <stat-bar concept="{{ chosenConcepts }}"></stat-bar>
       </template>
 
-      <h1 class="textContainer">OEF_look_at_all_the_broken_links_</h1>
+      <h1>OEF_look_at_all_the_broken_links_</h1>
 
   </template>
 
@@ -2317,6 +2299,11 @@ body {
     background-color: #000;
 }
 
+.polymerContent {
+    display:block;
+    width: 80%;
+    margin: 0 auto;  
+}
 
 
 .logowrapper {
@@ -2807,7 +2794,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         
         <!-- <core-collapse id="collapseVote" opened> -->
             <section id="vote" class="intro p2">
-                    <combine-vote singlevote="{{ singleVote }}"></combine-vote>
+                    <combine-vote class="polymerContent" singlevote="{{ singleVote }}"></combine-vote>
                     <!-- <div class="page-scroll floatingleft">
                         <a href="../#map" class="btn btn-circle">
                             <i class="fa fa-angle-double-down animated"></i>
@@ -2821,7 +2808,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         
         <core-collapse id="collapseMap">
             <section id="map" class="intro p3">
-                <map-element class="chart" data="{{retrieved}}"></map-element>
+                <map-element class="polymerContent" data="{{retrieved}}"></map-element>
             <!--     <div class="page-scroll floatingleft">
                     <a href="../#stats" class="btn btn-circle">
                         <i class="fa fa-angle-double-down animated"></i>
@@ -2832,7 +2819,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         
         <core-collapse id="collapseStats">
             <section id="stats" class="intro p4">
-                <stat-widget vote="{{ singleVote }}"></stat-widget>
+                <stat-widget class="polymerContent" vote="{{ singleVote }}"></stat-widget>
             </section>
         </core-collapse>
 
