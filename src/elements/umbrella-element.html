@@ -58,24 +58,24 @@
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
 				    </div>     
 
-                    <div class="page-scroll floatingleft">
+                    <!-- <div class="page-scroll floatingleft">
                         <a href="../#vote" class="btn btn-circle">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
-                    </div>
+                    </div> -->
             </div>
         </section>
         
-        <core-collapse id="collapseVote" opened>
+        <!-- <core-collapse id="collapseVote" opened> -->
             <section id="vote" class="intro p2">
                     <combine-vote singleVote="{{ singleVote }}"></combine-vote>
-                    <div class="page-scroll floatingleft">
+                    <!-- <div class="page-scroll floatingleft">
                         <a href="../#map" class="btn btn-circle">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
-                    </div>
+                    </div> -->
             </section>
-        </core-collapse>    
+        <!-- </core-collapse>     -->
         
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
@@ -83,11 +83,11 @@
         <core-collapse id="collapseMap">
             <section id="map" class="intro p3">
                 <map-element class="chart" data="{{retrieved}}"></map-element>
-                <div class="page-scroll floatingleft">
+            <!--     <div class="page-scroll floatingleft">
                     <a href="../#stats" class="btn btn-circle">
                         <i class="fa fa-angle-double-down animated"></i>
                     </a>
-                </div>
+                </div> -->
             </section>
         </core-collapse>
         
@@ -110,7 +110,7 @@
         Polymer('cth-housemouse', {
 
             singleVoteChanged: function(){
-                this.shadowRoot.querySelector('#collapseVote').toggle();
+                console.log('singleVote CHANGED!')
                 this.shadowRoot.querySelector('#collapseMap').toggle();
                 this.shadowRoot.querySelector('#collapseStats').toggle();
             },

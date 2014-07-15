@@ -2,19 +2,16 @@
   <template>
     <style>
 
-      .houseContainer {
+      :host {
         display: inline-block;
         width: 20%;
         margin: 0 3%;
       }
 
-      .imgHouse {
+      img {
         width: 100%;
         height: auto;
         float: left;
-      }
-
-      img {
         -webkit-transition-property: -webkit-transform;
         -webkit-transition-duration: 1s;
         -moz-transition-property: -moz-transform;
@@ -76,9 +73,7 @@
 
     </style>
 
-    <div class="houseContainer">
-      <img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
-    <div>
+    <img id="highlightHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
 
   </template>
 

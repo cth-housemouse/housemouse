@@ -5,11 +5,12 @@
     <style>
       :host {
         display: inline-block;
+        width: 10%;
+        margin: 1% 3%;
       }
 
-      .imgConcept {
-        margin: 0 20px;
-        width: 100px;
+      img {
+        width: 100%;
         border-radius: 50%;
         float:left;
       }
@@ -28,16 +29,15 @@
 
       core-tooltip {
         text-transform: capitalize;
-        border: none;
+        outline: none;
       }
 
     </style>
     
-    <span>
-      <core-tooltip label="{{ concept.name }}" position="bottom">
-        <img id="highlight" class="imgConcept" on-click="{{ setConcept }}" src="{{concept.src}}">
-      </core-tooltip>
-    </span>
+    <core-tooltip label="{{ concept.name }}"  position="bottom middle">
+      <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+    </core-tooltip>
+
   </template>
 
   <script>

@@ -304,19 +304,16 @@ html /deep/ [segment], html /deep/ segment {
   <template>
     <style>
 
-      .houseContainer {
+      :host {
         display: inline-block;
         width: 20%;
         margin: 0 3%;
       }
 
-      .imgHouse {
+      img {
         width: 100%;
         height: auto;
         float: left;
-      }
-
-      img {
         -webkit-transition-property: -webkit-transform;
         -webkit-transition-duration: 1s;
         -moz-transition-property: -moz-transform;
@@ -378,11 +375,9 @@ html /deep/ [segment], html /deep/ segment {
 
     </style>
 
-    <div class="houseContainer">
-      <img id="highlightHouse" class="imgHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
-    <div>
+    <img id="highlightHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
 
-  </div></div></template>
+  </template>
 
   <script>
     Polymer('single-house', {
@@ -414,7 +409,7 @@ html /deep/ [segment], html /deep/ segment {
 
       </style>
 
-      <h1>Choose_your_preferred_association_</h1>
+      <h1>Choose_one_</h1>
 
       <template repeat="{{ image in imageList }}">
           <single-house image="{{image}}" housetype="{{houseType}}"></single-house>
@@ -518,7 +513,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 .polymer-tooltip {
-   pointer-events: none; 
+  pointer-events: none; 
   position: absolute;
   display: flex;
   font-size: 10px;
@@ -686,11 +681,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: inline-block;
+        width: 10%;
+        margin: 1% 3%;
       }
 
-      .imgConcept {
-        margin: 0 20px;
-        width: 100px;
+      img {
+        width: 100%;
         border-radius: 50%;
         float:left;
       }
@@ -709,16 +705,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       core-tooltip {
         text-transform: capitalize;
-        border: none;
+        outline: none;
       }
 
     </style>
     
-    <span>
-      <core-tooltip label="{{ concept.name }}" position="bottom">
-        <img id="highlight" class="imgConcept" on-click="{{ setConcept }}" src="{{concept.src}}">
-      </core-tooltip>
-    </span>
+    <core-tooltip label="{{ concept.name }}" position="bottom middle">
+      <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+    </core-tooltip>
+
   </template>
 
   <script>
@@ -795,10 +790,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <h1>Choose_three_preferred_idea's_</h1>
+    <h1>Choose_three_</h1>
 
     <template repeat="{{ concept in conceptsList}}">
-        <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept>     
+        <single-concept concept="{{concept}}" chosenconcept="{{chosenConcept}}"></single-concept> 
     </template>  
 
   </template>
@@ -825,15 +820,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
 
-      .loginButton {
-        display: block;
-        width: 100px;
-        height: auto;
-        font-family: NittyBold;
-        margin: 0 auto;
-        cursor: pointer;
-      }
-
       h1 {
         background-color: black;
         color:#E8E8E8;
@@ -841,6 +827,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       img {
+        display: block;
+        width: 10%;
+        margin: 0 auto;
         -webkit-transition-property: -webkit-transform;
         -webkit-transition-duration: 1s;
         -moz-transition-property: -moz-transform;
@@ -895,7 +884,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <h1>Some_extra_info_pleaaaaase_</h1>
+    <h1>Extra_info_</h1>
   	
     <img src="images/fb.png" class="loginButton" name="facebook-login" on-click="{{login}}">
 
@@ -927,7 +916,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <style type="text/css">
 
-      .houseBar {
+      .maxWidth {
         display:block;
         width: 80%;
         margin: 0 auto;
@@ -936,9 +925,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <select-house housetype="{{houseType}}" class="houseBar"></select-house>
-    <select-concepts chosenconcept="{{chosenConcept}}" class="houseBar"></select-concepts>
-    <user-login userinfo="{{userInfo}}" class="houseBar"></user-login>
+    <select-house housetype="{{houseType}}" class="maxWidth"></select-house>
+    <select-concepts chosenconcept="{{chosenConcept}}" class="maxWidth"></select-concepts>
+    <user-login userinfo="{{userInfo}}" class="maxWidth"></user-login>
 
   </template>
   
@@ -2808,24 +2797,24 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="images/meantoyou.svg">
 				    </div>     
 
-                    <div class="page-scroll floatingleft">
-                        <a href="#vote" class="btn btn-circle">
+                    <!-- <div class="page-scroll floatingleft">
+                        <a href="../#vote" class="btn btn-circle">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
-                    </div>
+                    </div> -->
             </div>
         </section>
         
-        <core-collapse id="collapseVote" opened="">
+        <!-- <core-collapse id="collapseVote" opened> -->
             <section id="vote" class="intro p2">
                     <combine-vote singlevote="{{ singleVote }}"></combine-vote>
-                    <div class="page-scroll floatingleft">
-                        <a href="#map" class="btn btn-circle">
+                    <!-- <div class="page-scroll floatingleft">
+                        <a href="../#map" class="btn btn-circle">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
-                    </div>
+                    </div> -->
             </section>
-        </core-collapse>    
+        <!-- </core-collapse>     -->
         
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publisheddata="{{ retrieved }}"></db-retrieve>
@@ -2833,11 +2822,11 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         <core-collapse id="collapseMap">
             <section id="map" class="intro p3">
                 <map-element class="chart" data="{{retrieved}}"></map-element>
-                <div class="page-scroll floatingleft">
-                    <a href="#stats" class="btn btn-circle">
+            <!--     <div class="page-scroll floatingleft">
+                    <a href="../#stats" class="btn btn-circle">
                         <i class="fa fa-angle-double-down animated"></i>
                     </a>
-                </div>
+                </div> -->
             </section>
         </core-collapse>
         
@@ -2860,7 +2849,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         Polymer('cth-housemouse', {
 
             singleVoteChanged: function(){
-                this.shadowRoot.querySelector('#collapseVote').toggle();
+                console.log('singleVote CHANGED!')
                 this.shadowRoot.querySelector('#collapseMap').toggle();
                 this.shadowRoot.querySelector('#collapseStats').toggle();
             },
