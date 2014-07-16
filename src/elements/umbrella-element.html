@@ -67,15 +67,15 @@
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
         
-        <core-collapse id="collapseCecking" duration="1">
-            <section class="consoleContainer">
-                <console-element id="consoled"></console-element>
+        <core-collapse id="collapseCecking" class="cCollapse" fixedsize duration="1">
+            <section id="map" class="intro p6">
+                <console-element id="consoled" class="polymerContent"></console-element>
             </section>
         </core-collapse>    
 
         <core-collapse class="cCollapse" id="collapseMap" fixedsize duration="4">
             <section id="map" class="intro p3">
-                <map-element class="polymerContent vCenter" data="{{retrieved}}"></map-element>
+                <map-element class="polymerContent" data="{{retrieved}}"></map-element>
             </section>
         </core-collapse>
         
@@ -154,8 +154,6 @@
             singleVoteChanged: function(){
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseCecking').toggle();
-
-                // launching the console function.
                 this.shadowRoot.querySelector('#consoled').toggle();
             }
 
