@@ -51,7 +51,6 @@ body {
     background-color: #E8E8E8 ;
 }
 
-
 .footerSection {
     text-align: center;
     font-family: NittyNormal;
@@ -72,22 +71,21 @@ body {
 }
 
 .cCollapse {
-    width:100%;
+    width: 100%;
     height: 100%;
 }
+
+/* Setting the fancy What does house mean logo*/
 
 .vAlign {
     display: table-cell;
     vertical-align: middle;
 }
 
-
-/* Setting the fancy What does house mean logo*/
-
 .logowrapper {
+    text-align: left;
     margin-left: 5%;
     width: 50%;
-    text-align: left;
     min-width: 300px;
 }
 
