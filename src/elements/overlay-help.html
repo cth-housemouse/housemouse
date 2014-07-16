@@ -1,34 +1,62 @@
+
+    <script src="../platform/platform.js"></script>
+    <link rel="import" href="../vendor/core-transition/core-transition-css.html">
+    <link rel="import" href="../vendor/core-overlay/core-overlay.html">
+
 <polymer-element name="overlay-help">
     <template>
         <style type="text/css">
+        .bigbox {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.4);
+            width: 350px;
+            height: 400px;
+            font-family: NittyNormal;
+            text-align: right;
+            overflow: scroll;
 
+            }   
+            a {
+            color: #E5CF39;
+            }
+        .help {
+            text-align: left;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            }
+
+        h1 {
+            margin-top: 50px;
+        }        
         </style> 
-           
-        <section>
-            <h1>Explanation</h1>
-            <p>
-            This website is a merge of two projects the Coding the Humanities students worked on. The first project was derived from the article 'Metaphor and Interdisciplinary analysis' by Humanities scholar Christina Schaeffner about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
-            </p>
+            <section class="bigbox">
+            <p class="help">.click on the image that is most closely related to your idea of a 'house'</p>
+            <p class="help">..click on three of the six icons</p>
+            <p class="help">...log in on facebook -only the country location will be retrieved to be inclued in the map</p>
 
-            <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U"> Link to Christina Schaeffner's 'Metaphor and Interdisciplinary Analysis'</a>
+
+            <h1>Some background info:</h1>
+            <p>
+            This website is a merge of two projects the Coding the Humanities students worked on. The first project was derived from <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
+            </p>
 
             <p>
             Gorbachev started a conversation with his colleague about Europe, comparing Europe to a house. His mental image of this house metaphor, however, was more of a Sovjet style apartment building in which every European country has its own apartment, whereas Von Weizsäcker's mental image resembled a family home more common in Germany, with a shared living room and multiple bedrooms. Consequently, the two state leaders had an interesting conversation with several misconceptions. The Common European House metaphor became part of the wider European political discourse, which it influenced greatly. 
             </p>
 
             <p>
-            The second project is about the Open Data website of the Dutch government set up to oblige the EU INSPIRE Directive, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe" (<a href="http://inspire.ec.europa.eu/">http://inspire.ec.europa.eu/</a>). The website of the Dutch government, however, is not operating as it should. This is what we wanted to show in the second project. 
+            The second project is about the Open Data website of the Dutch government set up to oblige the <a href="http://inspire.ec.europa.eu/">EU INSPIRE Directive</a>, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe". The website of the Dutch government, however, is not operating as it should. This is what we wanted to show in the second project. 
             </p>
 
             <p>
-            The three types of houses are part of the project that was derived from the Christina Schaeffner article mentioned above. You pick the image that is most closely related to your idea of a 'house'. When you log in with Facebook, the result of the input all over Europe will be shown on the map. Different colours will designate the type of house chosen most. 
+            When you log in with Facebook, the result of the input all over Europe will be shown on the map. Different colours will designate the type of house chosen most.
             </p>
 
             <p>
-            Of the six icons representing 'security', 'finance', 'transportation', 'health', 'family' and 'nature', you are to pick three. This will instigate a search through the open data of the Dutch government on https://data.overheid.nl/ for related terms. When you log in with Facebook, the result will show below in the shape of a bar, showing in percentages how many of the links are working, semi-working, and not working at all.
+            Of the six icons representing 'security', 'finance', 'transportation', 'health', 'family' and 'nature', you are to pick three. This will instigate a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. When you log in with Facebook, the result will show below in the shape of a bar, showing in percentages how many of the links are working, semi-working, and not working at all.
             </p>
+
         </section>
-
     </template>    
     <script>
     Polymer('overlay-help', {
