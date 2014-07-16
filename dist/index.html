@@ -1443,7 +1443,7 @@ Example:
 
             .consoleBox {
                 background-color: black;
-                height: 100%;
+                height: 70%;
                 width: 100%;
             }
 
@@ -1451,12 +1451,19 @@ Example:
                 height:100%;
                 width:100%;
 			    position: relative;
-			    top: 50px;
+			    /*top: 50px;*/
 			    color: white;
 			    font-family: NittyNormal;
+                text-align: left;
 			}
 			
-			p {
+            h1 {
+                background-color: black;
+                color:#E8E8E8;
+                font-family: NittyNormal;
+              }
+			
+            p {
 			    margin: 0;
 			    padding: 0;
 			    font-size: 18px;
@@ -1465,6 +1472,7 @@ Example:
 
 		</style>
 
+    <h1>Console_</h1>
 	<div class="consoleBox">
         <div id="consoleTextVote" class="consoleText"></div>
 	</div>
@@ -1505,9 +1513,9 @@ Example:
 
             function addConsoleTag() {
                 // making room for new value
-                newTop = newTop - 32;
-                var newTopPx = newTop + "px";
-                shadowRootFixConsole.querySelector('#consoleTextVote').style.top = newTopPx;
+                // newTop = newTop - 32;
+                // var newTopPx = newTop + "px";
+                // shadowRootFixConsole.querySelector('#consoleTextVote').style.top = newTopPx;
 
                 // adding the new one
                 var addition = "<p style=\"margin: 0 ;\">" + text[i] + "</p>";
@@ -2096,45 +2104,9 @@ Example:
   </script>
 </polymer-element>
 
-<polymer-element name="overlay-help" assetpath="elements/">
-    <template>
-        <style type="text/css">
 
-        </style> 
-           
-        <section>
-            <h1>Explanation</h1>
-            <p>
-            This website is a merge of two projects the Coding the Humanities students worked on. The first project was derived from the article 'Metaphor and Interdisciplinary analysis' by Humanities scholar Christina Schaeffner about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
-            </p>
-
-            <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U"> Link to Christina Schaeffner's 'Metaphor and Interdisciplinary Analysis'</a>
-
-            <p>
-            Gorbachev started a conversation with his colleague about Europe, comparing Europe to a house. His mental image of this house metaphor, however, was more of a Sovjet style apartment building in which every European country has its own apartment, whereas Von Weizsäcker's mental image resembled a family home more common in Germany, with a shared living room and multiple bedrooms. Consequently, the two state leaders had an interesting conversation with several misconceptions. The Common European House metaphor became part of the wider European political discourse, which it influenced greatly. 
-            </p>
-
-            <p>
-            The second project is about the Open Data website of the Dutch government set up to oblige the EU INSPIRE Directive, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe" (<a href="http://inspire.ec.europa.eu/">http://inspire.ec.europa.eu/</a>). The website of the Dutch government, however, is not operating as it should. This is what we wanted to show in the second project. 
-            </p>
-
-            <p>
-            The three types of houses are part of the project that was derived from the Christina Schaeffner article mentioned above. You pick the image that is most closely related to your idea of a 'house'. When you log in with Facebook, the result of the input all over Europe will be shown on the map. Different colours will designate the type of house chosen most. 
-            </p>
-
-            <p>
-            Of the six icons representing 'security', 'finance', 'transportation', 'health', 'family' and 'nature', you are to pick three. This will instigate a search through the open data of the Dutch government on https://data.overheid.nl/ for related terms. When you log in with Facebook, the result will show below in the shape of a bar, showing in percentages how many of the links are working, semi-working, and not working at all.
-            </p>
-        </section>
-
-    </template>    
-    <script>
-    Polymer('overlay-help', {
-
-    });
-    </script>
-</polymer-element>        
-<!--
+    <script src="platform/platform.js"></script>
+    <!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
@@ -2142,274 +2114,6 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
-<!--
-`core-collapse` creates a collapsible block of content.  By default, the content
-will be collapsed.  Use `opened` to show/hide the content.
-
-    <button on-click="{{toggle}}">toggle collapse</button>
-    
-    <core-collapse id="collapse"></core-collapse>
-      ...
-    </core-collapse>
-    
-    ...
-
-    toggle: function() {
-      this.$.collapse.toggle();
-    }
-
-@group Polymer Core Elements
-@element core-collapse
--->
-
-
-
-<style shim-shadowdom="">/*
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-
-html /deep/ core-collapse {
-  display: block;
-}
-
-html /deep/ .core-collapse-closed {
-  display: none;
-}
-</style>
-
-<polymer-element name="core-collapse" attributes="target horizontal opened duration fixedSize" assetpath="vendor/core-collapse/">
-<template>
-
-  <content></content>
-
-</template>
-<script>
-
-  Polymer('core-collapse', {
-    /**
-     * Fired when the target element has been resized as a result of the opened
-     * state changing.
-     * 
-     * @event core-resize
-    */
-
-    /**
-     * The target element.
-     *
-     * @attribute target
-     * @type object
-     * @default null
-     */
-    target: null,
-
-    /**
-     * If true, the orientation is horizontal; otherwise is vertical.
-     *
-     * @attribute horizontal
-     * @type boolean
-     * @default false
-     */
-    horizontal: false,
-
-    /**
-     * Set opened to true to show the collapse element and to false to hide it.
-     *
-     * @attribute opened
-     * @type boolean
-     * @default false
-     */
-    opened: false,
-
-    /**
-     * Collapsing/expanding animation duration in second.
-     *
-     * @attribute duration
-     * @type number
-     * @default 0.33
-     */
-    duration: 0.33,
-
-    /**
-     * If true, the size of the target element is fixed and is set
-     * on the element.  Otherwise it will try to 
-     * use auto to determine the natural size to use
-     * for collapsing/expanding.
-     *
-     * @attribute fixedSize
-     * @type boolean
-     * @default false
-     */
-    fixedSize: false,
-
-    created: function() {
-      this.transitionEndListener = this.transitionEnd.bind(this);
-    },
-    
-    ready: function() {
-      this.target = this.target || this;
-    },
-
-    domReady: function() {
-      this.async(function() {
-        this.afterInitialUpdate = true;
-      });
-    },
-
-    detached: function() {
-      if (this.target) {
-        this.removeListeners(this.target);
-      }
-    },
-
-    targetChanged: function(old) {
-      if (old) {
-        this.removeListeners(old);
-      }
-      if (!this.target) {
-        return;
-      }
-      this.isTargetReady = !!this.target;
-      this.classList.toggle('core-collapse-closed', this.target !== this);
-      this.target.style.overflow = 'hidden';
-      this.horizontalChanged();
-      this.addListeners(this.target);
-      // set core-collapse-closed class initially to hide the target
-      this.toggleClosedClass(true);
-      this.update();
-    },
-
-    addListeners: function(node) {
-      node.addEventListener('transitionend', this.transitionEndListener);
-    },
-
-    removeListeners: function(node) {
-      node.removeEventListener('transitionend', this.transitionEndListener);
-    },
-
-    horizontalChanged: function() {
-      this.dimension = this.horizontal ? 'width' : 'height';
-    },
-
-    openedChanged: function() {
-      this.update();
-    },
-
-    /**
-     * Toggle the opened state.
-     *
-     * @method toggle
-     */
-    toggle: function() {
-      this.opened = !this.opened;
-    },
-
-    setTransitionDuration: function(duration) {
-      var s = this.target.style;
-      s.transition = duration ? (this.dimension + ' ' + duration + 's') : null;
-      if (duration === 0) {
-        this.async('transitionEnd');
-      }
-    },
-
-    transitionEnd: function() {
-      if (this.opened && !this.fixedSize) {
-        this.updateSize('auto', null);
-      }
-      this.setTransitionDuration(null);
-      this.toggleClosedClass(!this.opened);
-      this.asyncFire('core-resize', null, this.target);
-    },
-
-    toggleClosedClass: function(closed) {
-      this.hasClosedClass = closed;
-      this.target.classList.toggle('core-collapse-closed', closed);
-    },
-
-    updateSize: function(size, duration, forceEnd) {
-      this.setTransitionDuration(duration);
-      this.calcSize();
-      var s = this.target.style;
-      var nochange = s[this.dimension] === size;
-      s[this.dimension] = size;
-      // transitonEnd will not be called if the size has not changed
-      if (forceEnd && nochange) {
-        this.transitionEnd();
-      }
-    },
-
-    update: function() {
-      if (!this.target) {
-        return;
-      }
-      if (!this.isTargetReady) {
-        this.targetChanged(); 
-      }
-      this.horizontalChanged();
-      this[this.opened ? 'show' : 'hide']();
-    },
-
-    calcSize: function() {
-      return this.target.getBoundingClientRect()[this.dimension] + 'px';
-    },
-
-    getComputedSize: function() {
-      return getComputedStyle(this.target)[this.dimension];
-    },
-
-    show: function() {
-      this.toggleClosedClass(false);
-      // for initial update, skip the expanding animation to optimize
-      // performance e.g. skip calcSize
-      if (!this.afterInitialUpdate) {
-        this.transitionEnd();
-        return;
-      }
-      if (!this.fixedSize) {
-        this.updateSize('auto', null);
-        var s = this.calcSize();
-        this.updateSize(0, null);
-      }
-      this.async(function() {
-        this.updateSize(this.size || s, this.duration, true);
-      });
-    },
-
-    hide: function() {
-      // don't need to do anything if it's already hidden
-      if (this.hasClosedClass && !this.fixedSize) {
-        return;
-      }
-      if (this.fixedSize) {
-        // save the size before hiding it
-        this.size = this.getComputedSize();
-      } else {
-        this.updateSize(this.calcSize(), null);
-      }
-      this.async(function() {
-        this.updateSize(0, this.duration);
-      });
-    }
-
-  });
-
-</script>
-</polymer-element>
-
-<!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 
 <!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2600,6 +2304,129 @@ Example:
     });
   </script>
 </polymer-element>
+
+<polymer-element name="core-transition-css" extends="core-transition" attributes="transitionType" assetpath="vendor/core-transition/">
+<template>
+  <style no-shim="">/* Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt */
+
+:host(.core-transition) {
+  outline: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out, opacity 0.2s ease-in;
+}
+
+
+:host(.core-transition.core-opened) {
+  opacity: 1;
+  transform: none;
+  -webkit-transform: none;
+}
+
+:host(.core-transition-center) {
+  transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+}
+
+:host(.core-transition-top) {
+  transform: translateY(-200%);
+  -webkit-transform: translateY(-200%);
+}
+
+:host(.core-transition-bottom) {
+  transform: translateY(200%);
+  -webkit-transform: translateY(200%);
+}
+
+:host(.core-transition-left) {
+  transform: translateX(-200%);
+  -webkit-transform: translateX(-200%);
+}
+
+:host(.core-transition-right) {
+  transform: translateX(200%);
+  -webkit-transform: translateX(200%);
+}</style>
+</template>
+<script>
+
+  Polymer('core-transition-css', {
+    
+    baseClass: 'core-transition',
+    openedClass: 'core-opened',
+    closedClass: 'core-closed',
+    completeEventName: 'transitionend',
+
+    registerCallback: function(element) {
+      this.transitionStyle = element.templateContent().firstElementChild;
+    },
+
+    // template is just for loading styles, we don't need a shadowRoot
+    fetchTemplate: function() {
+      return null;
+    },
+
+    go: function(node, state) {
+      if (state.opened !== undefined) {
+        this.transitionOpened(node, state.opened);
+      }
+    },
+
+    setup: function(node) {
+      if (!node._hasTransitionStyle) {
+        if (!node.shadowRoot) {
+          node.createShadowRoot().innerHTML = '<content></content>';
+        }
+        this.installScopeStyle(this.transitionStyle, 'transition',
+            node.shadowRoot);
+        node._hasTransitionStyle = true;
+        node.classList.add(this.baseClass);
+        if (this.transitionType) {
+          node.classList.add(this.baseClass + '-' + this.transitionType);
+        }
+      }
+    },
+
+    transitionOpened: function(node, opened) {
+      this.listenOnce(node, this.completeEventName, function() {
+        node.classList.toggle(this.revealedClass, opened);
+        if (!opened) {
+          node.classList.remove(this.closedClass);
+        }
+        this.complete(node);
+      });
+      node.classList.toggle(this.openedClass, opened);
+      node.classList.toggle(this.closedClass, !opened);
+    }
+
+  });
+</script>
+</polymer-element>
+
+<core-transition-css id="core-transition-fade"></core-transition-css>
+<core-transition-css id="core-transition-center" transitiontype="center"></core-transition-css>
+<core-transition-css id="core-transition-top" transitiontype="top"></core-transition-css>
+<core-transition-css id="core-transition-bottom" transitiontype="bottom"></core-transition-css>
+<core-transition-css id="core-transition-left" transitiontype="left"></core-transition-css>
+<core-transition-css id="core-transition-right" transitiontype="right"></core-transition-css>
+
+    <!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+
+
 <!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -3382,6 +3209,336 @@ Fired when the `core-overlay`'s `opened` property changes.
 })();
 </script>
 </polymer-element>
+
+
+<polymer-element name="overlay-help" assetpath="elements/">
+    <template>
+        <style type="text/css">
+        .bigbox {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.4);
+            width: 350px;
+            height: 400px;
+            font-family: NittyNormal;
+            text-align: right;
+            overflow: scroll;
+
+            }   
+            a {
+            color: #E5CF39;
+            }
+        .help {
+            text-align: left;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            }
+
+        h1 {
+            margin-top: 50px;
+        }        
+        </style> 
+            <section class="bigbox">
+            <p class="help">.click on the image that is most closely related to your idea of a 'house'</p>
+            <p class="help">..click on three of the six icons</p>
+            <p class="help">...log in on facebook -only the country location will be retrieved to be inclued in the map</p>
+
+
+            <h1>Some background info:</h1>
+            <p>
+            This website is a merge of two projects the Coding the Humanities students worked on. The first project was derived from <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
+            </p>
+
+            <p>
+            Gorbachev started a conversation with his colleague about Europe, comparing Europe to a house. His mental image of this house metaphor, however, was more of a Sovjet style apartment building in which every European country has its own apartment, whereas Von Weizsäcker's mental image resembled a family home more common in Germany, with a shared living room and multiple bedrooms. Consequently, the two state leaders had an interesting conversation with several misconceptions. The Common European House metaphor became part of the wider European political discourse, which it influenced greatly. 
+            </p>
+
+            <p>
+            The second project is about the Open Data website of the Dutch government set up to oblige the <a href="http://inspire.ec.europa.eu/">EU INSPIRE Directive</a>, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe". The website of the Dutch government, however, is not operating as it should. This is what we wanted to show in the second project. 
+            </p>
+
+            <p>
+            When you log in with Facebook, the result of the input all over Europe will be shown on the map. Different colours will designate the type of house chosen most.
+            </p>
+
+            <p>
+            Of the six icons representing 'security', 'finance', 'transportation', 'health', 'family' and 'nature', you are to pick three. This will instigate a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. When you log in with Facebook, the result will show below in the shape of a bar, showing in percentages how many of the links are working, semi-working, and not working at all.
+            </p>
+
+        </section>
+    </template>    
+    <script>
+    Polymer('overlay-help', {
+
+    });
+    </script>
+</polymer-element>        
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+`core-collapse` creates a collapsible block of content.  By default, the content
+will be collapsed.  Use `opened` to show/hide the content.
+
+    <button on-click="{{toggle}}">toggle collapse</button>
+    
+    <core-collapse id="collapse"></core-collapse>
+      ...
+    </core-collapse>
+    
+    ...
+
+    toggle: function() {
+      this.$.collapse.toggle();
+    }
+
+@group Polymer Core Elements
+@element core-collapse
+-->
+
+
+
+<style shim-shadowdom="">/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+html /deep/ core-collapse {
+  display: block;
+}
+
+html /deep/ .core-collapse-closed {
+  display: none;
+}
+</style>
+
+<polymer-element name="core-collapse" attributes="target horizontal opened duration fixedSize" assetpath="vendor/core-collapse/">
+<template>
+
+  <content></content>
+
+</template>
+<script>
+
+  Polymer('core-collapse', {
+    /**
+     * Fired when the target element has been resized as a result of the opened
+     * state changing.
+     * 
+     * @event core-resize
+    */
+
+    /**
+     * The target element.
+     *
+     * @attribute target
+     * @type object
+     * @default null
+     */
+    target: null,
+
+    /**
+     * If true, the orientation is horizontal; otherwise is vertical.
+     *
+     * @attribute horizontal
+     * @type boolean
+     * @default false
+     */
+    horizontal: false,
+
+    /**
+     * Set opened to true to show the collapse element and to false to hide it.
+     *
+     * @attribute opened
+     * @type boolean
+     * @default false
+     */
+    opened: false,
+
+    /**
+     * Collapsing/expanding animation duration in second.
+     *
+     * @attribute duration
+     * @type number
+     * @default 0.33
+     */
+    duration: 0.33,
+
+    /**
+     * If true, the size of the target element is fixed and is set
+     * on the element.  Otherwise it will try to 
+     * use auto to determine the natural size to use
+     * for collapsing/expanding.
+     *
+     * @attribute fixedSize
+     * @type boolean
+     * @default false
+     */
+    fixedSize: false,
+
+    created: function() {
+      this.transitionEndListener = this.transitionEnd.bind(this);
+    },
+    
+    ready: function() {
+      this.target = this.target || this;
+    },
+
+    domReady: function() {
+      this.async(function() {
+        this.afterInitialUpdate = true;
+      });
+    },
+
+    detached: function() {
+      if (this.target) {
+        this.removeListeners(this.target);
+      }
+    },
+
+    targetChanged: function(old) {
+      if (old) {
+        this.removeListeners(old);
+      }
+      if (!this.target) {
+        return;
+      }
+      this.isTargetReady = !!this.target;
+      this.classList.toggle('core-collapse-closed', this.target !== this);
+      this.target.style.overflow = 'hidden';
+      this.horizontalChanged();
+      this.addListeners(this.target);
+      // set core-collapse-closed class initially to hide the target
+      this.toggleClosedClass(true);
+      this.update();
+    },
+
+    addListeners: function(node) {
+      node.addEventListener('transitionend', this.transitionEndListener);
+    },
+
+    removeListeners: function(node) {
+      node.removeEventListener('transitionend', this.transitionEndListener);
+    },
+
+    horizontalChanged: function() {
+      this.dimension = this.horizontal ? 'width' : 'height';
+    },
+
+    openedChanged: function() {
+      this.update();
+    },
+
+    /**
+     * Toggle the opened state.
+     *
+     * @method toggle
+     */
+    toggle: function() {
+      this.opened = !this.opened;
+    },
+
+    setTransitionDuration: function(duration) {
+      var s = this.target.style;
+      s.transition = duration ? (this.dimension + ' ' + duration + 's') : null;
+      if (duration === 0) {
+        this.async('transitionEnd');
+      }
+    },
+
+    transitionEnd: function() {
+      if (this.opened && !this.fixedSize) {
+        this.updateSize('auto', null);
+      }
+      this.setTransitionDuration(null);
+      this.toggleClosedClass(!this.opened);
+      this.asyncFire('core-resize', null, this.target);
+    },
+
+    toggleClosedClass: function(closed) {
+      this.hasClosedClass = closed;
+      this.target.classList.toggle('core-collapse-closed', closed);
+    },
+
+    updateSize: function(size, duration, forceEnd) {
+      this.setTransitionDuration(duration);
+      this.calcSize();
+      var s = this.target.style;
+      var nochange = s[this.dimension] === size;
+      s[this.dimension] = size;
+      // transitonEnd will not be called if the size has not changed
+      if (forceEnd && nochange) {
+        this.transitionEnd();
+      }
+    },
+
+    update: function() {
+      if (!this.target) {
+        return;
+      }
+      if (!this.isTargetReady) {
+        this.targetChanged(); 
+      }
+      this.horizontalChanged();
+      this[this.opened ? 'show' : 'hide']();
+    },
+
+    calcSize: function() {
+      return this.target.getBoundingClientRect()[this.dimension] + 'px';
+    },
+
+    getComputedSize: function() {
+      return getComputedStyle(this.target)[this.dimension];
+    },
+
+    show: function() {
+      this.toggleClosedClass(false);
+      // for initial update, skip the expanding animation to optimize
+      // performance e.g. skip calcSize
+      if (!this.afterInitialUpdate) {
+        this.transitionEnd();
+        return;
+      }
+      if (!this.fixedSize) {
+        this.updateSize('auto', null);
+        var s = this.calcSize();
+        this.updateSize(0, null);
+      }
+      this.async(function() {
+        this.updateSize(this.size || s, this.duration, true);
+      });
+    },
+
+    hide: function() {
+      // don't need to do anything if it's already hidden
+      if (this.hasClosedClass && !this.fixedSize) {
+        return;
+      }
+      if (this.fixedSize) {
+        // save the size before hiding it
+        this.size = this.getComputedSize();
+      } else {
+        this.updateSize(this.calcSize(), null);
+      }
+      this.async(function() {
+        this.updateSize(0, this.duration);
+      });
+    }
+
+  });
+
+</script>
+</polymer-element>
+
 
     
 <polymer-element name="cth-housemouse" assetpath="elements/">
