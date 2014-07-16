@@ -1,5 +1,7 @@
-<!-- Webcomponents -->
 <link rel="import" href="../vendor/polymer/polymer.html">
+<link rel="import" href="../vendor/core-collapse/core-collapse.html">
+<link rel="import" href="../vendor/core-overlay/core-overlay.html">
+
 <link rel="import" href="combine-vote.html">
 <link rel="import" href="db-save.html">
 <link rel="import" href="db-retrieve.html">
@@ -7,14 +9,10 @@
 <link rel="import" href="map-element.html"> 
 <link rel="import" href="stat-widget.html">
 <link rel="import" href="overlay-help.html">
-<link rel="import" href="../vendor/core-collapse/core-collapse.html">
-<link rel="import" href="../vendor/core-overlay/core-overlay.html">
-    
-<polymer-element name="cth-housemouse">
 
+<polymer-element name="cth-housemouse">
     <template>
 
-		<!-- CSS -->
 		<link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css">
 		<link href="../styles/style.css" rel="stylesheet">
 
@@ -25,9 +23,10 @@
 		              <span class="light"></span>
 		            </a>
 		        </div>
-
 		        <div class="navrectangle ">
-                    <button on-click="{{ toggleOverlay }}" class="helpBoxButton">H<br>E<br>L<br>P</button>
+
+                    <button on-click="{{ toggleHelpOverlay }}" class="helpBoxButton">H<br>E<br>L<br>P</button>
+
 		            <ul class="nav navbar-nav">
 		                <li class="page-scroll bol">
 		                    <a href="../#page-top"></a>
@@ -45,24 +44,22 @@
 		                    <a href="../#stats"></a>
 		                </li>
 		            </ul>
-		         
 		        </div>
-
 		    </div>
 		</nav>  
         
-        <section class="mainSection p1">
+        <section class="mainSection sectionBanner">
             <div class="vAlign">
-                	<div class="logowrapper">
-                        <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
-				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
-				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
-				    </div>    
+            	<div class="logowrapper">
+                    <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
+			        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
+			        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
+			    </div>    
             </div>
         </section>
         
         <core-collapse id="collapseVote" class="cCollapse" fixedsize duration="2">
-            <section id="vote" class="mainSection p2">
+            <section id="vote" class="mainSection sectionVote">
                 <combine-vote class="polymerContent" singleVote="{{ singleVote }}"></combine-vote>
             </section>
         </core-collapse>
@@ -70,31 +67,31 @@
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
         
-        <core-collapse id="collapseCecking" class="cCollapse" fixedsize duration="1">
-            <section id="console" class="mainSection p6">
+        <core-collapse id="collapseConsole" class="cCollapse" fixedsize duration="2">
+            <section id="console" class="mainSection sectionConsole">
                 <console-element id="consoled" class="polymerContent"></console-element>
             </section>
         </core-collapse>    
 
-        <core-collapse class="cCollapse" id="collapseMap" fixedsize duration="4">
-            <section id="map" class="mainSection p3">
+        <core-collapse id="collapseMap" class="cCollapse" fixedsize duration="4">
+            <section id="map" class="mainSection sectionMap">
                 <map-element class="polymerContent" data="{{retrieved}}"></map-element>
             </section>
         </core-collapse>
         
-        <core-collapse class="cCollapse" id="collapseStats" fixedsize duration="4">
-            <section id="stats" class="mainSection p4">      
+        <core-collapse id="collapseStats" class="cCollapse" fixedsize duration="4">
+            <section id="stats" class="mainSection sectionStats">      
                 <stat-widget class="polymerContent" vote="{{ singleVote }}"></stat-widget>
             </section>
         </core-collapse>
 
-        <section class="p5">
-            <div class="footer">    
+        <section class="footerSection">
+            <div class="footerDiv">    
                 <a class="footerText" href="disclaimer.html"> Disclaimer_ </a> 
             </div>  
         </section>
 
-        <core-overlay id="overlay" layered backdrop transition="core-transition-center">
+        <core-overlay id="helpOverlay" layered backdrop transition="core-transition-center">
             <overlay-help></overlay-help>
         </core-overlay> 
 		
@@ -105,20 +102,16 @@
         Polymer('cth-housemouse', {
 
             ready: function() {
+                // Global umbrella shadowRootFix - Used often!
+                window.shadowRootFix = this.shadowRoot;
 
-                // Wrote a workarround to target our elements inside the shadowRoot correctly, its a dirty fix, but it works. Might be that another library would work better for our case. The animation isn't that complicated. 
-
+                // Workarroud ScrollReveal
                 window.workArroundScrollReveal = this.shadowRoot.querySelectorAll('[data-scroll-reveal]');
                 window.scrollReveal = new scrollReveal();
 
-                // Navbar workarround
-                // Global umbrella shadowRootFix - Used by bootstrap ScrollSpy for scrollbullets and others
-                window.shadowRootFix = this.shadowRoot;
-
-                // targetting the <a> tags within the pagescrollbullets for link URL
+                // Navbar linking and animation workarround.
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
 
-                // Makes clicking the links nicely animated
                 $(function() {
                     $(navSelector).bind('click', function(event) {
 
@@ -134,32 +127,27 @@
                     });
                 });
 
-                // showing the Vote element after the 3 sec's of the What does house mean animation.
-
+                // showing the Vote element after the 3 sec's of banneranimation.
                 function openVote() {
                     window.shadowRootFix.querySelector('#collapseVote').toggle();
                 };
-
                 setTimeout(openVote, 3000);
-
             },
 
-            toggleOverlay: function() {
-                // Toggeling the overlay on the help button, need if check because the id moves into 2 schadowroots on activation.
-                var toggle = window.shadowRootFix.querySelector('#overlay');
+            toggleHelpOverlay: function() {
+                // Toggeling the overlay on the help button.
+                var toggle = window.shadowRootFix.querySelector('#helpOverlay');
 
                 if (toggle != null) {
                     toggle.toggle();
                 };
-
             },
 
             singleVoteChanged: function(){
                 // toggeling the console after user votes.
-                this.shadowRoot.querySelector('#collapseCecking').toggle();
+                this.shadowRoot.querySelector('#collapseConsole').toggle();
                 this.shadowRoot.querySelector('#consoled').toggle();
             }
-
         });
         
     </script>
