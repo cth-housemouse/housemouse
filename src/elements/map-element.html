@@ -123,30 +123,28 @@
   <template>
     <style>
   
-      /*containers CSS*/
+      /*containers*/
 
       .completeMap {
-        display:table;
-        width: 80%;
+        width: 100%;
         height: 100%;
         margin: auto;
       }
 
+      .legendContainer {
+        margin: 10px auto;
+      }
+
       .mapcontainer {
-        display: table-cell;
-        height: auto;
         width: 100%;
         height:100%;
       }
 
-      .legendContainer {
-        display:table-cell;
-        padding: 10px;
-        width: 40%;
-        height: 100%;
-      }
+      /*SVG*/
 
-      /*SVG CSS*/
+      #mapID {
+        margin: 0 auto;
+      }
 
       .house {fill: #E5CF39;}
       .flat {fill: #E34D2F;}
@@ -158,7 +156,7 @@
         fill: lightblue;
       }
 
-      /*text CSS*/
+      /*text*/
 
       h1 {
         background-color: black;
@@ -166,18 +164,22 @@
         font-family: NittyNormal;
       }
 
-      /*legend CSS*/
+      /*legend*/
 
-      .biggerBlock {
-        margin: 20px;
+      .singleLegend {
+        display: inline-block;
+        margin: 10px;
       }
 
       .block {
-        height:30px;
-        width:30px;
+        height:4px;
+        width:100px;
         float: left;
-        border-radius: 50%;
-        border:solid 2px grey;
+        outline: 1px solid rgba(50, 50, 50, 0.20);
+        -webkit-box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+        -moz-box-shadow:    2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+        box-shadow:         2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+
       }
 
       .houseBlock {
@@ -192,24 +194,43 @@
         background-color: #75C7B3;
       }
 
+      .undecidedBlock {
+        background-color: pink;
+      }
+
+      .nodataBlock {
+        background-color: grey;
+      }
+      
+      p {
+        width: 100px;
+      }
+
     </style>
 
-    <h1>Comparison_</h1>
-
     <div class="completeMap">
-     
+      <h1>Comparison_</h1>
+
       <div class="legendContainer">
-        <div class="biggerBlock">
+        <div class="singleLegend">
           <div class="block houseBlock"></div>
-          <p>Family Home</p>
+          <p>Family</p>
         </div>
-        <div class="biggerBlock">
+        <div class="singleLegend">
           <div class="block flatBlock"></div>
-          <p>Appartment Building</p>
+          <p>Apartment</p>
         </div>
-        <div class="biggerBlock">     
+        <div class="singleLegend">     
           <div class="block farmBlock"></div>
-          <p>Rural Home</p>
+          <p>Rural</p>
+        </div>
+        <div class="singleLegend">
+          <div class="block undecidedBlock"></div>
+          <p>Apartment</p>
+        </div>
+        <div class="singleLegend">
+          <div class="block nodataBlock"></div>
+          <p>Apartment</p>
         </div>
       </div>
 
@@ -224,17 +245,8 @@
            width="100%"
            height="100%"
            viewBox="1754 161 9938 7945"
-           id="svg2">
+           id="mapID">
           <title id="title4">Coding the Humanities</title>
-          <metadata id="metadata82">
-            <rdf:RDF>
-              <cc:Work rdf:about="">
-                <dc:format>image/svg+xml</dc:format>
-                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <dc:title>Coding the Humanities</dc:title>
-              </cc:Work>
-            </rdf:RDF>
-          </metadata>
           <defs
              id="defs8"
              style="fill:none">

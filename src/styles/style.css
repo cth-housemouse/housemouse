@@ -38,6 +38,11 @@ body {
     height: 100%;
 }
 
+.vAlign {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 
 /* Setting the fancy What does house mean logo*/
 
@@ -329,12 +334,6 @@ a:focus {
 
 .footerText:hover {
     color:#E5CF39;
-}
-
-
-.intro-body {
-    display: table-cell;
-    vertical-align: middle;
 }
 
 .brand-heading {

@@ -2,9 +2,10 @@
 <link rel="import" href="../vendor/polymer/polymer.html">
 <link rel="import" href="combine-vote.html">
 <link rel="import" href="db-save.html">
-<link rel="import" href="db-retrieve.html"> 
+<link rel="import" href="db-retrieve.html">
+<link rel="import" href="console-element.html">
+<link rel="import" href="map-element.html"> 
 <link rel="import" href="stat-widget.html">
-<link rel="import" href="map-element.html">
 <link rel="import" href="overlay-help.html">
 <link rel="import" href="../vendor/core-collapse/core-collapse.html">
 <link rel="import" href="../vendor/core-overlay/core-overlay.html">
@@ -48,7 +49,7 @@
 		</nav>  
         
         <section class="intro p1">
-            <div class="intro-body">
+            <div class="vAlign">
                 	<div class="logowrapper">
                         <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
@@ -68,8 +69,7 @@
         
         <core-collapse id="collapseCecking" duration="1">
             <section class="consoleContainer">
-                <div id="consoleTextVote" class="consoleText">
-                </div>
+                <console-element id="consoled"></console-element>
             </section>
         </core-collapse>    
 
@@ -155,64 +155,8 @@
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseCecking').toggle();
 
-                // launching the consolefunction.
-                this.checkingData();
-            },
-
-            checkingData: function() {
-                // The console function!
-
-                var text = [
-                    "&lt;Connecting to database&gt;",
-                    "&lt;Uploading choices....&gt;",
-                    "&lt;Upload Done&gt;",
-                    "&lt;Downloading all user choices&gt;",
-                    "&lt;Calculating choices....&gt;",
-                    "&lt;Generating SVG map....&gt;",
-                    "&lt;Map Done&gt;",
-                    "&lt;Connecting to govermental database&gt;",
-                    "&lt;Downloading metadata&gt;",
-                    "&lt;ERROR - Missing script to calculate broken links&gt;",
-                    "&lt;Compensating with rough estimation&gt;",
-                    "&lt;Done&gt;",
-                    "&lt;display: block; animate: pretty;&gt;",
-                    "&lt;&#95;"
-                ];
-
-                var i = 0;
-                var newTop = 82;
-
-                function addConsoleTag() {
-                    // making room for new value
-                    newTop = newTop - 32;
-                    var newTopPx = newTop + "px";
-                    window.shadowRootFix.querySelector('#consoleTextVote').style.top = newTopPx;
-
-                    // adding the new one
-                    var addition = "<p style=\"margin: 0 ;\">" + text[i] + "</p>";
-                    window.shadowRootFix.querySelector('#consoleTextVote').innerHTML += addition;
-
-                    // opening the other elements on last addition
-                    if (i== text.length - 1) {
-                        window.shadowRootFix.querySelector('#collapseMap').toggle();
-                        window.shadowRootFix.querySelector('#collapseStats').toggle();
-                    }
-
-                    // making the timer a bit more random
-                    function getRandomInt(min, max) {
-                      return Math.floor(Math.random() * (max - min)) + min;
-                    }
-                    var randomTime = getRandomInt(100, 1500);
-
-                    // looping for the next call for this function.
-                    i++;
-                    if (i < text.length) {
-                        setTimeout(addConsoleTag, randomTime);
-                    };
-
-                };
-
-                addConsoleTag();
+                // launching the console function.
+                this.shadowRoot.querySelector('#consoled').toggle();
             }
 
         });
