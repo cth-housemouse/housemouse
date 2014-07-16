@@ -105,10 +105,21 @@
                 // Global umbrella shadowRootFix - Used often!
                 window.shadowRootFix = this.shadowRoot;
 
-                // Workarroud ScrollReveal
+                // ScrollReveal
                 window.workArroundScrollReveal = this.shadowRoot.querySelectorAll('[data-scroll-reveal]');
                 window.scrollReveal = new scrollReveal();
 
+                // Making the nav bullets work
+                this.navAnimatedLinks();
+
+                // showing the Vote element after the 3 sec's of banneranimation.
+                function openVote() {
+                    window.shadowRootFix.querySelector('#collapseVote').toggle();
+                };
+                setTimeout(openVote, 3000);
+            },
+
+            navAnimatedLinks: function() {
                 // Navbar linking and animation workarround.
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
 
@@ -126,12 +137,6 @@
                         event.preventDefault();
                     });
                 });
-
-                // showing the Vote element after the 3 sec's of banneranimation.
-                function openVote() {
-                    window.shadowRootFix.querySelector('#collapseVote').toggle();
-                };
-                setTimeout(openVote, 3000);
             },
 
             toggleHelpOverlay: function() {
