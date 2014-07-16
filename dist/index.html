@@ -1480,9 +1480,6 @@ Example:
 	</template>
 	<script>
     	Polymer('console-element', {
-    		ready: function(){
-    			console.log(this.toggle);
-    		},
 			toggle: function(){
   				this.checkingData();
 			}, 
@@ -1672,14 +1669,8 @@ Example:
 
   <template>
     <style>
-      
-/*    :host {
-        background-color: purple;
-        height: 100%;
-        width: 100%;
-      }*/
 
-      /*containers*/
+      /*Containers*/
 
       .legendContainer {
         margin: 10px auto;
