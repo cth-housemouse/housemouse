@@ -130,29 +130,21 @@
     <script>
         Polymer('cth-housemouse', {
 
-            singleVoteChanged: function(){
-                this.shadowRoot.querySelector('#collapseCecking').toggle();
-                this.checkingData();
-            },
-
             ready: function() {
+
                 // Wrote a workarround to target our elements inside the shadowRoot correctly, its a dirty fix, but it works. Might be that another library would work better for our case. The animation isn't that complicated. 
 
                 window.workArroundScrollReveal = this.shadowRoot.querySelectorAll('[data-scroll-reveal]');
-
-                // Normal call of scrollReveal
-
                 window.scrollReveal = new scrollReveal();
 
                 // Navbar workarround
-
-                //targetting the <a> tags within the pagescrollbullets
-                var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
-
-                // Global shadowRootFix
+                // Global umbrella shadowRootFix - Used by bootstrap ScrollSpy for scrollbullets and others
                 window.shadowRootFix = this.shadowRoot;
 
-                // jQuery for page scrolling feature - requires jQuery Easing plugin
+                // targetting the <a> tags within the pagescrollbullets for link URL
+                var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
+
+                // Makes clicking the links nicely animated
                 $(function() {
                     $(navSelector).bind('click', function(event) {
 
@@ -168,35 +160,53 @@
                     });
                 });
 
-                // calling the unwind of the Vote element
-
-                var shadowFix = this.shadowRoot;
+                // showing the Vote element after the 3 sec's of the What does house mean animation.
 
                 function openVote() {
-                    shadowFix.querySelector('#collapseVote').toggle();
+                    window.shadowRootFix.querySelector('#collapseVote').toggle();
                 };
 
                 setTimeout(openVote, 3000);
 
             },
+
+            toggleOverlay: function() {
+                // Toggeling the overlay on the help button, need if check because the id moves into 2 schadowroots on activation.
+                var toggle = window.shadowRootFix.querySelector('#overlay');
+
+                if (toggle != null) {
+                    toggle.toggle();
+                };
+
+            },
+
+            singleVoteChanged: function(){
+                // toggeling the console after user votes.
+                this.shadowRoot.querySelector('#collapseCecking').toggle();
+
+                // launching the consolefunction.
+                this.checkingData();
+            },
+
             checkingData: function() {
+                // The console function!
 
                 var text = [
-                    "&lt;Connection to database&gt;",
-                    "&lt;Uploading....&gt;",
+                    "&lt;Connecting to database&gt;",
+                    "&lt;Uploading choices....&gt;",
                     "&lt;Upload Done&gt;",
-                    "&lt;Downloading all userdata&gt;",
+                    "&lt;Downloading all user choices&gt;",
                     "&lt;Calculating choices....&gt;",
                     "&lt;Generating SVG map....&gt;",
                     "&lt;Map Done&gt;",
-                    "&lt;Connection to govermental database&gt;",
+                    "&lt;Connecting to govermental database&gt;",
                     "&lt;Downloading metadata&gt;",
-                    "&lt;Calculation Broken links&gt;",
+                    "&lt;ERROR - Missing script to calculate broken links&gt;",
+                    "&lt;Compensating with rough estimation&gt;",
                     "&lt;Done&gt;",
+                    "&lt;display: block; animate: pretty;&gt;",
                     "&lt;&#95;"
                 ];
-
-                var shadowFix = this.shadowRoot;
 
                 var i = 0;
                 var newTop = 82;
@@ -205,24 +215,25 @@
                     // making room for new value
                     newTop = newTop - 32;
                     var newTopPx = newTop + "px";
-                    shadowFix.querySelector('#consoleTextVote').style.top = newTopPx;
+                    window.shadowRootFix.querySelector('#consoleTextVote').style.top = newTopPx;
 
                     // adding the new one
                     var addition = "<p style=\"margin: 0 ;\">" + text[i] + "</p>";
-                    shadowFix.querySelector('#consoleTextVote').innerHTML += addition;
+                    window.shadowRootFix.querySelector('#consoleTextVote').innerHTML += addition;
 
-                    // opening the final
+                    // opening the other elements on last addition
                     if (i== text.length - 1) {
-                        shadowFix.querySelector('#collapseMap').toggle();
-                        shadowFix.querySelector('#collapseStats').toggle();
+                        window.shadowRootFix.querySelector('#collapseMap').toggle();
+                        window.shadowRootFix.querySelector('#collapseStats').toggle();
                     }
 
+                    // making the timer a bit more random
                     function getRandomInt(min, max) {
                       return Math.floor(Math.random() * (max - min)) + min;
                     }
-
                     var randomTime = getRandomInt(100, 1500);
 
+                    // looping for the next call for this function.
                     i++;
                     if (i < text.length) {
                         setTimeout(addConsoleTag, randomTime);
@@ -231,11 +242,7 @@
                 };
 
                 addConsoleTag();
-            },
-            toggleOverlay: function() {
-                this.shadowRoot.querySelector('#overlay').toggle(); 
             }
-
 
         });
         
