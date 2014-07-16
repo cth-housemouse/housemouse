@@ -109,7 +109,7 @@ img.logomeantoyou {
     margin-top: 1%;
 }
 
-/* setting up the helpBox*/
+/* setting up the helpBoxButton*/
 
 .helpBoxButton {
     background-color: transparent;
@@ -128,13 +128,6 @@ img.logomeantoyou {
     -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.59);
-}
-
-.helpBox {
-    display: block;
-    width: 500px;
-    height: 500px;
-    background: white;
 }
 
 /* The nice 4 nav bullets in the left corner*/
