@@ -26,11 +26,13 @@ a {
 .enterbutton {
   position: relative;
   left: 75%;
-  height: 50px;
-  width: 200px;
+  height: 75px;
+  width: 300px;
   background-color: black;
   color: #E5CF39;
-  font-size: large;
+  font-size: 25px;
+  margin-right: 50px;
+
 }
 
 .projectarea {
@@ -83,6 +85,11 @@ width:100%;
     width: 100%;
     height: auto;
 }
+.fb-like {
+  position: relative;
+  left: 10%;
+}
+
 .fb-like iframe{
   width:200px !important;
   height:100px !important;}

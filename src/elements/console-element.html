@@ -1,0 +1,111 @@
+<polymer-element name="console-element">
+	<template>
+		<style type="text/css">
+
+            .consoleBox {
+                background-color: black;
+                height: 70%;
+                width: 100%;
+            }
+
+			.consoleText {
+                height:100%;
+                width:100%;
+			    position: relative;
+			    /*top: 50px;*/
+			    color: white;
+			    font-family: NittyNormal;
+                text-align: left;
+			}
+			
+            h1 {
+                background-color: black;
+                color:#E8E8E8;
+                font-family: NittyNormal;
+              }
+			
+            p {
+			    margin: 0;
+			    padding: 0;
+			    font-size: 18px;
+			    line-height: 32px;
+			}
+
+		</style>
+
+    <h1>Console_</h1>
+	<div class="consoleBox">
+        <div id="consoleTextVote" class="consoleText"></div>
+	</div>
+
+	</template>
+	<script>
+    	Polymer('console-element', {
+    		ready: function(){
+    			console.log(this.toggle);
+    		},
+			toggle: function(){
+  				this.checkingData();
+			}, 
+    		checkingData: function() {
+            // The console function!
+
+            var text = [
+                "&lt;Connecting to database&gt;",
+                "&lt;Uploading choices....&gt;",
+                "&lt;Upload Done&gt;",
+                "&lt;Downloading all user choices&gt;",
+                "&lt;Calculating choices....&gt;",
+                "&lt;Generating SVG map....&gt;",
+                "&lt;Map Done&gt;",
+                "&lt;Connecting to govermental database&gt;",
+                "&lt;Downloading metadata&gt;",
+                "&lt;ERROR - Missing script to calculate broken links&gt;",
+                "&lt;Compensating with rough estimation&gt;",
+                "&lt;Done&gt;",
+                "&lt;display: block; animate: pretty;&gt;",
+                "&lt;&#95;"
+            ];
+
+            var i = 0;
+            var newTop = 82;
+
+            var shadowRootFixConsole = this.shadowRoot;
+
+            function addConsoleTag() {
+                // making room for new value
+                // newTop = newTop - 32;
+                // var newTopPx = newTop + "px";
+                // shadowRootFixConsole.querySelector('#consoleTextVote').style.top = newTopPx;
+
+                // adding the new one
+                var addition = "<p style=\"margin: 0 ;\">" + text[i] + "</p>";
+                shadowRootFixConsole.querySelector('#consoleTextVote').innerHTML += addition;
+
+                // opening the other elements on last addition
+                if (i== text.length - 1) {
+                    window.shadowRootFix.querySelector('#collapseMap').toggle();
+                    window.shadowRootFix.querySelector('#collapseStats').toggle();
+                };
+
+                // making the timer a bit more random
+                function getRandomInt(min, max) {
+                  return Math.floor(Math.random() * (max - min)) + min;
+                };
+
+                var randomTime = getRandomInt(100, 1500);
+
+                // looping for the next call for this function.
+                i++;
+                if (i < text.length) {
+                    setTimeout(addConsoleTag, randomTime);
+                };
+
+            };
+
+            addConsoleTag();
+        }
+    	});	
+    </script>
+
+</polymer-element>		
