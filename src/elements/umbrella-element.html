@@ -5,6 +5,7 @@
 <link rel="import" href="db-retrieve.html"> 
 <link rel="import" href="stat-widget.html">
 <link rel="import" href="map-element.html">
+<link rel="import" href="overlay-help.html">
 <link rel="import" href="../vendor/core-collapse/core-collapse.html">
 <link rel="import" href="../vendor/core-overlay/core-overlay.html">
     
@@ -12,15 +13,9 @@
 
     <template>
 
-		<!-- Bootstrap Core CSS -->
+		<!-- CSS -->
 		<link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css">
-
-		<!-- font for arrow -->
-        <link href="../styles/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-		<!-- Custom Theme CSS -->
 		<link href="../styles/style.css" rel="stylesheet">
-
 
 		<nav id="page-top" class="navbar navbar-custom  navbar-fixed-top  clearTransform" role="navigation">
 		    <div class="container">
@@ -58,35 +53,7 @@
                         <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1s" class="logohouse" src="../images/house.svg"/>
 				        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
-				    </div>
-
-                    <core-overlay id="overlay" layered backdrop transition="core-transition-center">
-                        <section>
-                            <h1>Explanation</h1>
-                            <p>
-                            This website is a merge of two projects the Coding the Humanities students worked on. The first project was derived from the article 'Metaphor and Interdisciplinary analysis' by Humanities scholar Christina Schaeffner about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
-                            </p>
-
-                            <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U"> Link to Christina Schaeffner's 'Metaphor and Interdisciplinary Analysis'</a>
-
-                            <p>
-                            Gorbachev started a conversation with his colleague about Europe, comparing Europe to a house. His mental image of this house metaphor, however, was more of a Sovjet style apartment building in which every European country has its own apartment, whereas Von Weizsäcker's mental image resembled a family home more common in Germany, with a shared living room and multiple bedrooms. Consequently, the two state leaders had an interesting conversation with several misconceptions. The Common European House metaphor became part of the wider European political discourse, which it influenced greatly. 
-                            </p>
-
-                            <p>
-                            The second project is about the Open Data website of the Dutch government set up to oblige the EU INSPIRE Directive, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe" (<a href="http://inspire.ec.europa.eu/">http://inspire.ec.europa.eu/</a>). The website of the Dutch government, however, is not operating as it should. This is what we wanted to show in the second project. 
-                            </p>
-
-                            <p>
-                            The three types of houses are part of the project that was derived from the Christina Schaeffner article mentioned above. You pick the image that is most closely related to your idea of a 'house'. When you log in with Facebook, the result of the input all over Europe will be shown on the map. Different colours will designate the type of house chosen most. 
-                            </p>
-
-                            <p>
-                            Of the six icons representing 'security', 'finance', 'transportation', 'health', 'family' and 'nature', you are to pick three. This will instigate a search through the open data of the Dutch government on https://data.overheid.nl/ for related terms. When you log in with Facebook, the result will show below in the shape of a bar, showing in percentages how many of the links are working, semi-working, and not working at all.
-                            </p>
-
-                        </section>
-                    </core-overlay>     
+				    </div>    
             </div>
         </section>
         
@@ -123,6 +90,10 @@
                 <a class="footerText" href="disclaimer.html"> Disclaimer_ </a> 
             </div>  
         </section>
+
+        <core-overlay id="overlay" layered backdrop transition="core-transition-center">
+            <overlay-help></overlay-help>
+        </core-overlay> 
 		
     </template>
     
