@@ -35,6 +35,9 @@
 		                <li class="page-scroll bol">
 		                    <a href="../#vote"></a>
 		                </li>
+                        <li class="page-scroll bol">
+                            <a href="../#console"></a>
+                        </li>
 		                <li class="page-scroll bol">
 		                    <a href="../#map"></a>
 		                </li>
@@ -48,7 +51,7 @@
 		    </div>
 		</nav>  
         
-        <section class="intro p1">
+        <section class="mainSection p1">
             <div class="vAlign">
                 	<div class="logowrapper">
                         <img data-scroll-reveal="enter from bottom 10px over .8s after 0.3s" class="logowhatdoes" src="../images/whatdoes.svg"/>
@@ -59,7 +62,7 @@
         </section>
         
         <core-collapse id="collapseVote" class="cCollapse" fixedsize duration="2">
-            <section id="vote" class="intro p2">
+            <section id="vote" class="mainSection p2">
                 <combine-vote class="polymerContent" singleVote="{{ singleVote }}"></combine-vote>
             </section>
         </core-collapse>
@@ -68,19 +71,19 @@
         <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
         
         <core-collapse id="collapseCecking" class="cCollapse" fixedsize duration="1">
-            <section id="map" class="intro p6">
+            <section id="console" class="mainSection p6">
                 <console-element id="consoled" class="polymerContent"></console-element>
             </section>
         </core-collapse>    
 
         <core-collapse class="cCollapse" id="collapseMap" fixedsize duration="4">
-            <section id="map" class="intro p3">
+            <section id="map" class="mainSection p3">
                 <map-element class="polymerContent" data="{{retrieved}}"></map-element>
             </section>
         </core-collapse>
         
         <core-collapse class="cCollapse" id="collapseStats" fixedsize duration="4">
-            <section id="stats" class="intro p4">      
+            <section id="stats" class="mainSection p4">      
                 <stat-widget class="polymerContent" vote="{{ singleVote }}"></stat-widget>
             </section>
         </core-collapse>
