@@ -1,0 +1,240 @@
+<polymer-element name="map-element">
+
+  <script>
+      Polymer('map-element', {
+          publish: {
+            data: {}
+          },
+          dataChanged: function() {
+
+            var mapStructuredVotes = [];
+
+            for (singleuser in this.data) {
+
+              mapStructuredVotes.push(this.data[singleuser]);
+            };
+
+            var votes = {};
+            
+            votes.permanent = mapStructuredVotes;
+
+            var countryCount = [
+              {country: "total", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "gl", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "is", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "pt", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "es", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "be", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "it", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "by", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "pl", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "gr", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "fi", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "de", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "se", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "no", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ua", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ie", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ch", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "at", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "cz", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "sk", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "hu", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "lt", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "lv", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "md", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ro", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "bg", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "al", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ee", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ad", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "sm", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "mc", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "lu", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "fr", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "li", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "nl", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ba", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "si", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "mk", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "hr", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "ru", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "gb+", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "va", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "mt", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "dk", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "cy", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "rs", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "me", houseType: "", flat: 0, house: 0, farm: 0},
+              {country: "Kosovo", houseType: "", flat: 0, house: 0, farm: 0}
+            ];
+
+            var votesTotal = votes.permanent.length;
+            var countryTotal = countryCount.length;
+
+            for (var i = 0; i < votesTotal; i++) {
+
+              for (var s = 1; s < countryTotal; s++) {
+
+                if (votes.permanent[i].country == countryCount[s].country) {
+                  if (votes.permanent[i].houseType == "flat") {
+                    countryCount[s].flat++;
+                  };
+                  if (votes.permanent[i].houseType == "house") {
+                    countryCount[s].house++;
+                  };
+                  if (votes.permanent[i].houseType == "farm") {
+                    countryCount[s].farm++;
+
+                  };
+                };
+              };
+            };
+
+            
+            for (var s = 0; s < countryTotal; s++) {
+
+                if (countryCount[s].flat > countryCount[s].house && countryCount[s].flat > countryCount[s].farm) {
+                    countryCount[s].houseType = "flat";
+                }
+                else if (countryCount[s].house > countryCount[s].flat && countryCount[s].house > countryCount[s].farm) {
+                    countryCount[s].houseType = "house";
+                }
+                else if (countryCount[s].farm > countryCount[s].flat && countryCount[s].farm > countryCount[s].house) {
+                    countryCount[s].houseType = "farm";
+                }
+                else if (countryCount[s].flat === 0 && countryCount[s].house === 0 && countryCount[s].farm === 0) {
+                    countryCount[s].houseType = "nodata";
+                } 
+                else {
+                    countryCount[s].houseType = "undecided";
+                }     
+
+            };
+
+            var svgSelected = this.shadowRoot.getElementById('svgContainer').contentDocument;
+
+            console.dir(svgSelected);
+
+            // It all works! well... except for one thing. CSS encapsulation, asigning classes now, but they dont break the object encapsulation. Could assign the fills directly with java, or need to figure out a way to break the encapsulation. 
+
+            for (var s = 1; s < countryTotal; s++) {
+                svgSelected.getElementById(countryCount[s].country).classList.add(countryCount[s].houseType);
+                console.log('asigned ' + countryCount[s].country + ' with class') 
+            };
+
+          }
+      });
+  </script>
+
+  <template>
+    <style>
+
+      /*Containers*/
+
+      .legendContainer {
+        margin: 10px auto;
+      }
+      
+      .mapContainer {
+        width: 80%;
+        height: 70%;
+        margin: 0 auto;
+        vertical-align: top;
+      }
+      /*SVG*/
+
+      .house {fill: #E5CF39;}
+      .flat {fill: #E34D2F;}
+      .farm {fill: #75C7B3;}
+      .undecided {fill: pink;}
+      .nodata {fill: grey;}
+
+      #ocean {
+        fill: lightblue;
+      }
+
+      /*text*/
+
+      h1 {
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
+      }
+
+      /*legend*/
+
+      .singleLegend {
+        display: inline-block;
+        margin: 10px;
+      }
+
+      .block {
+        height:4px;
+        width:100px;
+        float: left;
+        outline: 1px solid rgba(50, 50, 50, 0.20);
+        -webkit-box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+        -moz-box-shadow:    2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+        box-shadow:         2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+
+      }
+
+      .houseBlock {
+        background-color: #E5CF39;  
+      }
+      
+      .flatBlock {
+        background-color: #E34D2F;
+      }
+
+      .farmBlock {
+        background-color: #75C7B3;
+      }
+
+      .undecidedBlock {
+        background-color: pink;
+      }
+
+      .nodataBlock {
+        background-color: grey;
+      }
+      
+      p {
+        width: 100px;
+      }
+
+    </style>
+
+    <h1>Comparison_</h1>
+
+    <div class="legendContainer">
+      <div class="singleLegend">
+        <div class="block houseBlock"></div>
+        <p>Family</p>
+      </div>
+      <div class="singleLegend">
+        <div class="block flatBlock"></div>
+        <p>Apartment</p>
+      </div>
+      <div class="singleLegend">     
+        <div class="block farmBlock"></div>
+        <p>Rural</p>
+      </div>
+      <div class="singleLegend">
+        <div class="block undecidedBlock"></div>
+        <p>Undecided</p>
+      </div>
+      <div class="singleLegend">
+        <div class="block nodataBlock"></div>
+        <p>No Data</p>
+      </div>
+    </div>
+    
+    <div class="mapContainer">
+      <object id="svgContainer" data="../images/mapEurope.svg"></object>
+    </div>
+  </template>
+</polymer-element>
+
+
