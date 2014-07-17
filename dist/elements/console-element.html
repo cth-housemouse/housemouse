@@ -4,31 +4,27 @@
 
             .consoleBox {
                 background-color: rgba(0,0,0,0.9);
-                height: 70%;
+                height: 85vh;
                 width: 70%;
-                margin: 10% auto;
-                overflow-y: auto;
-                overflow-x: hidden;
-                /*border: 2px outset grey;*/
-                /*outline: 1px solid rgba(211,211,211,0.80);*/
+                margin: 5% auto;
+                border-radius: 2px;
+                overflow-y: scroll;
                 -webkit-box-shadow: 6px 6px 6px 0px rgba(50, 50, 50, 0.59);
                 -moz-box-shadow:    6px 6px 6px 0px rgba(50, 50, 50, 0.59);
                  box-shadow:        6px 6px 6px 0px rgba(50, 50, 50, 0.59);
-
             }
 
 			.consoleText {
-                height:100%;
-                width:100%;
-                padding: 0 5px;
+                height:98%;
+                width:98%;
+                margin: 1%;
 			    position: relative;
-			    /*top: 50px;*/
 			    color: #E0E0E0;
 			    font-family: "Consolas";
                 text-align: left;
 			}
            
-            div#consoleTextVote p:nth-child(14) {
+            div#consoleTextVote p:nth-child(21) {
                 color: rgba(255,0,0,1);
             }
 
@@ -56,26 +52,32 @@
 
                 @-moz-keyframes blinker {  
                     0% { opacity: 1.0; }
+                    5% {opacity: 0.0;}
                     50% { opacity: 0.0; }
+                    55% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
 
                 @-webkit-keyframes blinker {  
                     0% { opacity: 1.0; }
+                    5% {opacity: 0.0;}
                     50% { opacity: 0.0; }
+                    55% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
 
                 @keyframes blinker {  
                     0% { opacity: 1.0; }
+                    5% {opacity: 0.0;}
                     50% { opacity: 0.0; }
+                    55% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
                             }
 			
             p {
 			    margin: 0;
-			    padding: 10px;
+			    padding: 0;
 			    font-size: 18px;
 			    line-height: 18px;
 			}
@@ -97,21 +99,29 @@
 
             var text = [
                 "Open Facebook plug-in",
-                "Login to Facebook....;",
+                "Login to Facebook....",
                 "Facebook login succesful",
+                "Connecting to Facebook",
+                "Collecting data from Facebook",
+                "Retrieving country information....",
                 "Connecting to database",
                 "Uploading choices....",
                 "Upload Done",
-                "Retrieving country information....",
                 "Downloading all user choices",
                 "Calculating choices....",
                 "Generating SVG map....",
                 "Map Done",
+                "Show choice of house for each country",
+                "Retrieving concept choices...",
+                "Generating keywords for government database from concept choices",
                 "Connecting to govermental database",
+                "Submitting concept choices",
+                "Retrieving results from keywords....",
                 "Downloading metadata",
                 "ERROR - Missing script to calculate broken links",
-                "Compensating with rough estimation",
-                "Done",
+                "Compensating with rough estimation...",
+                "Generating bar chart...",
+                "Bar-chart Done",
                 "display: block; animate: pretty;",
                 "_"
             ];
@@ -124,10 +134,6 @@
             var shadowRootFixConsole = this.shadowRoot;
 
             function addConsoleTag() {
-                // making room for new value
-                // newTop = newTop - 32;
-                // var newTopPx = newTop + "px";
-                // shadowRootFixConsole.querySelector('#consoleTextVote').style.top = newTopPx;
 
                 // adding the new one
                 var addition = "<p style=\"margin: 0 ;\">" + text[i] + "</p>";
@@ -144,7 +150,7 @@
                   return Math.floor(Math.random() * (max - min)) + min;
                 };
 
-                var randomTime = getRandomInt(100, 120);
+                var randomTime = getRandomInt(100, 750);
 
                 // looping for the next call for this function.
                 i++;

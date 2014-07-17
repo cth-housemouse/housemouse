@@ -2689,31 +2689,27 @@ Example:
 
             .consoleBox {
                 background-color: rgba(0,0,0,0.9);
-                height: 70%;
+                height: 85vh;
                 width: 70%;
-                margin: 10% auto;
-                overflow-y: auto;
-                overflow-x: hidden;
-                /*border: 2px outset grey;*/
-                /*outline: 1px solid rgba(211,211,211,0.80);*/
+                margin: 5% auto;
+                border-radius: 2px;
+                overflow-y: scroll;
                 -webkit-box-shadow: 6px 6px 6px 0px rgba(50, 50, 50, 0.59);
                 -moz-box-shadow:    6px 6px 6px 0px rgba(50, 50, 50, 0.59);
                  box-shadow:        6px 6px 6px 0px rgba(50, 50, 50, 0.59);
-
             }
 
 			.consoleText {
-                height:100%;
-                width:100%;
-                padding: 0 5px;
+                height:98%;
+                width:98%;
+                margin: 1%;
 			    position: relative;
-			    /*top: 50px;*/
 			    color: #E0E0E0;
 			    font-family: "Consolas";
                 text-align: left;
 			}
            
-            div#consoleTextVote p:nth-child(14) {
+            div#consoleTextVote p:nth-child(21) {
                 color: rgba(255,0,0,1);
             }
 
@@ -2741,26 +2737,32 @@ Example:
 
                 @-moz-keyframes blinker {  
                     0% { opacity: 1.0; }
+                    5% {opacity: 0.0;}
                     50% { opacity: 0.0; }
+                    55% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
 
                 @-webkit-keyframes blinker {  
                     0% { opacity: 1.0; }
+                    5% {opacity: 0.0;}
                     50% { opacity: 0.0; }
+                    55% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
 
                 @keyframes blinker {  
                     0% { opacity: 1.0; }
+                    5% {opacity: 0.0;}
                     50% { opacity: 0.0; }
+                    55% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
                             }
 			
             p {
 			    margin: 0;
-			    padding: 10px;
+			    padding: 0;
 			    font-size: 18px;
 			    line-height: 18px;
 			}
@@ -2782,21 +2784,29 @@ Example:
 
             var text = [
                 "Open Facebook plug-in",
-                "Login to Facebook....;",
+                "Login to Facebook....",
                 "Facebook login succesful",
+                "Connecting to Facebook",
+                "Collecting data from Facebook",
+                "Retrieving country information....",
                 "Connecting to database",
                 "Uploading choices....",
                 "Upload Done",
-                "Retrieving country information....",
                 "Downloading all user choices",
                 "Calculating choices....",
                 "Generating SVG map....",
                 "Map Done",
+                "Show choice of house for each country",
+                "Retrieving concept choices...",
+                "Generating keywords for government database from concept choices",
                 "Connecting to govermental database",
+                "Submitting concept choices",
+                "Retrieving results from keywords....",
                 "Downloading metadata",
                 "ERROR - Missing script to calculate broken links",
-                "Compensating with rough estimation",
-                "Done",
+                "Compensating with rough estimation...",
+                "Generating bar chart...",
+                "Bar-chart Done",
                 "display: block; animate: pretty;",
                 "_"
             ];
@@ -2809,10 +2819,6 @@ Example:
             var shadowRootFixConsole = this.shadowRoot;
 
             function addConsoleTag() {
-                // making room for new value
-                // newTop = newTop - 32;
-                // var newTopPx = newTop + "px";
-                // shadowRootFixConsole.querySelector('#consoleTextVote').style.top = newTopPx;
 
                 // adding the new one
                 var addition = "<p style=\"margin: 0 ;\">" + text[i] + "</p>";
@@ -2829,7 +2835,7 @@ Example:
                   return Math.floor(Math.random() * (max - min)) + min;
                 };
 
-                var randomTime = getRandomInt(100, 120);
+                var randomTime = getRandomInt(100, 750);
 
                 // looping for the next call for this function.
                 i++;
@@ -3380,8 +3386,7 @@ Example:
   </script>
 </polymer-element>
 
-
-    <!--
+<!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
@@ -3503,72 +3508,98 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <core-transition-css id="core-transition-left" transitiontype="left"></core-transition-css>
 <core-transition-css id="core-transition-right" transitiontype="right"></core-transition-css>
 
-    
+
 
 <polymer-element name="overlay-help" assetpath="elements/">
     <template>
         <style type="text/css">
-        .bigbox {
-            display: block;
-            /*position: fixed;*/
-            /*right: 50px;
-            top: 100px;*/
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.4);
-            width: 350px;
-            height: 400px;
-            font-family: NittyNormal;
-            text-align: right;
-            overflow: scroll;
 
-            }   
-            a {
-            color: #E5CF39;
+            .container {
+                width: 100vw;
+                height: 100vh;
             }
-        .help {
-            text-align: left;
-            margin-top: 40px;
-            margin-bottom: 40px;
+
+            .bigbox {
+                display: block;
+                height: 70%;
+                width: 350px; /*chosen because of page min width*/
+
+                position:relative;
+                top:15%;
+                left:65%;
+                
+
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 5px;
+
+                
+                padding: 10px;
+                font-family: NittyNormal;
+                text-align: right;
+                overflow: scroll;
+                
+            }
+
+            a {
+                color: #E5CF39;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: #75C7B3;
+            }
+
+            .help {
+                width: 75%;
+                text-align: left;
+                margin: 0 20px; 
+            }
+
+            .results {
+                width: 75%;
+                position: relative;
+                left: 25%;
             }
 
             h1 {
-            margin-top: 50px;
-        }        
+                margin-top: 40px;
+                text-decoration: underline;
+            }
+
         </style> 
-            <section class="bigbox">
-            <p class="help">.click on the image that is most closely related to your idea of a 'house'</p>
-            <p class="help">..then click on three of the six icons</p>
-            <p class="help">...log in on facebook -only the country location will be retrieved</p>
+        
+        <div class="container">
+        <section class="bigbox">
+            <p class="help">First, click on the image most closely related to your idea of a 'house'. Then, choose three out of the six icons -these are tags used to initiate a search. Last, log in with Facebook -only the country location will be retrieved and presented on the map.</p>
+
+            <p class="results">The colours designate the type of house chosen most in a country. The icon concepts are meant to start off a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. After logging in with Facebook, the results appear in bars, showing links which are working, semi-working, or not working at all.
+            </p>
 
 
             <h1>Some background info:</h1>
             <p>
-            This website is a merge of two projects the Coding the Humanities students worked on. The first project was derived from the <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
+            This website is a merge of two projects Coding the Humanities students worked on. The first project derived from the <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
             </p>
 
             <p>
-            Gorbachev started a conversation with his colleague about Europe, comparing Europe to a house. His mental image of this house metaphor, however, was more of a Sovjet style apartment building in which every European country has its own apartment, whereas Von Weizsäcker's mental image resembled a family home more common in Germany, with a shared living room and multiple bedrooms. Consequently, the two state leaders had an interesting conversation with several misconceptions. The Common European House metaphor became part of the wider European political discourse, which it influenced greatly. 
+            Gorbachev started a conversation with his colleague about Europe, comparing Europe to a house. His mental image of this house metaphor, however, was more of a Sovjet style apartment building in which every European country has its own apartment, whereas Von Weizsäcker's idea of a house resembled a family home more common in Germany, with a shared living room and multiple bedrooms. Consequently, the two state leaders had an interesting conversation with several misconceptions. The Common European House metaphor became part of the wider European political discourse, which it influenced greatly. 
             </p>
 
             <p>
-            The second project is about the Open Data website of the Dutch government set up to oblige the <a href="http://inspire.ec.europa.eu/">EU INSPIRE Directive</a>, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe". The website of the Dutch government, however, is not operating as it should. This is what we wanted to show in the second project. 
+            The second project is about the Open Data website of the Dutch government set up to oblige the <a href="http://inspire.ec.europa.eu/">EU INSPIRE Directive</a>, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe". The website of the Dutch government however, is not operating as it should. This is what we wanted to show in the second part. 
             </p>
-
             <p>
-            When you log in with Facebook, the result of the input all over Europe will be shown on the map. Different colours will designate the type of house chosen most.
+            Given the very limited amount of time available to work on the whole project, we decided to use static data instead of dynamic for the sake of having a complete end result. The numbers used are very optimistic though. Should one take a closer look on the actual dynamic data, they may come up with a lot of <a href="https://twitter.com/Weyeser/status/439410248823357440">incosistencies and broken sets</a> which actually render the data inaccessible. 
             </p>
-
-            <p>
-            Of the six icons representing 'security', 'finance', 'transportation', 'health', 'family' and 'nature', you are to pick three. This will instigate a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. When you log in with Facebook, the result will show below in the shape of a bar, showing in percentages how many of the links are working, semi-working, and not working at all.
-            </p>
-
         </section>
-    </template>    
-    <script>
-    Polymer('overlay-help', {
+        </div>
 
-    });
-    </script>
+    </template>
+    <script>
+        Polymer('overlay-help', {
+
+        });
+    </script>    
 </polymer-element>        
 
 <polymer-element name="cth-housemouse" assetpath="elements/">
@@ -4152,7 +4183,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publisheddata="{{ retrieved }}"></db-retrieve>
         
-        <core-collapse id="collapseConsole" class="cCollapse" fixedsize="" duration="2">
+        <core-collapse id="collapseConsole" class="cCollapse" duration="2">
             <section id="console" class="mainSection sectionConsole">
                 <console-element id="consoled" class="polymerContent"></console-element>
             </section>
@@ -4176,7 +4207,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
             </div>  
         </section>
 
-        <core-overlay id="helpOverlay" layered="" backdrop="" transition="core-transition-center">
+        <core-overlay id="helpOverlay" layered="" transition="core-transition-center">
             <overlay-help></overlay-help>
         </core-overlay> 
 		
@@ -4208,16 +4239,16 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                 // Navbar linking and animation workarround.
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
 
+                self = this;
+
                 $(function() {
                     $(navSelector).bind('click', function(event) {
 
                         var cleanID = $(this).attr('href');
                         var targetSelector = window.shadowRootFix.querySelector(cleanID);
-                        var targetOffset = targetSelector.offsetTop;
+                        var targetOffset = targetSelector.offsetTop;  
 
-                        $('html, body').stop().animate({
-                            scrollTop: targetOffset
-                            }, 1500, 'easeInOutExpo');
+                        self.throwDown(targetOffset);
 
                         event.preventDefault();
                     });
@@ -4237,7 +4268,23 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseConsole').toggle();
                 this.shadowRoot.querySelector('#consoled').toggle();
+                setTimeout(this.inbetweenThrowDown, 500); 
+            },
+
+            throwDown: function(offsetRange) {
+                $('html, body').stop().animate({
+                    scrollTop: offsetRange
+                    }, 1500, 'easeInOutExpo');
+            },
+
+            inbetweenThrowDown: function() {
+                // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
+                var target = document.querySelector('cth-housemouse');
+                var consoleSelector = target.shadowRoot.querySelector('#console');
+                var consoleOffset = consoleSelector.offsetTop;
+                target.throwDown(consoleOffset);
             }
+
         });
         
     </script>

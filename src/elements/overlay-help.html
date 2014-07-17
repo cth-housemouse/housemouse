@@ -1,45 +1,66 @@
-
-    <link rel="import" href="../vendor/core-transition/core-transition-css.html">
-    <link rel="import" href="../vendor/core-overlay/core-overlay.html">
+<link rel="import" href="../vendor/core-transition/core-transition-css.html">
+<link rel="import" href="../vendor/core-overlay/core-overlay.html">
 
 <polymer-element name="overlay-help">
     <template>
         <style type="text/css">
-        .bigbox {
-            display: block;
-            padding: 10px;
-            /*background-color: rgba(0, 0, 0, 0.4);*/
-            width: 350px;
-            height: 450px;
-            font-family: NittyNormal;
-            text-align: right;
-            overflow: scroll;
-            }   
-            a {
-            color: #E5CF39;
-            text-decoration: none;
+
+            .container {
+                width: 100vw;
+                height: 100vh;
             }
+
+            .bigbox {
+                display: block;
+                height: 70%;
+                width: 350px; /*chosen because of page min width*/
+
+                position:relative;
+                top:15%;
+                left:65%;
+                
+
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 5px;
+
+                
+                padding: 10px;
+                font-family: NittyNormal;
+                text-align: right;
+                overflow: scroll;
+                
+            }
+
+            a {
+                color: #E5CF39;
+                text-decoration: none;
+            }
+
             a:hover {
                 color: #75C7B3;
             }
-        .help {
-            width: 280px;
-            text-align: left;
-            margin-top: 20px;
-            margin-bottom: 20px;
+
+            .help {
+                width: 75%;
+                text-align: left;
+                margin: 0 20px; 
             }
-        .results {
-            width: 280px;
-            position: relative;
-            left: 80px;
-        }
+
+            .results {
+                width: 75%;
+                position: relative;
+                left: 25%;
+            }
 
             h1 {
-            margin-top: 40px;
-            text-decoration: underline;
-        }        
+                margin-top: 40px;
+                text-decoration: underline;
+            }
+
         </style> 
-            <section class="bigbox">
+        
+        <div class="container">
+        <section class="bigbox">
             <p class="help">First, click on the image most closely related to your idea of a 'house'. Then, choose three out of the six icons -these are tags used to initiate a search. Last, log in with Facebook -only the country location will be retrieved and presented on the map.</p>
 
             <p class="results">The colours designate the type of house chosen most in a country. The icon concepts are meant to start off a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. After logging in with Facebook, the results appear in bars, showing links which are working, semi-working, or not working at all.
@@ -61,12 +82,13 @@
             <p>
             Given the very limited amount of time available to work on the whole project, we decided to use static data instead of dynamic for the sake of having a complete end result. The numbers used are very optimistic though. Should one take a closer look on the actual dynamic data, they may come up with a lot of <a href="https://twitter.com/Weyeser/status/439410248823357440">incosistencies and broken sets</a> which actually render the data inaccessible. 
             </p>
-
         </section>
-    </template>    
-    <script>
-    Polymer('overlay-help', {
+        </div>
 
-    });
-    </script>
+    </template>
+    <script>
+        Polymer('overlay-help', {
+
+        });
+    </script>    
 </polymer-element>        

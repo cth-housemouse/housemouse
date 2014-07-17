@@ -67,7 +67,7 @@
         <db-save combinedvote="{{ singleVote }}"></db-save>
         <db-retrieve publishedData="{{ retrieved }}"></db-retrieve>
         
-        <core-collapse id="collapseConsole" class="cCollapse" fixedsize duration="2">
+        <core-collapse id="collapseConsole" class="cCollapse" duration="2">
             <section id="console" class="mainSection sectionConsole">
                 <console-element id="consoled" class="polymerContent"></console-element>
             </section>
@@ -91,7 +91,7 @@
             </div>  
         </section>
 
-        <core-overlay id="helpOverlay" layered backdrop transition="core-transition-center">
+        <core-overlay id="helpOverlay" layered transition="core-transition-center">
             <overlay-help></overlay-help>
         </core-overlay> 
 		
@@ -123,16 +123,16 @@
                 // Navbar linking and animation workarround.
                 var navSelector = this.shadowRoot.querySelectorAll('.page-scroll a');
 
+                self = this;
+
                 $(function() {
                     $(navSelector).bind('click', function(event) {
 
                         var cleanID = $(this).attr('href');
                         var targetSelector = window.shadowRootFix.querySelector(cleanID);
-                        var targetOffset = targetSelector.offsetTop;
+                        var targetOffset = targetSelector.offsetTop;  
 
-                        $('html, body').stop().animate({
-                            scrollTop: targetOffset
-                            }, 1500, 'easeInOutExpo');
+                        self.throwDown(targetOffset);
 
                         event.preventDefault();
                     });
@@ -152,7 +152,23 @@
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseConsole').toggle();
                 this.shadowRoot.querySelector('#consoled').toggle();
+                setTimeout(this.inbetweenThrowDown, 500); 
+            },
+
+            throwDown: function(offsetRange) {
+                $('html, body').stop().animate({
+                    scrollTop: offsetRange
+                    }, 1500, 'easeInOutExpo');
+            },
+
+            inbetweenThrowDown: function() {
+                // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
+                var target = document.querySelector('cth-housemouse');
+                var consoleSelector = target.shadowRoot.querySelector('#console');
+                var consoleOffset = consoleSelector.offsetTop;
+                target.throwDown(consoleOffset);
             }
+
         });
         
     </script>
