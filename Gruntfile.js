@@ -59,6 +59,11 @@ module.exports = function(grunt) {
         src: 'platform/platform.js',
         dest: 'dist/vendor/platform.js'
       },
+      // for safari
+      platformMap: {
+        src: 'platform/platform.js.map',
+        dest: 'dist/vendor/platform.js.map'
+      },
       firebase: {
         src: 'firebase/firebase.js',
         dest: 'dist/vendor/firebase.js'
@@ -98,6 +103,16 @@ module.exports = function(grunt) {
       jquery: {
         src: 'jquery/dist/jquery.min.js',
         dest: 'dist/vendor/jquery.min.js'
+      },
+      // Safari requests
+      jqueryMap: {
+        src: 'jquery/dist/jquery.min.map',
+        dest: 'dist/vendor/jquery.min.map'
+      },
+      // also for safari
+      jquery: {
+        src: 'jquery/dist/jquery.js',
+        dest: 'dist/vendor/jquery.js'
       },
       jqueryEasingPlugin: {
         src: 'jquery.easing/js/jquery.easing.min.js',
