@@ -3,40 +3,83 @@
 		<style type="text/css">
 
             .consoleBox {
-                background-color: black;
+                background-color: rgba(0,0,0,0.9);
                 height: 70%;
                 width: 100%;
+                margin-top: 10%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                /*border: 2px outset grey;
+                outline: 1px solid rgba(50, 50, 50, 0.20);
+                -webkit-box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+                -moz-box-shadow:    2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+                 box-shadow:         2px 2px 2px 0px rgba(50, 50, 50, 0.59);*/
+
             }
 
 			.consoleText {
                 height:100%;
                 width:100%;
+                padding: 5px;
 			    position: relative;
 			    /*top: 50px;*/
 			    color: white;
 			    font-family: NittyNormal;
                 text-align: left;
 			}
-			
-            h1 {
-                background-color: black;
-                color:#E8E8E8;
-                font-family: NittyNormal;
-              }
+
+            div#consoleTextVote p:last-child {
+                -webkit-animation-delay: 1.5s; /* Safari and Chrome */
+                -moz-animation-delay: 1.5s;
+                animation-delay: 1.5s;
+                
+                -webkit-animation-name: blinker;
+                -webkit-animation-duration: 1s;
+                -webkit-animation-timing-function: linear;
+                -webkit-animation-iteration-count: infinite;
+
+                -moz-animation-name: blinker;
+                -moz-animation-duration: 1s;
+                -moz-animation-timing-function: linear;
+                -moz-animation-iteration-count: infinite;
+
+                animation-name: blinker;
+                animation-duration: 1s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+            }
+
+                @-moz-keyframes blinker {  
+                    0% { opacity: 1.0; }
+                    50% { opacity: 0.0; }
+                    100% { opacity: 1.0; }
+                }
+
+                @-webkit-keyframes blinker {  
+                    0% { opacity: 1.0; }
+                    50% { opacity: 0.0; }
+                    100% { opacity: 1.0; }
+                }
+
+                @keyframes blinker {  
+                    0% { opacity: 1.0; }
+                    50% { opacity: 0.0; }
+                    100% { opacity: 1.0; }
+                }
+                            }
 			
             p {
 			    margin: 0;
 			    padding: 0;
 			    font-size: 18px;
-			    line-height: 32px;
+			    line-height: 18px;
 			}
 
 		</style>
 
-    <h1>Console_</h1>
 	<div class="consoleBox">
         <div id="consoleTextVote" class="consoleText"></div>
-	</div>
+	</div> 
 
 	</template>
 	<script>
@@ -61,8 +104,10 @@
                 "&lt;Compensating with rough estimation&gt;",
                 "&lt;Done&gt;",
                 "&lt;display: block; animate: pretty;&gt;",
-                "&lt;&#95;"
+                "_"
             ];
+
+
 
             var i = 0;
             var newTop = 82;
