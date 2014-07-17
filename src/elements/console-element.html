@@ -28,7 +28,7 @@
                 text-align: left;
 			}
            
-            div#consoleTextVote p:nth-child(14) {
+            div#consoleTextVote p:nth-child(21) {
                 color: rgba(255,0,0,1);
             }
 
@@ -56,19 +56,25 @@
 
                 @-moz-keyframes blinker {  
                     0% { opacity: 1.0; }
-                    50% { opacity: 0.0; }
+                    20% {opacity: 0.0;}
+                    70% { opacity: 0.0; }
+                    90% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
 
                 @-webkit-keyframes blinker {  
-                    0% { opacity: 1.0; }
-                    50% { opacity: 0.0; }
+                     0% { opacity: 1.0; }
+                    20% {opacity: 0.0;}
+                    70% { opacity: 0.0; }
+                    90% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
 
                 @keyframes blinker {  
                     0% { opacity: 1.0; }
-                    50% { opacity: 0.0; }
+                    20% {opacity: 0.0;}
+                    70% { opacity: 0.0; }
+                    90% { opacity: 1.0}
                     100% { opacity: 1.0; }
                 }
                             }
@@ -97,22 +103,30 @@
 
             var text = [
                 "Open Facebook plug-in",
-                "Login to Facebook....;",
+                "Login to Facebook....",
                 "Facebook login succesful",
+                "Connecting to Facebook",
+                "Collecting data from Facebook",
+                "Retrieving country information....",
                 "Connecting to database",
                 "Uploading choices....",
                 "Upload Done",
-                "Retrieving country information....",
                 "Downloading all user choices",
                 "Calculating choices....",
                 "Generating SVG map....",
                 "Map Done",
+                "Show choice of house for each country",
+                "Retrieving concept choices...",
+                "Generating keywords for government database from concept choices",
                 "Connecting to govermental database",
+                "Submitting concept choices",
+                "Retrieving results from keywords....",
                 "Downloading metadata",
                 "ERROR - Missing script to calculate broken links",
                 "Compensating with rough estimation",
                 "Done",
-                "display: block; animate: pretty;",
+                "Generating bar chart",
+                "Bar chart Done",
                 "_"
             ];
 
@@ -144,7 +158,7 @@
                   return Math.floor(Math.random() * (max - min)) + min;
                 };
 
-                var randomTime = getRandomInt(100, 120);
+                var randomTime = getRandomInt(100, 1500);
 
                 // looping for the next call for this function.
                 i++;
