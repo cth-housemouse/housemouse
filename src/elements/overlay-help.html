@@ -7,56 +7,59 @@
         <style type="text/css">
         .bigbox {
             display: block;
-            /*position: fixed;*/
-            /*right: 50px;
-            top: 100px;*/
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.4);
+            /*background-color: rgba(0, 0, 0, 0.4);*/
             width: 350px;
-            height: 400px;
+            height: 450px;
             font-family: NittyNormal;
             text-align: right;
             overflow: scroll;
-
             }   
             a {
             color: #E5CF39;
+            text-decoration: none;
+            }
+            a:hover {
+                color: #75C7B3;
             }
         .help {
+            width: 280px;
             text-align: left;
-            margin-top: 40px;
-            margin-bottom: 40px;
+            margin-top: 20px;
+            margin-bottom: 20px;
             }
+        .results {
+            width: 280px;
+            position: relative;
+            left: 80px;
+        }
 
             h1 {
-            margin-top: 50px;
+            margin-top: 40px;
+            text-decoration: underline;
         }        
         </style> 
             <section class="bigbox">
-            <p class="help">.click on the image that is most closely related to your idea of a 'house'</p>
-            <p class="help">..then click on three of the six icons</p>
-            <p class="help">...log in on facebook -only the country location will be retrieved</p>
+            <p class="help">First, click on the image most closely related to your idea of a 'house'. Then, choose three out of the six icons -these are tags used to initiate a search. Last, log in with Facebook -only the country location will be retrieved and presented on the map.</p>
+
+            <p class="results">The colours designate the type of house chosen most in a country. The icon concepts are meant to start off a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. After logging in with Facebook, the results appear in bars, showing links which are working, semi-working, or not working at all.
+            </p>
 
 
             <h1>Some background info:</h1>
             <p>
-            This website is a merge of two projects the Coding the Humanities students worked on. The first project was derived from the <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
+            This website is a merge of two projects Coding the Humanities students worked on. The first project derived from the <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
             </p>
 
             <p>
-            Gorbachev started a conversation with his colleague about Europe, comparing Europe to a house. His mental image of this house metaphor, however, was more of a Sovjet style apartment building in which every European country has its own apartment, whereas Von Weizsäcker's mental image resembled a family home more common in Germany, with a shared living room and multiple bedrooms. Consequently, the two state leaders had an interesting conversation with several misconceptions. The Common European House metaphor became part of the wider European political discourse, which it influenced greatly. 
+            Gorbachev started a conversation with his colleague about Europe, comparing Europe to a house. His mental image of this house metaphor, however, was more of a Sovjet style apartment building in which every European country has its own apartment, whereas Von Weizsäcker's idea of a house resembled a family home more common in Germany, with a shared living room and multiple bedrooms. Consequently, the two state leaders had an interesting conversation with several misconceptions. The Common European House metaphor became part of the wider European political discourse, which it influenced greatly. 
             </p>
 
             <p>
-            The second project is about the Open Data website of the Dutch government set up to oblige the <a href="http://inspire.ec.europa.eu/">EU INSPIRE Directive</a>, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe". The website of the Dutch government, however, is not operating as it should. This is what we wanted to show in the second project. 
+            The second project is about the Open Data website of the Dutch government set up to oblige the <a href="http://inspire.ec.europa.eu/">EU INSPIRE Directive</a>, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe". The website of the Dutch government however, is not operating as it should. This is what we wanted to show in the second part. 
             </p>
-
             <p>
-            When you log in with Facebook, the result of the input all over Europe will be shown on the map. Different colours will designate the type of house chosen most.
-            </p>
-
-            <p>
-            Of the six icons representing 'security', 'finance', 'transportation', 'health', 'family' and 'nature', you are to pick three. This will instigate a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. When you log in with Facebook, the result will show below in the shape of a bar, showing in percentages how many of the links are working, semi-working, and not working at all.
+            Given the very limited amount of time available to work on the whole project, we decided to use static data instead of dynamic for the sake of having a complete end result. The numbers used are very optimistic though. Should one take a closer look on the actual dynamic data, they may come up with a lot of <a href="https://twitter.com/Weyeser/status/439410248823357440">incosistencies and broken sets</a> which actually render the data inaccessible. 
             </p>
 
         </section>
