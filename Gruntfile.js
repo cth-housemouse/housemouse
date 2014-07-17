@@ -101,18 +101,8 @@ module.exports = function(grunt) {
         dest: 'dist/vendor/firebase-element'
       },
       jquery: {
-        src: 'jquery/dist/jquery.min.js',
-        dest: 'dist/vendor/jquery.min.js'
-      },
-      // Safari requests
-      jqueryMap: {
-        src: 'jquery/dist/jquery.min.map',
-        dest: 'dist/vendor/jquery.min.map'
-      },
-      // also for safari
-      jquery: {
-        src: 'jquery/dist/jquery.js',
-        dest: 'dist/vendor/jquery.js'
+        src: 'jquery/dist/*',
+        dest: 'dist/vendor/jquery'
       },
       jqueryEasingPlugin: {
         src: 'jquery.easing/js/jquery.easing.min.js',

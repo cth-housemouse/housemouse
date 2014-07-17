@@ -13,12 +13,13 @@
             .bigbox {
                 display: block;
                 height: 70%;
-                width: 350px; /*chosen because of page min width*/
+                width: 30%; /*chosen because of page min width*/
 
                 position:relative;
                 top:15%;
-                left:65%;
+                margin: 0 auto;
                 
+                min-width: 350px;
 
                 background-color: rgba(0, 0, 0, 0.7);
                 border-radius: 5px;
@@ -29,6 +30,20 @@
                 text-align: right;
                 overflow: scroll;
                 
+            }
+
+            @media (min-width: 500px) {
+                .bigbox {
+                    left: 30%;
+                    margin: 0;
+                }
+            }
+
+            @media (min-width: 900px) {
+                .bigbox {
+                    left: 60%;
+                    margin: 0;
+                }
             }
 
             a {

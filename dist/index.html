@@ -1645,6 +1645,10 @@ Fired when the `core-overlay`'s `opened` property changes.
   <template>
       
       <style type="text/css">
+      
+      @font-face { font-family: NittyNormal; src: url(fonts/NN.woff) format('woff'); }
+      @font-face { font-family: NittyBold; src: url(fonts/NB.woff) format('woff'); }
+
 
       h1 {
         background-color: black;
@@ -2026,6 +2030,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
 
     <style type="text/css">
+      
+      @font-face { font-family: NittyNormal; src: url(fonts/NN.woff) format('woff'); }
+      @font-face { font-family: NittyBold; src: url(fonts/NB.woff) format('woff'); }
+
 
       h1 {
         background-color: black;
@@ -2064,6 +2072,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template>
     <style>
+      
+      @font-face { font-family: NittyNormal; src: url(fonts/NN.woff) format('woff'); }
+      @font-face { font-family: NittyBold; src: url(fonts/NB.woff) format('woff'); }
 
       h1 {
         background-color: black;
@@ -3180,8 +3191,8 @@ Example:
   <template>
       
    <style>
-      @font-face { font-family: NittyNormal; src: url(elements/fonts/NN.woff) format('woff'); }
-      @font-face { font-family: NittyBold; src: url(elements/fonts/NB.woff) format('woff'); }
+      @font-face { font-family: NittyNormal; src: url(fonts/NN.woff) format('woff'); }
+      @font-face { font-family: NittyBold; src: url(fonts/NB.woff) format('woff'); }
      
       div {
           font-family: NittyNormal;
@@ -3521,12 +3532,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             .bigbox {
                 display: block;
                 height: 70%;
-                width: 350px; /*chosen because of page min width*/
+                width: 30%; /*chosen because of page min width*/
 
                 position:relative;
                 top:15%;
-                left:65%;
+                margin: 0 auto;
                 
+                min-width: 350px;
 
                 background-color: rgba(0, 0, 0, 0.7);
                 border-radius: 5px;
@@ -3537,6 +3549,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 text-align: right;
                 overflow: scroll;
                 
+            }
+
+            @media (min-width: 500px) {
+                .bigbox {
+                    left: 30%;
+                    margin: 0;
+                }
+            }
+
+            @media (min-width: 900px) {
+                .bigbox {
+                    left: 60%;
+                    margin: 0;
+                }
             }
 
             a {
@@ -4140,7 +4166,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 		        </div>
 		        <div class="navrectangle ">
 
-                    <button on-click="{{ toggleHelpOverlay }}" class="helpBoxButton">H<br>E<br>L<br>P</button>
+                    <button id="helpButton" class="helpBoxButton">H<br>E<br>L<br>P</button>
 
 		            <ul class="nav navbar-nav">
 		                <li class="page-scroll bol">
@@ -4173,7 +4199,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
             </div>
         </section>
         
-        <core-collapse id="collapseVote" class="cCollapse" duration="2">
+        <core-collapse id="collapseVote" class="cCollapse" opened="" duration="2">
             <section id="vote" class="mainSection sectionVote">
                 <combine-vote class="polymerContent" singlevote="{{ singleVote }}"></combine-vote>
             </section>
@@ -4227,11 +4253,16 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                 // Making the nav bullets work
                 this.navAnimatedLinks();
 
+                var helpButton = this.shadowRoot.querySelector('#helpButton');
+                helpButton.addEventListener("click", this.toggleHelpOverlay, false);
+
+
+
                 // showing the Vote element after the 3 sec's of banneranimation.
                 function openVote() {
                     window.shadowRootFix.querySelector('#collapseVote').toggle();
                 };
-                setTimeout(openVote, 3000);
+                // setTimeout(openVote, 3000);
             },
 
             navAnimatedLinks: function() {
@@ -4291,7 +4322,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
     <style>
 
-      @font-face { font-family: NittyNormal; src: url(fonts/NN.woff) format('woff'); }
+      @font-face { font-family: NittyNormal; src: url(../fonts/NN.woff) format('woff'); }
       @font-face { font-family: NittyBold; src: url(../fonts/NB.woff) format('woff'); }
       
       html {
@@ -4317,10 +4348,10 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
   
      	<cth-housemouse></cth-housemouse>
 
-      <script src="vendor/jquery.min.js"></script> 
+      <script src="vendor/jquery/jquery.js"></script> 
       <script src="vendor/jquery.easing.min.js"></script> 
       <script src="scripts/CTH-VERSION-scrollReveal.js"></script>
-      <script src="scripts/CTH-VERSION-bootstrap.js"></script>  -->
+      <script src="scripts/CTH-VERSION-bootstrap.js"></script>
 
   </body>    
 </html>
