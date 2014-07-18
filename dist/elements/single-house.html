@@ -92,11 +92,6 @@
         console.log('im "self" in ready');
         console.log(self);
 
-        elem = this.shadowRoot.getElementById('highlightHouse');
-        elem.addEventListener("click", setType, false);
-
-        console.log('eventtigger Houses set!');
-
         function setType() {
 
           console.log('im "this" inside setType');
@@ -106,9 +101,15 @@
           console.log(self);
 
           self.houseType = self.image.type;
+
           console.log('set housetype CALLED');
           console.log(self.houseType)
         };
+
+        elem = this.shadowRoot.getElementById('highlightHouse');
+        elem.addEventListener('click', setType, false);
+
+        console.log('eventtigger Houses set!');
 
       },
       houseTypeChanged: function (){

@@ -157,7 +157,7 @@
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseConsole').toggle();
                 this.shadowRoot.querySelector('#consoled').toggle();
-                setTimeout(this.inbetweenThrowDown, 500); 
+                setTimeout(this.throwDownConsole, 500); 
             },
 
             throwDown: function(offsetRange) {
@@ -166,7 +166,7 @@
                     }, 1500, 'easeInOutExpo');
             },
 
-            inbetweenThrowDown: function() {
+            throwDownConsole: function() {
                 // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
                 var target = document.querySelector('cth-housemouse');
                 var consoleSelector = target.shadowRoot.querySelector('#console');

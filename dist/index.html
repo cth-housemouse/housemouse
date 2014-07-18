@@ -1639,11 +1639,6 @@ Fired when the `core-overlay`'s `opened` property changes.
         console.log('im "self" in ready');
         console.log(self);
 
-        elem = this.shadowRoot.getElementById('highlightHouse');
-        elem.addEventListener("click", setType, false);
-
-        console.log('eventtigger Houses set!');
-
         function setType() {
 
           console.log('im "this" inside setType');
@@ -1653,9 +1648,15 @@ Fired when the `core-overlay`'s `opened` property changes.
           console.log(self);
 
           self.houseType = self.image.type;
+
           console.log('set housetype CALLED');
           console.log(self.houseType)
         };
+
+        elem = this.shadowRoot.getElementById('highlightHouse');
+        elem.addEventListener('click', setType, false);
+
+        console.log('eventtigger Houses set!');
 
       },
       houseTypeChanged: function (){
@@ -4326,7 +4327,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseConsole').toggle();
                 this.shadowRoot.querySelector('#consoled').toggle();
-                setTimeout(this.inbetweenThrowDown, 500); 
+                setTimeout(this.throwDownConsole, 500); 
             },
 
             throwDown: function(offsetRange) {
@@ -4335,7 +4336,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                     }, 1500, 'easeInOutExpo');
             },
 
-            inbetweenThrowDown: function() {
+            throwDownConsole: function() {
                 // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
                 var target = document.querySelector('cth-housemouse');
                 var consoleSelector = target.shadowRoot.querySelector('#console');
@@ -4376,10 +4377,10 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
   
      	<cth-housemouse></cth-housemouse>
 
-      <script src="vendor/jquery/jquery.js"></script> 
-      <script src="vendor/jquery.easing.min.js"></script> 
-      <script src="scripts/CTH-VERSION-scrollReveal.js"></script>
-      <script src="scripts/CTH-VERSION-bootstrap.js"></script>
+      <!-- // <script src="./vendor/jquery/jquery.js"></script>  -->
+      <!-- // <script src="./vendor/jquery.easing.min.js"></script>  -->
+      <!-- // <script src="./scripts/CTH-VERSION-scrollReveal.js"></script> -->
+      <!-- // <script src="./scripts/CTH-VERSION-bootstrap.js"></script> -->
 
   </body>    
 </html>
