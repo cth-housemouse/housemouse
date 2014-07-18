@@ -1620,15 +1620,36 @@ Fired when the `core-overlay`'s `opened` property changes.
 
     </style>
 
-    <img id="highlightHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
+    <!-- <img id="highlightHouse" on-click="{{ setType }}" src="{{image.imageUrl}}"> -->
+    <img id="highlightHouse" src="{{image.imageUrl}}">
 
   </template>
 
   <script>
     Polymer('single-house', {
       houseType: "",
-      setType: function(){
-        this.houseType = this.image.type;
+      ready: function() {
+        // Nice scope issue's here with eventListener, targetting from up top is really brittle (no names may change). Can't do an easy self = this. Also can't attach to the window directly, creates a problem with read-only variables. 
+
+        var self = this;
+
+        console.log('im "self" inside setType');
+        console.log(self);
+
+        elem = this.shadowRoot.getElementById('highlightHouse');
+        elem.addEventListener("click", setType, false);
+        console.log('eventtigger Houses set!');
+
+        function setType() {
+
+        console.log('im "self" inside setType');
+        console.log(self);
+
+        self.houseType = self.image.type;
+
+        console.log('set housetype CALLED');
+        };
+
       },
       houseTypeChanged: function (){
         if (this.houseType == this.image.type) {
