@@ -44,41 +44,50 @@
     Polymer('single-concept', {
       chosenConcept: [],
       highlight: false,
-      setConcept: function(){
+      ready: function() {
 
-        // Fool push to work  
-        var selfChosenConcept = this.chosenConcept;
-        var notOneOfChosenConcepts = 0;
-        var totalConcepts = 0;
+        var self = this;
 
-        // Pushing and and no more than 3
+        function setConcept(){
 
-        if (this.chosenConcept.length == 0) {
-          selfChosenConcept.push(this.concept.name);
-        }
+          // Fool push to work  
+          var selfChosenConcept = self.chosenConcept;
+          var notOneOfChosenConcepts = 0;
+          var totalConcepts = 0;
 
-        for (var i = 0; i < this.chosenConcept.length; i++) {
-          
-          if (this.concept.name == this.chosenConcept[i]) {
-            // do nothing
-          } else {
-            notOneOfChosenConcepts++;
-          } 
-        }  
+          // Pushing and and no more than 3
 
-        var totalConcepts = this.chosenConcept.length;
-
-        if (notOneOfChosenConcepts == totalConcepts) {  
-          if (this.chosenConcept.length > 2) {
-              selfChosenConcept.splice(0,1);
-              selfChosenConcept.push(this.concept.name);
-          } else {
-          selfChosenConcept.push(this.concept.name);
+          if (self.chosenConcept.length == 0) {
+            selfChosenConcept.push(self.concept.name);
           }
-        }
-          
 
-                  
+          for (var i = 0; i < self.chosenConcept.length; i++) {
+            
+            if (self.concept.name == self.chosenConcept[i]) {
+              // do nothing
+            } else {
+              notOneOfChosenConcepts++;
+            } 
+          }  
+
+          var totalConcepts = self.chosenConcept.length;
+
+          if (notOneOfChosenConcepts == totalConcepts) {  
+            if (self.chosenConcept.length > 2) {
+                selfChosenConcept.splice(0,1);
+                selfChosenConcept.push(self.concept.name);
+            } else {
+            selfChosenConcept.push(self.concept.name);
+            }
+          }
+
+          // console.log(self.chosenConcept);
+
+        };
+
+        elem = this.shadowRoot.getElementById('highlight');
+        elem.addEventListener('click', setConcept, false);
+
       },
       chosenConceptChanged: function() {
         var notOneOfChosenConcepts = 0;
@@ -94,8 +103,6 @@
         if (notOneOfChosenConcepts == 3) {
           this.shadowRoot.getElementById('highlight').classList.remove('imgConceptChosen');
         } 
-
-
       }
     });
   </script>

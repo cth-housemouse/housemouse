@@ -82,34 +82,17 @@
     Polymer('single-house', {
       houseType: "",
       ready: function() {
-        // Nice scope issue's here with eventListener, targetting from up top is really brittle (no names may change). Can't do an easy self = this. Also can't attach to the window directly, creates a problem with read-only variables. 
-
-        console.log('im "this" in ready');
-        console.log(this);
 
         var self = this;
 
-        console.log('im "self" in ready');
-        console.log(self);
-
         function setType() {
-
-          console.log('im "this" inside setType');
-          console.log(this);
-
-          console.log('im "self" inside setType');
-          console.log(self);
-
           self.houseType = self.image.type;
-
-          console.log('set housetype CALLED');
+          console.log("im singlehouse")
           console.log(self.houseType)
         };
 
         elem = this.shadowRoot.getElementById('highlightHouse');
         elem.addEventListener('click', setType, false);
-
-        console.log('eventtigger Houses set!');
 
       },
       houseTypeChanged: function (){

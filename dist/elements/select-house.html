@@ -30,7 +30,11 @@
         {imageUrl: './images/house.png', type: "house"},
         {imageUrl: './images/apartment.png', type: "flat"},
         {imageUrl: './images/farm.png', type: "farm"}
-      ]
+      ],
+      houseTypeChanged: function() {
+        console.log('im select-house');
+        console.log(this.houseType);
+      }
     });
   </script>
 </polymer-element>

@@ -1629,34 +1629,17 @@ Fired when the `core-overlay`'s `opened` property changes.
     Polymer('single-house', {
       houseType: "",
       ready: function() {
-        // Nice scope issue's here with eventListener, targetting from up top is really brittle (no names may change). Can't do an easy self = this. Also can't attach to the window directly, creates a problem with read-only variables. 
-
-        console.log('im "this" in ready');
-        console.log(this);
 
         var self = this;
 
-        console.log('im "self" in ready');
-        console.log(self);
-
         function setType() {
-
-          console.log('im "this" inside setType');
-          console.log(this);
-
-          console.log('im "self" inside setType');
-          console.log(self);
-
           self.houseType = self.image.type;
-
-          console.log('set housetype CALLED');
+          console.log("im singlehouse")
           console.log(self.houseType)
         };
 
         elem = this.shadowRoot.getElementById('highlightHouse');
         elem.addEventListener('click', setType, false);
-
-        console.log('eventtigger Houses set!');
 
       },
       houseTypeChanged: function (){
@@ -1700,7 +1683,11 @@ Fired when the `core-overlay`'s `opened` property changes.
         {imageUrl: './images/house.png', type: "house"},
         {imageUrl: './images/apartment.png', type: "flat"},
         {imageUrl: './images/farm.png', type: "farm"}
-      ]
+      ],
+      houseTypeChanged: function() {
+        console.log('im select-house');
+        console.log(this.houseType);
+      }
     });
   </script>
 </polymer-element>
@@ -1998,41 +1985,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer('single-concept', {
       chosenConcept: [],
       highlight: false,
-      setConcept: function(){
+      ready: function() {
 
-        // Fool push to work  
-        var selfChosenConcept = this.chosenConcept;
-        var notOneOfChosenConcepts = 0;
-        var totalConcepts = 0;
+        var self = this;
 
-        // Pushing and and no more than 3
+        function setConcept(){
 
-        if (this.chosenConcept.length == 0) {
-          selfChosenConcept.push(this.concept.name);
-        }
+          // Fool push to work  
+          var selfChosenConcept = self.chosenConcept;
+          var notOneOfChosenConcepts = 0;
+          var totalConcepts = 0;
 
-        for (var i = 0; i < this.chosenConcept.length; i++) {
-          
-          if (this.concept.name == this.chosenConcept[i]) {
-            // do nothing
-          } else {
-            notOneOfChosenConcepts++;
-          } 
-        }  
+          // Pushing and and no more than 3
 
-        var totalConcepts = this.chosenConcept.length;
-
-        if (notOneOfChosenConcepts == totalConcepts) {  
-          if (this.chosenConcept.length > 2) {
-              selfChosenConcept.splice(0,1);
-              selfChosenConcept.push(this.concept.name);
-          } else {
-          selfChosenConcept.push(this.concept.name);
+          if (self.chosenConcept.length == 0) {
+            selfChosenConcept.push(self.concept.name);
           }
-        }
-          
 
-                  
+          for (var i = 0; i < self.chosenConcept.length; i++) {
+            
+            if (self.concept.name == self.chosenConcept[i]) {
+              // do nothing
+            } else {
+              notOneOfChosenConcepts++;
+            } 
+          }  
+
+          var totalConcepts = self.chosenConcept.length;
+
+          if (notOneOfChosenConcepts == totalConcepts) {  
+            if (self.chosenConcept.length > 2) {
+                selfChosenConcept.splice(0,1);
+                selfChosenConcept.push(self.concept.name);
+            } else {
+            selfChosenConcept.push(self.concept.name);
+            }
+          }
+
+          // console.log(self.chosenConcept);
+
+        };
+
+        elem = this.shadowRoot.getElementById('highlight');
+        elem.addEventListener('click', setConcept, false);
+
       },
       chosenConceptChanged: function() {
         var notOneOfChosenConcepts = 0;
@@ -2048,8 +2044,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (notOneOfChosenConcepts == 3) {
           this.shadowRoot.getElementById('highlight').classList.remove('imgConceptChosen');
         } 
-
-
       }
     });
   </script>
@@ -2229,12 +2223,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }, 
       chosenConceptChanged: function () {
+        console.log('I am combine-Vote');
+        console.log(this.chosenConcept);
         this.voteCombiner();
       },
       houseTypeChanged: function (){
+        console.log('I am combine-Vote');
+        console.log(this.houseType);
         this.voteCombiner();
       },
       userInfoChanged: function (){
+        console.log('I am combine-Vote');
+        console.log(this.userInfo);
         this.voteCombiner();
       }
     });
@@ -2866,6 +2866,7 @@ Example:
 
                 // opening the other elements on last addition
                 if (i== text.length - 1) {
+                    console.log('decollapsing map and stats')
                     window.shadowRootFix.querySelector('#collapseMap').toggle();
                     window.shadowRootFix.querySelector('#collapseStats').toggle();
                 };
@@ -4249,7 +4250,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
             </section>
         </core-collapse>
         
-        <core-collapse id="collapseStats" class="cCollapse" fixedsize="" duration="4">
+        <core-collapse id="collapseStats" class="cCollapse" duration="4">
             <section id="stats" class="mainSection sectionStats">      
                 <stat-widget class="polymerContent" vote="{{ singleVote }}"></stat-widget>
             </section>

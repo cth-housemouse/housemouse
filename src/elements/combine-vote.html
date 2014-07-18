@@ -34,12 +34,18 @@
         }
       }, 
       chosenConceptChanged: function () {
+        console.log('I am combine-Vote');
+        console.log(this.chosenConcept);
         this.voteCombiner();
       },
       houseTypeChanged: function (){
+        console.log('I am combine-Vote');
+        console.log(this.houseType);
         this.voteCombiner();
       },
       userInfoChanged: function (){
+        console.log('I am combine-Vote');
+        console.log(this.userInfo);
         this.voteCombiner();
       }
     });
