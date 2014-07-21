@@ -126,6 +126,26 @@ img.logomeantoyou {
     box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.59);
 }
 
+.infoButton {
+    background-color: transparent;
+    color: rgba(124, 124, 124, 0.9);
+    padding: 2px;
+    margin-left: -3px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: rgba(124, 124, 124, 0.5);
+    border-radius: 5px;
+    font-family: NittyNormal;
+    font-size: large;
+    line-height: 15px;
+    outline:none;
+
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.59);
+    -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.59);
+    box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.59);
+    }
+
+
 /* The nice 4 nav bullets in the left corner*/
 
 .navrectangle {
