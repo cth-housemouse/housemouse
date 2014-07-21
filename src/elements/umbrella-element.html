@@ -123,6 +123,10 @@
                 var helpButton = this.shadowRoot.querySelector('#helpButton');
                 helpButton.addEventListener("click", this.toggleHelpOverlay, false);
 
+                
+                var infoButton = this.shadowRoot.querySelector('#infoButton');
+                infoButton.addEventListener("click", this.toggleInfoOverlay, false);
+
 
 
                 // showing the Vote element after the 3 sec's of banneranimation.
@@ -155,6 +159,15 @@
             toggleHelpOverlay: function() {
                 // Toggeling the overlay on the help button.
                 var toggle = window.shadowRootFix.querySelector('#helpOverlay');
+
+                if (toggle != null) {
+                    toggle.toggle();
+                };
+            },
+
+            toggleInfoOverlay: function() {
+                // Toggeling the overlay on the help button.
+                var toggle = window.shadowRootFix.querySelector('#infoOverlay');
 
                 if (toggle != null) {
                     toggle.toggle();

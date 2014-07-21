@@ -255,7 +255,7 @@ img.logomeantoyou {
 }
 
 .infoButton {
-    color: rgba(124, 124, 124, 0.9);
+    color: rgba(45, 44, 42, 0.9);
     padding: 2px;
     margin-left: -3px;
     margin-bottom: 20px;
@@ -271,6 +271,7 @@ img.logomeantoyou {
     -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     }
+
 
 
 /* The nice 4 nav bullets in the left corner*/
