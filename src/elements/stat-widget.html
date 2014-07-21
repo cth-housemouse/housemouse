@@ -12,9 +12,60 @@
           font-family: NittyNormal;
         } 
 
+      p {
+        color: rgba(124, 124, 124, 0.7);
+        width: 100px;
+        }
+
+      .legendContainer {
+        margin: 10px auto;
+        }  
+
+      .singleLegend {
+        display: inline-block;
+        margin: 10px;
+      }
+
+      .block {
+        height:4px;
+        width:100px;
+        float: left;
+        outline: 1px solid rgba(50, 50, 50, 0.20);
+        -webkit-box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+        -moz-box-shadow:    2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+        box-shadow:         2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+
+      }
+
+      .validBlock {
+        background-color: #69a7dd;  
+      }
+      
+      .notfoundBlock {
+        background-color: #edbe36;
+      }
+
+      .invalidBlock {
+        background-color: #dd9169;
+      }
+
     </style>
 
       <h1>Available_data_</h1>
+
+      <div class="legendContainer">
+      <div class="singleLegend">
+        <div class="block validBlock"></div>
+        <p>Valid</p>
+      </div>
+      <div class="singleLegend">
+        <div class="block notfoundBlock"></div>
+        <p>Not Found</p>
+      </div>
+      <div class="singleLegend">     
+        <div class="block invalidBlock"></div>
+        <p>Invalid</p>
+      </div>
 
       <template repeat="{{ chosenConcepts in dataForStatBar }}">
         <stat-bar concept="{{ chosenConcepts }}"></stat-bar>
