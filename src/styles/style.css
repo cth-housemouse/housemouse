@@ -217,7 +217,6 @@ img.logomeantoyou {
 /* setting up the helpBoxButton*/
 
 .helpBoxButton {
-    background-color: transparent;
     color: rgba(45, 44, 42, 0.9);
     padding: 2px;
     margin-left: -3px;
@@ -235,8 +234,27 @@ img.logomeantoyou {
     box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.59);
 }
 
+.helpBoxButton::before {
+    content: url(../images/shimmer.png);
+    /*background-image: url(../images/shimmer.png);*/
+    position: absolute;
+    width: 14px;
+    height: 64px;
+    overflow: hidden;
+    left: -3px;
+    top: 60px;
+
+}
+
+.shimmer {
+    left: 100%;
+    -moz-transition: left .45s linear;
+    -o-transition: left .45s linear;
+    -webkit-transition: left .45s linear;
+    transition: left .45s linear;
+}
+
 .infoButton {
-    background-color: transparent;
     color: rgba(124, 124, 124, 0.9);
     padding: 2px;
     margin-left: -3px;
