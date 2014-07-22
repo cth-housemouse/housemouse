@@ -2814,7 +2814,7 @@ Example:
                 "Submitting concept choices",
                 "Retrieving results from keywords....",
                 "Downloading metadata",
-                "ERROR - Missing script to calculate broken links",
+                "ERROR: script not responding due to broken or dead links",
                 "Compensating with rough estimation...",
                 "Generating bar chart...",
                 "Bar-chart Done",
@@ -3609,7 +3609,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             }
 
-            @media (min-width: 900px) {
+            @media (min-width: 800px) {
+                .bigbox {
+                    left: 50%;
+                    margin: 0;
+                }
+            }
+
+            @media (min-width: 1100px) {
                 .bigbox {
                     left: 60%;
                     margin: 0;
@@ -3696,7 +3703,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             }
 
-            @media (min-width: 900px) {
+            @media (min-width: 800px) {
+                .bigbox {
+                    left: 50%;
+                    margin: 0;
+                }
+            }
+
+            @media (min-width: 1100px) {
                 .bigbox {
                     left: 60%;
                     margin: 0;
@@ -3962,6 +3976,10 @@ img.logomeantoyou {
   animation: bounce 2s infinite;
 }
 
+.hidingArrow {
+    display: none;
+}
+
 
 
 /* setting up the helpBoxButton*/
@@ -3972,7 +3990,7 @@ img.logomeantoyou {
     margin: 0 0 20px -6px;
     overflow:hidden;
     position: relative;
-    cursor: pointer ;
+    cursor: pointer;
 }
 
 .overlayButton {
@@ -4471,7 +4489,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 			        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="images/meantoyou.svg">
 			    </div>    
             </div>
-             <div class="arrow animated bounce"></div>
+             <div id="jumpyArrow" class="arrow bounce hidingArrow"></div>
         </section>
         
         <core-collapse id="collapseVote" class="cCollapse" duration="2">
@@ -4542,7 +4560,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                 infoButton.addEventListener("click", this.toggleInfoOverlay, false);
 
                 // Remove shimmer
-                setTimeout(this.autoShimmerRemove, 3000);
+                setTimeout(this.autoShimmerRemoveAddArrow, 3000);
 
                 // showing the Vote element after the 3 sec's of banneranimation.
                 function openVote() {
@@ -4606,20 +4624,20 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
             },
 
             consoleThrowDown: function() {
-                // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
+                // Apparently when calling with a setTimeout, 'this' become's window.
                 var target = document.querySelector('cth-housemouse');
                 var consoleSelectorOffset = target.shadowRoot.querySelector('#console').offsetTop;
                 target.throwDown(consoleSelectorOffset);
             },
 
-            autoShimmerRemove: function() {
-                // 'this' is very weird in this function too...
+            autoShimmerRemoveAddArrow: function() {
+                // Apparently when calling with a setTimeout, 'this' become's window.
                 var target = document.querySelector('cth-housemouse');
-                target.deeper = target.shadowRoot.querySelector('#helpShimmer');
-                console.log(target)
-                console.log(target.deeper)
-                console.log(target.deeper.classList)
-                target.deeper.classList.remove('autoShimmer');
+                target.shimmer = target.shadowRoot.querySelector('#helpShimmer');
+                target.shimmer.classList.remove('autoShimmer');
+
+                target.arrow = target.shadowRoot.querySelector('#jumpyArrow');
+                target.arrow.classList.remove('hidingArrow');
             }
 
         });

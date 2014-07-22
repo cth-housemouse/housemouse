@@ -211,6 +211,10 @@ img.logomeantoyou {
   animation: bounce 2s infinite;
 }
 
+.hidingArrow {
+    display: none;
+}
+
 
 
 /* setting up the helpBoxButton*/
@@ -221,7 +225,7 @@ img.logomeantoyou {
     margin: 0 0 20px -6px;
     overflow:hidden;
     position: relative;
-    cursor: pointer ;
+    cursor: pointer;
 }
 
 .overlayButton {

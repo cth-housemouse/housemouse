@@ -66,7 +66,7 @@
 			        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
 			    </div>    
             </div>
-             <div class="arrow animated bounce"></div>
+             <div id="jumpyArrow" class="arrow bounce hidingArrow"></div>
         </section>
         
         <core-collapse id="collapseVote" class="cCollapse" duration="2">
@@ -137,7 +137,7 @@
                 infoButton.addEventListener("click", this.toggleInfoOverlay, false);
 
                 // Remove shimmer
-                setTimeout(this.autoShimmerRemove, 3000);
+                setTimeout(this.autoShimmerRemoveAddArrow, 3000);
 
                 // showing the Vote element after the 3 sec's of banneranimation.
                 function openVote() {
@@ -201,20 +201,20 @@
             },
 
             consoleThrowDown: function() {
-                // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
+                // Apparently when calling with a setTimeout, 'this' become's window.
                 var target = document.querySelector('cth-housemouse');
                 var consoleSelectorOffset = target.shadowRoot.querySelector('#console').offsetTop;
                 target.throwDown(consoleSelectorOffset);
             },
 
-            autoShimmerRemove: function() {
-                // 'this' is very weird in this function too...
+            autoShimmerRemoveAddArrow: function() {
+                // Apparently when calling with a setTimeout, 'this' become's window.
                 var target = document.querySelector('cth-housemouse');
-                target.deeper = target.shadowRoot.querySelector('#helpShimmer');
-                console.log(target)
-                console.log(target.deeper)
-                console.log(target.deeper.classList)
-                target.deeper.classList.remove('autoShimmer');
+                target.shimmer = target.shadowRoot.querySelector('#helpShimmer');
+                target.shimmer.classList.remove('autoShimmer');
+
+                target.arrow = target.shadowRoot.querySelector('#jumpyArrow');
+                target.arrow.classList.remove('hidingArrow');
             }
 
         });
