@@ -3715,10 +3715,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style> 
 
         <div class="container">
-
         <section class="bigbox">
-            <p>
-            This website is a merge of two projects Coding the Humanities students worked on. The first project derived from the <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
+            <p>This website is a merge of two projects Coding the Humanities students worked on. The first project derived from the <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
             </p>
 
             <p>
@@ -3732,7 +3730,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             Given the very limited amount of time available to work on the whole project, we decided to use static instead of dynamic data for the sake of concluding to a result. The numbers used are very optimistic though. Should one take a closer look on the actual dynamic data, they may come up with a lot of <a href="https://twitter.com/Weyeser/status/439410248823357440">incosistencies and broken sets</a> which actually render the data inaccessible. 
             </p>
         </section>
-
         </div>
 
     </template>
@@ -4425,6 +4422,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                     <div class="shimmerItem"></div>
                     <div class="overlayButton">I<br>N<br>F<br>O</div>
                 </div>
+
                 <div id="helpButton" class="buttonContainer">
                     <div class="shimmerItem"></div>
                     <div class="overlayButton">H<br>E<br>L<br>P</div>
@@ -4558,19 +4556,21 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
             toggleHelpOverlay: function() {
                 // Toggeling the overlay on the help button.
-                var toggle = window.shadowRootFix.querySelector('#helpOverlay');
+                var toggle1 = window.shadowRootFix.querySelector('#infoOverlay');
+                var toggle2 = window.shadowRootFix.querySelector('#helpOverlay');
 
-                if (toggle != null) {
-                    toggle.toggle();
+                if (toggle1 != null && toggle2 != null) {
+                    toggle2.toggle();
                 };
             },
 
             toggleInfoOverlay: function() {
                 // Toggeling the overlay on the help button.
-                var toggle = window.shadowRootFix.querySelector('#infoOverlay');
+                var toggle1 = window.shadowRootFix.querySelector('#infoOverlay');
+                var toggle2 = window.shadowRootFix.querySelector('#helpOverlay');
 
-                if (toggle != null) {
-                    toggle.toggle();
+                if (toggle1 != null && toggle2 != null) {
+                    toggle1.toggle();
                 };
             },
 

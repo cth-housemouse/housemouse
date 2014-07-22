@@ -31,6 +31,7 @@
                     <div class="shimmerItem"></div>
                     <div class="overlayButton">I<br>N<br>F<br>O</div>
                 </div>
+
                 <div id="helpButton" class="buttonContainer">
                     <div class="shimmerItem"></div>
                     <div class="overlayButton">H<br>E<br>L<br>P</div>
@@ -164,19 +165,21 @@
 
             toggleHelpOverlay: function() {
                 // Toggeling the overlay on the help button.
-                var toggle = window.shadowRootFix.querySelector('#helpOverlay');
+                var toggle1 = window.shadowRootFix.querySelector('#infoOverlay');
+                var toggle2 = window.shadowRootFix.querySelector('#helpOverlay');
 
-                if (toggle != null) {
-                    toggle.toggle();
+                if (toggle1 != null && toggle2 != null) {
+                    toggle2.toggle();
                 };
             },
 
             toggleInfoOverlay: function() {
                 // Toggeling the overlay on the help button.
-                var toggle = window.shadowRootFix.querySelector('#infoOverlay');
+                var toggle1 = window.shadowRootFix.querySelector('#infoOverlay');
+                var toggle2 = window.shadowRootFix.querySelector('#helpOverlay');
 
-                if (toggle != null) {
-                    toggle.toggle();
+                if (toggle1 != null && toggle2 != null) {
+                    toggle1.toggle();
                 };
             },
 
