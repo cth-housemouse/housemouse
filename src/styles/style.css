@@ -250,15 +250,15 @@ img.logomeantoyou {
     height: 70px;   
     
     position: absolute;
-    top: -50px;
+    top: -65px;
 }
 
 .buttonContainer:hover .shimmerItem {
-    top: 45px;
-    -moz-transition: top .05s linear;
-    -o-transition: top .05s linear;
-    -webkit-transition: top .05s linear;
-    transition: top .05s linear;
+    top: 65px;
+    -moz-transition: top .40s linear;
+    -o-transition: top .40s linear;
+    -webkit-transition: top .40s linear;
+    transition: top .40s linear;
 }
 
 
