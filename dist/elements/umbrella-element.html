@@ -33,7 +33,7 @@
                 </div>
 
                 <div id="helpButton" class="buttonContainer">
-                    <div class="shimmerItem"></div>
+                    <div id="helpShimmer" class="shimmerItem autoShimmer"></div>
                     <div class="overlayButton">H<br>E<br>L<br>P</div>
                 </div>
 
@@ -69,7 +69,7 @@
              <div class="arrow animated bounce"></div>
         </section>
         
-        <core-collapse id="collapseVote" class="cCollapse" opened duration="2">
+        <core-collapse id="collapseVote" class="cCollapse" duration="2">
             <section id="vote" class="mainSection sectionVote">
                 <combine-vote class="polymerContent" singleVote="{{ singleVote }}"></combine-vote>
             </section>
@@ -127,6 +127,8 @@
                 // Making the nav bullets work
                 this.navAnimatedLinks();
 
+
+                //set evenlisteners
                 var helpButton = this.shadowRoot.querySelector('#helpButton');
                 helpButton.addEventListener("click", this.toggleHelpOverlay, false);
 
@@ -134,11 +136,15 @@
                 var infoButton = this.shadowRoot.querySelector('#infoButton');
                 infoButton.addEventListener("click", this.toggleInfoOverlay, false);
 
+                // Remove shimmer
+                setTimeout(this.autoShimmerRemove, 3000);
+
                 // showing the Vote element after the 3 sec's of banneranimation.
                 function openVote() {
                     window.shadowRootFix.querySelector('#collapseVote').toggle();
                 };
-                // setTimeout(openVote, 3000);
+
+                setTimeout(openVote, 3000);
             },
 
             navAnimatedLinks: function() {
@@ -185,7 +191,7 @@
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseConsole').toggle();
                 this.shadowRoot.querySelector('#consoled').toggle();
-                setTimeout(this.inbetweenThrowDown, 500); 
+                setTimeout(this.consoleThrowDown, 500); 
             },
 
             throwDown: function(offsetRange) {
@@ -194,11 +200,21 @@
                     }, 1500, 'easeInOutExpo');
             },
 
-            inbetweenThrowDown: function() {
+            consoleThrowDown: function() {
                 // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
                 var target = document.querySelector('cth-housemouse');
                 var consoleSelectorOffset = target.shadowRoot.querySelector('#console').offsetTop;
                 target.throwDown(consoleSelectorOffset);
+            },
+
+            autoShimmerRemove: function() {
+                // 'this' is very weird in this function too...
+                var target = document.querySelector('cth-housemouse');
+                target.deeper = target.shadowRoot.querySelector('#helpShimmer');
+                console.log(target)
+                console.log(target.deeper)
+                console.log(target.deeper.classList)
+                target.deeper.classList.remove('autoShimmer');
             }
 
         });

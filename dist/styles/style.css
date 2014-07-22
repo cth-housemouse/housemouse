@@ -266,15 +266,15 @@ img.logomeantoyou {
 
 .autoShimmer {
     -webkit-animation-name: shimmering;
-    -webkit-animation-duration: 200ms;
+    -webkit-animation-duration: 2000ms;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
 }
 
 @-webkit-keyframes shimmering {
-    0% { -webkit-transition: left .20s linear; }
-    50% { -webkit-transition: left .20s linear; }
-    100% { -webkit-transition: left .20s linear; }
+    0% { left:-24px;}
+    10% { left:24px;}
+    100% { left:24px;}
 }
 
 
