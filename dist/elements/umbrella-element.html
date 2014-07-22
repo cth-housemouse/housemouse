@@ -9,6 +9,8 @@
 <link rel="import" href="map-element.html"> 
 <link rel="import" href="stat-widget.html">
 <link rel="import" href="overlay-help.html">
+<link rel="import" href="overlay-info.html">
+
 
 <polymer-element name="cth-housemouse">
     <template>
@@ -25,7 +27,14 @@
 		        </div>
 		        <div class="navrectangle ">
 
-                    <button id="helpButton" class="helpBoxButton">H<br>E<br>L<br>P</button>
+                <div class="buttonContainer">
+                    <div class="shimmerItem"></div>
+                    <button id="infoButton" class="overlayButton">I<br>N<br>F<br>O</button>
+                </div>
+                <div class="buttonContainer">
+                    <div class="shimmerItem"></div>
+                    <button id="helpButton" class="overlayButton">H<br>E<br>L<br>P</button>
+                </div>
 
 		            <ul class="nav navbar-nav">
 		                <li class="page-scroll bol">
@@ -56,6 +65,7 @@
 			        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="../images/meantoyou.svg"/>
 			    </div>    
             </div>
+             <div class="arrow animated bounce"></div>
         </section>
         
         <core-collapse id="collapseVote" class="cCollapse" opened duration="2">
@@ -94,6 +104,10 @@
         <core-overlay id="helpOverlay" layered transition="core-transition-center">
             <overlay-help></overlay-help>
         </core-overlay> 
+
+        <core-overlay id="infoOverlay" layered transition="core-transition-center">
+            <overlay-info></overlay-info>
+        </core-overlay> 
 		
     </template>
     
@@ -114,6 +128,10 @@
 
                 var helpButton = this.shadowRoot.querySelector('#helpButton');
                 helpButton.addEventListener("click", this.toggleHelpOverlay, false);
+
+                
+                var infoButton = this.shadowRoot.querySelector('#infoButton');
+                infoButton.addEventListener("click", this.toggleInfoOverlay, false);
 
 
 
@@ -153,6 +171,15 @@
                 };
             },
 
+            toggleInfoOverlay: function() {
+                // Toggeling the overlay on the help button.
+                var toggle = window.shadowRootFix.querySelector('#infoOverlay');
+
+                if (toggle != null) {
+                    toggle.toggle();
+                };
+            },
+
             singleVoteChanged: function(){
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseConsole').toggle();
@@ -169,9 +196,8 @@
             inbetweenThrowDown: function() {
                 // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
                 var target = document.querySelector('cth-housemouse');
-                var consoleSelector = target.shadowRoot.querySelector('#console');
-                var consoleOffset = consoleSelector.offsetTop;
-                target.throwDown(consoleOffset);
+                var consoleSelectorOffset = target.shadowRoot.querySelector('#console').offsetTop;
+                target.throwDown(consoleSelectorOffset);
             }
 
         });

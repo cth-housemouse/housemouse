@@ -2141,7 +2141,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <h1>Extra_info_</h1>
+    <h1>Authenticate_</h1>
   	
     <img src="images/fb.png" class="loginButton" name="facebook-login" on-click="{{login}}">
 
@@ -2796,7 +2796,7 @@ Example:
             var text = [
                 "Open Facebook plug-in",
                 "Login to Facebook....",
-                "Facebook login succesful",
+                "Facebook login successful",
                 "Connecting to Facebook",
                 "Collecting data from Facebook",
                 "Retrieving country information....",
@@ -3074,7 +3074,7 @@ Example:
 
     </style>
 
-    <h1>Comparison_</h1>
+    <h1>Type_per_country_</h1>
 
     <div class="legendContainer">
       <div class="singleLegend">
@@ -3333,15 +3333,66 @@ Example:
           font-family: NittyNormal;
         } 
 
+      p {
+        color: rgba(124, 124, 124, 0.7);
+        width: 100px;
+        }
+
+      .legendContainer {
+        margin: 10px auto;
+        }  
+
+      .singleLegend {
+        display: inline-block;
+        margin: 10px;
+      }
+
+      .block {
+        height:4px;
+        width:100px;
+        float: left;
+        outline: 1px solid rgba(50, 50, 50, 0.20);
+        -webkit-box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+        -moz-box-shadow:    2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+        box-shadow:         2px 2px 2px 0px rgba(50, 50, 50, 0.59);
+
+      }
+
+      .validBlock {
+        background-color: #69a7dd;  
+      }
+      
+      .notfoundBlock {
+        background-color: #edbe36;
+      }
+
+      .invalidBlock {
+        background-color: #dd9169;
+      }
+
     </style>
 
-      <h1>Gov_DB_comparison_</h1>
+      <h1>Available_data_</h1>
+
+      <div class="legendContainer">
+      <div class="singleLegend">
+        <div class="block validBlock"></div>
+        <p>Valid</p>
+      </div>
+      <div class="singleLegend">
+        <div class="block notfoundBlock"></div>
+        <p>Not Found</p>
+      </div>
+      <div class="singleLegend">     
+        <div class="block invalidBlock"></div>
+        <p>Invalid</p>
+      </div>
 
       <template repeat="{{ chosenConcepts in dataForStatBar }}">
         <stat-bar concept="{{ chosenConcepts }}"></stat-bar>
       </template>
 
-  </template>
+  </div></template>
 
   <script>    
     Polymer('stat-widget', {
@@ -3586,22 +3637,86 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 left: 25%;
             }
 
-            h1 {
-                margin-top: 40px;
-                text-decoration: underline;
-            }
-
         </style> 
         
         <div class="container">
         <section class="bigbox">
             <p class="help">First, click on the image most closely related to your idea of a 'house'. Then, choose three out of the six icons -these are tags used to initiate a search. Last, log in with Facebook -only the country location will be retrieved and presented on the map.</p>
 
-            <p class="results">The colours designate the type of house chosen most in a country. The icon concepts are meant to start off a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. After logging in with Facebook, the results appear in bars, showing links which are working, semi-working, or not working at all.
+            <p class="results">The colours designate the type of house chosen most in a country. The icon concepts are meant to start off a search through the <a href="https://data.overheid.nl/">open data of the Dutch government</a> for related terms. After logging in with Facebook, the results appear in bars, showing how many links are working, semi-working, or not working at all.
             </p>
+        </section>
+        </div>
+
+    </template>
+    <script>
+        Polymer('overlay-help', {
+
+        });
+    </script>    
+</polymer-element>        
 
 
-            <h1>Some background info:</h1>
+
+<polymer-element name="overlay-info" assetpath="elements/">
+    <template>
+        <style type="text/css">
+
+            .container {
+                width: 100vw;
+                height: 100vh;
+            }
+
+            .bigbox {
+                display: block;
+                height: 70%;
+                width: 30%; /*chosen because of page min width*/
+
+                position:relative;
+                top:15%;
+                margin: 0 auto;
+                
+                min-width: 350px;
+
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 5px;
+
+                
+                padding: 10px;
+                font-family: NittyNormal;
+                text-align: right;
+                overflow: scroll;
+                
+            }
+
+            @media (min-width: 500px) {
+                .bigbox {
+                    left: 30%;
+                    margin: 0;
+                }
+            }
+
+            @media (min-width: 900px) {
+                .bigbox {
+                    left: 60%;
+                    margin: 0;
+                }
+            }
+
+            a {
+                color: #E5CF39;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: #75C7B3;
+            }
+
+        </style> 
+
+        <div class="container">
+
+        <section class="bigbox">
             <p>
             This website is a merge of two projects Coding the Humanities students worked on. The first project derived from the <a href="http://www.tandfonline.com/doi/abs/10.1080/02613539708455809#.U7UvqRZOZ4U">'Metaphor and Interdisciplinary analysis'</a> by Humanities scholar Christina Schaeffner, an article about metaphors in political discourse. The question 'What_does_house_mean_to_you?' is related to the 'Common European House Metaphor'; a misunderstanding between Gorbachev and his BRD counterpart Von Weizsäcker. 
             </p>
@@ -3614,18 +3729,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             The second project is about the Open Data website of the Dutch government set up to oblige the <a href="http://inspire.ec.europa.eu/">EU INSPIRE Directive</a>, that aims to "enable the sharing of environmental spatial information among public sector organisations and better facilitate public access to spatial information across Europe". The website of the Dutch government however, is not operating as it should. This is what we wanted to show in the second part. 
             </p>
             <p>
-            Given the very limited amount of time available to work on the whole project, we decided to use static data instead of dynamic for the sake of having a complete end result. The numbers used are very optimistic though. Should one take a closer look on the actual dynamic data, they may come up with a lot of <a href="https://twitter.com/Weyeser/status/439410248823357440">incosistencies and broken sets</a> which actually render the data inaccessible. 
+            Given the very limited amount of time available to work on the whole project, we decided to use static instead of dynamic data for the sake of concluding to a result. The numbers used are very optimistic though. Should one take a closer look on the actual dynamic data, they may come up with a lot of <a href="https://twitter.com/Weyeser/status/439410248823357440">incosistencies and broken sets</a> which actually render the data inaccessible. 
             </p>
         </section>
+
         </div>
 
     </template>
     <script>
-        Polymer('overlay-help', {
+        Polymer('overlay-info', {
 
         });
     </script>    
-</polymer-element>        
+</polymer-element>   
+
 
 <polymer-element name="cth-housemouse" assetpath="elements/">
     <template>
@@ -3742,26 +3859,162 @@ img.logomeantoyou {
     margin-top: 1%;
 }
 
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-30px);
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+
+  60% {
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-30px);
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+
+  60% {
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+@-ms-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-30px);
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+
+  60% {
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-30px);
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+
+  60% {
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+
+.arrow {
+  position: absolute;
+  margin-left: auto;
+  bottom: 0;
+  left: 50%;
+  margin-left: -20px;
+  width: 80px;
+  height: 80px;
+  background-image: url(images/arrow.svg);
+}
+
+.bounce {
+  -webkit-animation: bounce 2s infinite;
+  -moz-animation: bounce 2s infinite;
+  -ms-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+
+
 /* setting up the helpBoxButton*/
 
-.helpBoxButton {
-    background-color: transparent;
-    color: rgba(124, 124, 124, 0.9);
+.buttonContainer {
+    width: 24px;
+    height: 69px;
+    margin: 0 0 20px -6px;
+    overflow:hidden;
+    position: relative;
+}
+
+.overlayButton {
+    width: 20px;
+    height: 65px;
     padding: 2px;
-    margin-left: -3px;
-    margin-bottom: 20px;
+
     border: none;
-    background-color: rgba(124, 124, 124, 0.5);
     border-radius: 5px;
+    background-color: rgba(124, 124, 124, 0.5);
+    
+    color: rgba(45, 44, 42, 0.9);
     font-family: NittyNormal;
     font-size: large;
     line-height: 15px;
-    outline:none;
 
     -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.59);
 }
+
+.shimmerItem {
+    content: url(images/shimmer.png);
+    /*background-image: url(images/shimmer.png);*/
+    width: 20px;
+    height: 70px;   
+    
+    position: absolute;
+    top: -50px;
+}
+
+.buttonContainer:hover .shimmerItem {
+    top: 45px;
+    -moz-transition: top .05s linear;
+    -o-transition: top .05s linear;
+    -webkit-transition: top .05s linear;
+    transition: top .05s linear;
+}
+
 
 /* The nice 4 nav bullets in the left corner*/
 
@@ -3769,7 +4022,7 @@ img.logomeantoyou {
   position: fixed;
   z-index: 2000;
   width: 10px;
-  height: 180px;
+  height: 270px;
   bottom: 10px;
   right: 20px;
 
@@ -4166,7 +4419,14 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 		        </div>
 		        <div class="navrectangle ">
 
-                    <button id="helpButton" class="helpBoxButton">H<br>E<br>L<br>P</button>
+                <div class="buttonContainer">
+                    <div class="shimmerItem"></div>
+                    <button id="infoButton" class="overlayButton">I<br>N<br>F<br>O</button>
+                </div>
+                <div class="buttonContainer">
+                    <div class="shimmerItem"></div>
+                    <button id="helpButton" class="overlayButton">H<br>E<br>L<br>P</button>
+                </div>
 
 		            <ul class="nav navbar-nav">
 		                <li class="page-scroll bol">
@@ -4197,6 +4457,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 			        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="images/meantoyou.svg">
 			    </div>    
             </div>
+             <div class="arrow animated bounce"></div>
         </section>
         
         <core-collapse id="collapseVote" class="cCollapse" opened="" duration="2">
@@ -4235,6 +4496,10 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         <core-overlay id="helpOverlay" layered="" transition="core-transition-center">
             <overlay-help></overlay-help>
         </core-overlay> 
+
+        <core-overlay id="infoOverlay" layered="" transition="core-transition-center">
+            <overlay-info></overlay-info>
+        </core-overlay> 
 		
     </template>
     
@@ -4255,6 +4520,10 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 
                 var helpButton = this.shadowRoot.querySelector('#helpButton');
                 helpButton.addEventListener("click", this.toggleHelpOverlay, false);
+
+                
+                var infoButton = this.shadowRoot.querySelector('#infoButton');
+                infoButton.addEventListener("click", this.toggleInfoOverlay, false);
 
 
 
@@ -4294,6 +4563,15 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                 };
             },
 
+            toggleInfoOverlay: function() {
+                // Toggeling the overlay on the help button.
+                var toggle = window.shadowRootFix.querySelector('#infoOverlay');
+
+                if (toggle != null) {
+                    toggle.toggle();
+                };
+            },
+
             singleVoteChanged: function(){
                 // toggeling the console after user votes.
                 this.shadowRoot.querySelector('#collapseConsole').toggle();
@@ -4310,9 +4588,8 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
             inbetweenThrowDown: function() {
                 // 'this' is very weird in this function; it should point to the polymer object, but it points to the window. So I selected it from up top. 
                 var target = document.querySelector('cth-housemouse');
-                var consoleSelector = target.shadowRoot.querySelector('#console');
-                var consoleOffset = consoleSelector.offsetTop;
-                target.throwDown(consoleOffset);
+                var consoleSelectorOffset = target.shadowRoot.querySelector('#console').offsetTop;
+                target.throwDown(consoleSelectorOffset);
             }
 
         });

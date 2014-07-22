@@ -216,62 +216,50 @@ img.logomeantoyou {
 
 /* setting up the helpBoxButton*/
 
-.helpBoxButton {
-    color: rgba(45, 44, 42, 0.9);
+.buttonContainer {
+    width: 24px;
+    height: 69px;
+    margin: 0 0 20px -6px;
+    overflow:hidden;
+    position: relative;
+}
+
+.overlayButton {
+    width: 20px;
+    height: 65px;
     padding: 2px;
-    margin-left: -3px;
-    margin-bottom: 20px;
+
     border: none;
-    background-color: rgba(124, 124, 124, 0.5);
     border-radius: 5px;
+    background-color: rgba(124, 124, 124, 0.5);
+    
+    color: rgba(45, 44, 42, 0.9);
     font-family: NittyNormal;
     font-size: large;
     line-height: 15px;
-    outline:none;
 
     -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.59);
 }
 
-.helpBoxButton::before {
+.shimmerItem {
     content: url(../images/shimmer.png);
     /*background-image: url(../images/shimmer.png);*/
+    width: 20px;
+    height: 70px;   
+    
     position: absolute;
-    width: 14px;
-    height: 64px;
-    overflow: hidden;
-    left: -3px;
-    top: 60px;
-
+    top: -50px;
 }
 
-.shimmer {
-    left: 100%;
-    -moz-transition: left .45s linear;
-    -o-transition: left .45s linear;
-    -webkit-transition: left .45s linear;
-    transition: left .45s linear;
+.buttonContainer:hover .shimmerItem {
+    top: 45px;
+    -moz-transition: top .05s linear;
+    -o-transition: top .05s linear;
+    -webkit-transition: top .05s linear;
+    transition: top .05s linear;
 }
-
-.infoButton {
-    color: rgba(45, 44, 42, 0.9);
-    padding: 2px;
-    margin-left: -3px;
-    margin-bottom: 20px;
-    border: none;
-    background-color: rgba(124, 124, 124, 0.5);
-    border-radius: 5px;
-    font-family: NittyNormal;
-    font-size: large;
-    line-height: 15px;
-    outline:none;
-
-    -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.59);
-    -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.59);
-    box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.59);
-    }
-
 
 
 /* The nice 4 nav bullets in the left corner*/
@@ -280,7 +268,7 @@ img.logomeantoyou {
   position: fixed;
   z-index: 2000;
   width: 10px;
-  height: 180px;
+  height: 270px;
   bottom: 10px;
   right: 20px;
 
