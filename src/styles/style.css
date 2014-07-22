@@ -105,6 +105,8 @@ img.logomeantoyou {
     margin-top: 1%;
 }
 
+/* bouncy arrow */
+
 @-webkit-keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     -webkit-transform: translateY(0);
@@ -202,7 +204,8 @@ img.logomeantoyou {
   margin-left: -20px;
   width: 80px;
   height: 80px;
-  background-image: url(../images/arrow.svg);
+  content: url(../images/arrow.svg);
+  /*background-color: red;*/
 }
 
 .bounce {
@@ -222,6 +225,7 @@ img.logomeantoyou {
     margin: 0 0 20px -6px;
     overflow:hidden;
     position: relative;
+    cursor: pointer ;
 }
 
 .overlayButton {
@@ -237,6 +241,7 @@ img.logomeantoyou {
     font-family: NittyNormal;
     font-size: large;
     line-height: 15px;
+    text-align:center;
 
     -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.59);
     -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.59);
@@ -244,8 +249,7 @@ img.logomeantoyou {
 }
 
 .shimmerItem {
-    content: url(../images/shimmer.png);
-    /*background-image: url(../images/shimmer.png);*/
+    background-image: url(../images/shimmer.png);
     width: 20px;
     height: 70px;   
     
