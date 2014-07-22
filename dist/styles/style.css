@@ -198,14 +198,11 @@ img.logomeantoyou {
 
 .arrow {
   position: absolute;
-  margin-left: auto;
   bottom: 0;
-  left: 50%;
-  margin-left: -20px;
-  width: 80px;
-  height: 80px;
+  left: 45%;
+  width: 10%;
+  height: 10%;
   content: url(../images/arrow.svg);
-  /*background-color: red;*/
 }
 
 .bounce {
@@ -250,6 +247,7 @@ img.logomeantoyou {
 
 .shimmerItem {
     background-image: url(../images/shimmer.png);
+    /*background-image: url(../images/shimmer.png);*/
     width: 20px;
     height: 70px;   
     
