@@ -1912,7 +1912,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       switch (this.position) {
         case 'top':
         case 'bottom':
-          this.$.tooltip.style.left = (controlWidth - toolTipWidth) / 2 + 'px';
+          this.$.tooltip.style.left =  "50%" ;  //(controlWidth - toolTipWidth) / 2 + 'px'
           break;
         case 'left':
         case 'right':
@@ -1972,7 +1972,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
     
     <core-tooltip label="{{ concept.name }}" position="bottom">
-        <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+        <div>
+          <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+        </div>
     </core-tooltip>
 
   </template>

@@ -46,7 +46,9 @@
     </style>
     
     <core-tooltip label="{{ concept.name }}"  position="bottom">
-        <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+        <div>
+          <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+        </div>
     </core-tooltip>
 
   </template>
