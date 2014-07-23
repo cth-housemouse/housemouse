@@ -136,15 +136,15 @@
                 var infoButton = this.shadowRoot.querySelector('#infoButton');
                 infoButton.addEventListener("click", this.toggleInfoOverlay, false);
 
-                // Remove shimmer
-                setTimeout(this.autoShimmerRemoveAddArrow, 3000);
-
                 // showing the Vote element after the 3 sec's of banneranimation.
                 function openVote() {
                     window.shadowRootFix.querySelector('#collapseVote').toggle();
                 };
 
                 setTimeout(openVote, 3000);
+
+                // Remove shimmer
+                setTimeout(this.autoShimmerRemoveAddArrow, 5000);
             },
 
             navAnimatedLinks: function() {

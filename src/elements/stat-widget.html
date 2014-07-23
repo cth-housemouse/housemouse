@@ -7,12 +7,13 @@
     <style type="text/css">
      
       h1 {
-          background-color: black;
-          color:#E8E8E8;
-          font-family: NittyNormal;
+        padding: 4px 0;
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
         } 
 
-      p {
+      p.legendText {
         color: rgba(124, 124, 124, 0.7);
         width: 100px;
         }
@@ -49,22 +50,33 @@
         background-color: #dd9169;
       }
 
+      p.explaination {
+        width: 76%;
+        margin: 0 auto;
+        padding: 2%;
+        border-radius: 5px;
+        background: lightgrey;
+        color: black;
+      }
+
     </style>
 
       <h1>Available_data_</h1>
 
+      <p class="explaination">Too bad, we would have loved to tell you more about {{ vote.concepts[0]}}, {{ vote.concepts[1]}} and {{vote.concepts[2]}} in the Netherlands, but the data from openoverheid at our disposal is highly lacking. See the chart below for an optimistic estimation of the amount  of working, semi-working, and non-working links in the data set.</p>
+
       <div class="legendContainer">
       <div class="singleLegend">
         <div class="block validBlock"></div>
-        <p>Valid</p>
+        <p class="legendText">Valid</p>
       </div>
       <div class="singleLegend">
         <div class="block notfoundBlock"></div>
-        <p>Not Found</p>
+        <p class="legendText">Not Found</p>
       </div>
       <div class="singleLegend">     
         <div class="block invalidBlock"></div>
-        <p>Invalid</p>
+        <p class="legendText">Invalid</p>
       </div>
 
       <template repeat="{{ chosenConcepts in dataForStatBar }}">

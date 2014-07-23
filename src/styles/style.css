@@ -67,7 +67,7 @@ body {
     display:block;
     width: 80%;
     height: 100%;
-    margin: 0 auto;
+    margin: 20px auto;
     max-width: 1000px; 
 }
 
@@ -231,6 +231,7 @@ img.logomeantoyou {
 .overlayButton {
     width: 20px;
     height: 65px;
+    margin: 0 0 0 0;
     padding: 2px;
 
     border: none;
@@ -346,9 +347,10 @@ img.logomeantoyou {
 /* footer styling */
 
 .footerDiv {
-    background-color: black;
     width: 60%;
     margin: auto;
+    padding:4px 0;
+    background-color: black;  
 }
 
 .footerText {

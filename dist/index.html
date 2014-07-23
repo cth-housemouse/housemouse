@@ -1552,7 +1552,7 @@ Fired when the `core-overlay`'s `opened` property changes.
       :host {
         display: inline-block;
         width: 20%;
-        margin: 0 3%;
+        margin: 2% 3%;
       }
 
       img {
@@ -1651,6 +1651,7 @@ Fired when the `core-overlay`'s `opened` property changes.
 
 
       h1 {
+        padding: 4px 0;
         background-color: black;
         color:#E8E8E8;
         font-family: NittyNormal;
@@ -1932,6 +1933,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: inline-block;
         width: 10%;
         margin: 2% 3%;
+        min-width: 60px;
       }
 
       img {
@@ -2036,6 +2038,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
       h1 {
+        padding: 4px 0;
         background-color: black;
         color:#E8E8E8;
         font-family: NittyNormal;
@@ -2077,6 +2080,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @font-face { font-family: NittyBold; src: url(fonts/NB.woff) format('woff'); }
 
       h1 {
+        padding: 4px 0;
         background-color: black;
         color:#E8E8E8;
         font-family: NittyNormal;
@@ -2087,6 +2091,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 15%;
         margin: 0 auto;
         margin-bottom: 20px;
+        min-width: 60px;
         -webkit-transition-property: -webkit-transform;
         -webkit-transition-duration: 1s;
         -moz-transition-property: -moz-transform;
@@ -2170,7 +2175,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="combine-vote" assetpath="elements/">
   <template>
-
+  
     <select-house housetype="{{houseType}}"></select-house>
     <select-concepts chosenconcept="{{chosenConcept}}"></select-concepts>
     <user-login userinfo="{{userInfo}}"></user-login>
@@ -3025,6 +3030,7 @@ Example:
       /*text*/
 
       h1 {
+        padding: 4px 0;
         background-color: black;
         color:#E8E8E8;
         font-family: NittyNormal;
@@ -3288,9 +3294,9 @@ Example:
           text-shadow: 0px 0px 0px #666;
         }
       }*/
-    </style>  
+    </style>
   
-    <div class="concept"> 
+    <div class="concept">
       <div class="nametag">
         <img class="conceptImg" src="../images/{{concept.name}}.png">
       </div>
@@ -3306,8 +3312,8 @@ Example:
             <p>{{notWorkingPercentage}}%</p>
         </div>
       </div>
-
     </div>
+
   </template>
   <script>
     Polymer('stat-bar', {
@@ -3328,12 +3334,13 @@ Example:
     <style type="text/css">
      
       h1 {
-          background-color: black;
-          color:#E8E8E8;
-          font-family: NittyNormal;
+        padding: 4px 0;
+        background-color: black;
+        color:#E8E8E8;
+        font-family: NittyNormal;
         } 
 
-      p {
+      p.legendText {
         color: rgba(124, 124, 124, 0.7);
         width: 100px;
         }
@@ -3370,22 +3377,33 @@ Example:
         background-color: #dd9169;
       }
 
+      p.explaination {
+        width: 76%;
+        margin: 0 auto;
+        padding: 2%;
+        border-radius: 5px;
+        background: lightgrey;
+        color: black;
+      }
+
     </style>
 
       <h1>Available_data_</h1>
 
+      <p class="explaination">Too bad, we would have loved to tell you more about {{ vote.concepts[0]}}, {{ vote.concepts[1]}} and {{vote.concepts[2]}} in the Netherlands, but the data from openoverheid at our disposal is highly lacking. See the chart below for an optimistic estimation of the amount  of working, semi-working, and non-working links in the data set.</p>
+
       <div class="legendContainer">
       <div class="singleLegend">
         <div class="block validBlock"></div>
-        <p>Valid</p>
+        <p class="legendText">Valid</p>
       </div>
       <div class="singleLegend">
         <div class="block notfoundBlock"></div>
-        <p>Not Found</p>
+        <p class="legendText">Not Found</p>
       </div>
       <div class="singleLegend">     
         <div class="block invalidBlock"></div>
-        <p>Invalid</p>
+        <p class="legendText">Invalid</p>
       </div>
 
       <template repeat="{{ chosenConcepts in dataForStatBar }}">
@@ -3832,7 +3850,7 @@ body {
     display:block;
     width: 80%;
     height: 100%;
-    margin: 0 auto;
+    margin: 20px auto;
     max-width: 1000px; 
 }
 
@@ -3996,6 +4014,7 @@ img.logomeantoyou {
 .overlayButton {
     width: 20px;
     height: 65px;
+    margin: 0 0 0 0;
     padding: 2px;
 
     border: none;
@@ -4111,9 +4130,10 @@ img.logomeantoyou {
 /* footer styling */
 
 .footerDiv {
-    background-color: black;
     width: 60%;
     margin: auto;
+    padding:4px 0;
+    background-color: black;  
 }
 
 .footerText {
@@ -4559,15 +4579,15 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
                 var infoButton = this.shadowRoot.querySelector('#infoButton');
                 infoButton.addEventListener("click", this.toggleInfoOverlay, false);
 
-                // Remove shimmer
-                setTimeout(this.autoShimmerRemoveAddArrow, 3000);
-
                 // showing the Vote element after the 3 sec's of banneranimation.
                 function openVote() {
                     window.shadowRootFix.querySelector('#collapseVote').toggle();
                 };
 
                 setTimeout(openVote, 3000);
+
+                // Remove shimmer
+                setTimeout(this.autoShimmerRemoveAddArrow, 5000);
             },
 
             navAnimatedLinks: function() {
