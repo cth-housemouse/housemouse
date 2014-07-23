@@ -13,7 +13,7 @@
       }
      
       .concept {
-          width: 90%;
+          width: 70vw;
           height: 50px;
           background-color: #6984dd;
           margin: 20px auto;
@@ -103,7 +103,8 @@
         }
       }*/
     </style>
-  
+
+    <core-tooltip label="{{ concept.name }}"  position="bottom middle">
     <div class="concept">
       <div class="nametag">
         <img class="conceptImg" src="../images/{{concept.name}}.png"/>
@@ -121,6 +122,7 @@
         </div>
       </div>
     </div>
+    </core-tooltip>
 
   </template>
   <script>
