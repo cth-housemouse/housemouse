@@ -1809,6 +1809,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 .bottom {
   top: 100%;
+  left: 50%;
   margin-top: 10px; /* TODO: not specified in spec */
 }
 
@@ -1961,7 +1962,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
     
-    <core-tooltip label="{{ concept.name }}" position="bottom middle">
+    <core-tooltip label="{{ concept.name }}" position="bottom">
       <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
     </core-tooltip>
 
@@ -3208,7 +3209,7 @@ Example:
           width: 70vw;
           height: 50px;
           background-color: #6984dd;
-          margin: 20px auto;
+          margin: 40px auto 0 auto;
       }
       
       .nametag{
@@ -3294,9 +3295,15 @@ Example:
           text-shadow: 0px 0px 0px #666;
         }
       }*/
+
+      core-tooltip {
+        text-transform: capitalize;
+        outline: none;
+      }
+
     </style>
 
-    <core-tooltip label="{{ concept.name }}" position="bottom middle">
+    <core-tooltip label="{{ concept.name }}" position="bottom">
     <div class="concept">
       <div class="nametag">
         <img class="conceptImg" src="../images/{{concept.name}}.png">
@@ -3396,24 +3403,25 @@ Example:
       <p class="explaination">Too bad, we would have loved to tell you more about {{ vote.concepts[0]}}, {{ vote.concepts[1]}} and {{vote.concepts[2]}} in the Netherlands, but the data from openoverheid at our disposal is highly lacking. See the chart below for an optimistic estimation of the amount  of working, semi-working, and non-working links in the data set.</p>
 
       <div class="legendContainer">
-      <div class="singleLegend">
-        <div class="block validBlock"></div>
-        <p class="legendText">Valid</p>
-      </div>
-      <div class="singleLegend">
-        <div class="block notfoundBlock"></div>
-        <p class="legendText">Not Found</p>
-      </div>
-      <div class="singleLegend">     
-        <div class="block invalidBlock"></div>
-        <p class="legendText">Invalid</p>
+        <div class="singleLegend">
+          <div class="block validBlock"></div>
+          <p class="legendText">Valid</p>
+        </div>
+        <div class="singleLegend">
+          <div class="block notfoundBlock"></div>
+          <p class="legendText">Not Found</p>
+        </div>
+        <div class="singleLegend">     
+          <div class="block invalidBlock"></div>
+          <p class="legendText">Invalid</p>
+        </div>
       </div>
 
       <template repeat="{{ chosenConcepts in dataForStatBar }}">
         <stat-bar concept="{{ chosenConcepts }}"></stat-bar>
       </template>
 
-  </div></template>
+  </template>
 
   <script>    
     Polymer('stat-widget', {
@@ -4536,7 +4544,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
             </section>
         </core-collapse>
         
-        <core-collapse id="collapseStats" class="cCollapse" fixedsize="" duration="4">
+        <core-collapse id="collapseStats" class="cCollapse" duration="4">
             <section id="stats" class="mainSection sectionStats">      
                 <stat-widget class="polymerContent" vote="{{ singleVote }}"></stat-widget>
             </section>
