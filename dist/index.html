@@ -1809,7 +1809,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 .bottom {
   top: 100%;
-  left: 50%;
   margin-top: 10px; /* TODO: not specified in spec */
 }
 
@@ -1960,10 +1959,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         outline: none;
       }
 
+      .cf:before,
+      .cf:after {
+          content: " "; 
+          display: table;
+      }
+
+      .cf:after {
+          clear: both;
+      }
+
     </style>
     
     <core-tooltip label="{{ concept.name }}" position="bottom">
-      <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+        <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
     </core-tooltip>
 
   </template>

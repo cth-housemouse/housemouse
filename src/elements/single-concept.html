@@ -33,10 +33,20 @@
         outline: none;
       }
 
+      .cf:before,
+      .cf:after {
+          content: " "; 
+          display: table;
+      }
+
+      .cf:after {
+          clear: both;
+      }
+
     </style>
     
     <core-tooltip label="{{ concept.name }}"  position="bottom">
-      <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+        <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
     </core-tooltip>
 
   </template>
