@@ -73,13 +73,19 @@
 
     </style>
 
-    <img id="highlightHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
+    <img id="highlightHouse" src="{{image.imageUrl}}">
 
   </template>
 
   <script>
     Polymer('single-house', {
       houseType: "",
+      ready: function(){
+
+         elem = this.shadowRoot.getElementById('highlightHouse');
+         elem.addEventListener.call(this, 'click', this.setType, false);
+
+      },
       setType: function(){
         this.houseType = this.image.type;
       },

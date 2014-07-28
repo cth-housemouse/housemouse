@@ -1620,13 +1620,19 @@ Fired when the `core-overlay`'s `opened` property changes.
 
     </style>
 
-    <img id="highlightHouse" on-click="{{ setType }}" src="{{image.imageUrl}}">
+    <img id="highlightHouse" src="{{image.imageUrl}}">
 
   </template>
 
   <script>
     Polymer('single-house', {
       houseType: "",
+      ready: function(){
+
+         elem = this.shadowRoot.getElementById('highlightHouse');
+         elem.addEventListener.call(this, 'click', this.setType, false);
+
+      },
       setType: function(){
         this.houseType = this.image.type;
       },
@@ -1973,7 +1979,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <core-tooltip label="{{ concept.name }}" position="bottom">
         <div>
-          <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+          <img id="highlight" src="{{concept.src}}">
         </div>
     </core-tooltip>
 
@@ -1983,6 +1989,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer('single-concept', {
       chosenConcept: [],
       highlight: false,
+      ready: function(){
+
+         elem = this.shadowRoot.getElementById('highlight');
+         elem.addEventListener.call(this, 'click', this.setConcept, false);
+
+      },
       setConcept: function(){
 
         // Fool push to work  
@@ -4534,7 +4546,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
              <div id="jumpyArrow" class="arrow bounce hidingArrow"></div>
         </section>
         
-        <core-collapse id="collapseVote" class="cCollapse" duration="2">
+        <core-collapse id="collapseVote" opened="" class="cCollapse" duration="2">
             <section id="vote" class="mainSection sectionVote">
                 <combine-vote class="polymerContent" singlevote="{{ singleVote }}"></combine-vote>
             </section>
@@ -4715,10 +4727,10 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
   
      	<cth-housemouse></cth-housemouse>
 
-      <script src="vendor/jquery/jquery.js"></script> 
-      <script src="vendor/jquery.easing.min.js"></script> 
-      <script src="scripts/CTH-VERSION-scrollReveal.js"></script>
-      <script src="scripts/CTH-VERSION-bootstrap.js"></script>
+      <!-- // <script src="./vendor/jquery/jquery.js"></script>  -->
+      <!-- // <script src="./vendor/jquery.easing.min.js"></script>  -->
+      <!-- // <script src="./scripts/CTH-VERSION-scrollReveal.js"></script> -->
+      <!-- // <script src="./scripts/CTH-VERSION-bootstrap.js"></script> -->
 
   </body>    
 </html>

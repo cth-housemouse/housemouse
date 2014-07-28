@@ -47,7 +47,7 @@
     
     <core-tooltip label="{{ concept.name }}"  position="bottom">
         <div>
-          <img id="highlight" on-click="{{ setConcept }}" src="{{concept.src}}">
+          <img id="highlight" src="{{concept.src}}">
         </div>
     </core-tooltip>
 
@@ -57,6 +57,12 @@
     Polymer('single-concept', {
       chosenConcept: [],
       highlight: false,
+      ready: function(){
+
+         elem = this.shadowRoot.getElementById('highlight');
+         elem.addEventListener.call(this, 'click', this.setConcept, false);
+
+      },
       setConcept: function(){
 
         // Fool push to work  
