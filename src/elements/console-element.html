@@ -4,9 +4,9 @@
 
             .consoleBox {
                 background-color: rgba(0,0,0,0.9);
-                height: 90vh;
+                height: 85vh;
                 width: 70%;
-                margin: 5vh auto;
+                margin: 5vh auto 10vh auto;
                 border-radius: 2px;
                 overflow-y: scroll;
                 -webkit-box-shadow: 6px 6px 6px 0px rgba(50, 50, 50, 0.59);
@@ -143,6 +143,10 @@
                 if (i== text.length - 1) {
                     window.shadowRootFix.querySelector('#collapseMap').toggle();
                     window.shadowRootFix.querySelector('#collapseStats').toggle();
+
+                    var target = document.querySelector('cth-housemouse');
+                    target.arrow = target.shadowRoot.querySelector('#jumpyArrow2');
+                    target.arrow.classList.remove('hidingArrow');
                 };
 
                 // making the timer a bit more random

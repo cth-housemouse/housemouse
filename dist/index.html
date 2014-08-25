@@ -2717,9 +2717,9 @@ Example:
 
             .consoleBox {
                 background-color: rgba(0,0,0,0.9);
-                height: 90vh;
+                height: 85vh;
                 width: 70%;
-                margin: 5vh auto;
+                margin: 5vh auto 10vh auto;
                 border-radius: 2px;
                 overflow-y: scroll;
                 -webkit-box-shadow: 6px 6px 6px 0px rgba(50, 50, 50, 0.59);
@@ -2856,6 +2856,10 @@ Example:
                 if (i== text.length - 1) {
                     window.shadowRootFix.querySelector('#collapseMap').toggle();
                     window.shadowRootFix.querySelector('#collapseStats').toggle();
+
+                    var target = document.querySelector('cth-housemouse');
+                    target.arrow = target.shadowRoot.querySelector('#jumpyArrow2');
+                    target.arrow.classList.remove('hidingArrow');
                 };
 
                 // making the timer a bit more random
@@ -3015,7 +3019,7 @@ Example:
         position: relative;
         width: 100%;
         height: 100%;
-        padding-bottom: 45%;
+        padding-bottom: 47%;
         vertical-align: middle;
         overflow: hidden;
       }
@@ -3090,30 +3094,30 @@ Example:
         width: 100px;
       }
 
+      .legendImg {
+        width: 50px;
+        height: 50px;
+      }
+
     </style>
 
     <h1>Type_per_country_</h1>
 
     <div class="legendContainer">
       <div class="singleLegend">
-        <div class="block houseBlock"></div>
-        <p>Family</p>
+        <img src="images/house.png" class="legendImg">
       </div>
       <div class="singleLegend">
-        <div class="block flatBlock"></div>
-        <p>Apartment</p>
+        <img src="images/apartment.png" class="legendImg">
       </div>
-      <div class="singleLegend">     
-        <div class="block farmBlock"></div>
-        <p>Rural</p>
+      <div class="singleLegend"> 
+        <img src="images/farm.png" class="legendImg">    
       </div>
       <div class="singleLegend">
-        <div class="block undecidedBlock"></div>
-        <p>Undecided</p>
+        <img src="images/house.png" class="legendImg"> 
       </div>
       <div class="singleLegend">
-        <div class="block nodataBlock"></div>
-        <p>No Data</p>
+        <img src="images/house.png" class="legendImg"> 
       </div>
     </div>
     
@@ -3849,8 +3853,10 @@ body {
 }
 .sectionConsole{
     background-color: #E34D2F;
+    position: relative;
 }
 .sectionMap{
+    position: relative;
     background-color: #75C7B3;
 }
 .sectionStats{
@@ -4003,9 +4009,8 @@ img.logomeantoyou {
 .arrow {
   position: absolute;
   bottom: 0;
-  left: 45%;
-  width: 10%;
-  height: 10%;
+  left: 47.5vw;
+  width: 5vw;
   content: url(images/arrow.svg);
 }
 
@@ -4167,6 +4172,20 @@ img.logomeantoyou {
 .footerText:hover {
     color:#E5CF39;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4531,7 +4550,7 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
 			        <img data-scroll-reveal="enter from bottom 10px over .9s after 1.5s" class="logomeantoyou" src="images/meantoyou.svg">
 			    </div>    
             </div>
-             <div id="jumpyArrow" class="arrow bounce hidingArrow"></div>
+            <div id="jumpyArrow" class="arrow bounce hidingArrow"></div>
         </section>
         
         <core-collapse id="collapseVote" class="cCollapse" duration="2">
@@ -4546,12 +4565,14 @@ webkit-tap-highlight-color: rgba(255,255,255,.2);
         <core-collapse id="collapseConsole" class="cCollapse" duration="2">
             <section id="console" class="mainSection sectionConsole">
                 <console-element id="consoled" class="polymerContent"></console-element>
+                <div id="jumpyArrow2" class="arrow bounce hidingArrow"></div>
             </section>
         </core-collapse>    
 
         <core-collapse id="collapseMap" class="cCollapse" duration="4">
             <section id="map" class="mainSection sectionMap">
                 <map-element class="polymerContent" data="{{retrieved}}"></map-element>
+                <div id="jumpyArrow3" class="arrow bounce"></div>
             </section>
         </core-collapse>
         
