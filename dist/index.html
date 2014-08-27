@@ -3411,10 +3411,22 @@ Example:
         font-family: NittyNormal;
       }
 
+      img.infographic {
+        width: 80vw;
+        height: 40vh;
+        margin: 0 auto;
+        display: block;
+        background-color: black;
+      }
+
     </style>
 
-      <h1>Available_data_</h1>
+      <h1>Comparison_</h1>
 
+      <p class="explaination">We've collected alot of data ourselves, lets compare it to other data! Lets start with the Netherlands. The place for that should be the opendata initiative.</p>
+      <img src="" alt="" class="infographic">
+
+      <h1>Problem</h1>
       <p class="explaination">Too bad, we would have loved to tell you more about {{ vote.concepts[0]}}, {{ vote.concepts[1]}} and {{vote.concepts[2]}} in the Netherlands, but the data from openoverheid at our disposal is highly lacking. See the chart below for an optimistic estimation of the amount  of working, semi-working, and non-working links in the data set.</p>
 
       <div class="legendContainer">
@@ -3436,6 +3448,10 @@ Example:
         <stat-bar concept="{{ chosenConcepts }}"></stat-bar>
       </template>
 
+      <h1>Future</h1>
+      <p class="explaination">The government should probably work a bit harder on structuring their information.</p>
+      <img src="" alt="" class="infographic">
+      
   </template>
 
   <script>    
