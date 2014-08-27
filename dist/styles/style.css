@@ -402,7 +402,7 @@ h6 {
     letter-spacing: 1px;
 }
 
-p {
+/*p {
     margin: 0 0 25px;
     font-size: 18px;
     line-height: 1.5;
@@ -414,7 +414,7 @@ p {
         font-size: 20px;
         line-height: 1.6;
     }
-}
+}*/
 
 a {
     color: #28c3ab;
