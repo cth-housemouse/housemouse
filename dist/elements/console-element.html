@@ -1,17 +1,23 @@
 <polymer-element name="console-element">
 	<template>
-		<style type="text/css">
+		<style type="text/css">  
 
             .consoleBox {
                 background-color: rgba(0,0,0,0.9);
                 height: 85vh;
-                width: 70%;
+                width: 100%;
                 margin: 5vh auto 10vh auto;
                 border-radius: 2px;
                 overflow-y: scroll;
                 -webkit-box-shadow: 6px 6px 6px 0px rgba(50, 50, 50, 0.59);
                 -moz-box-shadow:    6px 6px 6px 0px rgba(50, 50, 50, 0.59);
                  box-shadow:        6px 6px 6px 0px rgba(50, 50, 50, 0.59);
+            }
+
+            @media (min-width: 800px) {
+                .consoleBox {
+                    width: 70%;
+                }
             }
 
 			.consoleText {
