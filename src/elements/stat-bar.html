@@ -88,22 +88,10 @@
         outline: none;
       }
 
-      .cf:before,
-      .cf:after {
-          content: " "; /* 1 */
-          display: table; /* 2 */
-      }
-
-      .cf:after {
-          clear: both;
-      }
-
-      
-
     </style>
 
     <core-tooltip label="{{ concept.name }}"  position="bottom">
-    <div class="concept cf">
+    <div class="concept">
       <div class="nametag">
         <img class="conceptImg" src="../images/{{concept.name}}.png"/>
       </div>
