@@ -1,0 +1,29 @@
+{
+  "name": "viewport-units-buggyfill",
+  "version": "0.3.1",
+  "main": [
+    "./viewport-units-buggyfill.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "*.html",
+    "*.css",
+    "*.md"
+  ],
+  "keywords": [
+    "ios",
+    "safari",
+    "viewport"
+  ],
+  "homepage": "https://github.com/rodneyrehm/viewport-units-buggyfill",
+  "_release": "0.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.1",
+    "commit": "48da8850d44f081a0c0aa1c185143309378efc71"
+  },
+  "_source": "git://github.com/rodneyrehm/viewport-units-buggyfill.git",
+  "_target": "~0.3.1",
+  "_originalSource": "viewport-units-buggyfill",
+  "_direct": true
+}

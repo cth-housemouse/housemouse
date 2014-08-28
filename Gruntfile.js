@@ -59,10 +59,13 @@ module.exports = function(grunt) {
         src: 'platform/platform.js',
         dest: 'dist/vendor/platform.js'
       },
-      // for safari
       platformMap: {
         src: 'platform/platform.js.map',
         dest: 'dist/vendor/platform.js.map'
+      },
+      ViewportUnitsBuggyfill: {
+        src: 'viewport-units-buggyfill/viewport-units-buggyfill.js',
+        dest: 'dist/vendor/viewport-units-buggyfill.js'
       },
       firebase: {
         src: 'firebase/firebase.js',
